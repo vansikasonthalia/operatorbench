@@ -72,7 +72,7 @@ This project extends the methodology of:
 
 - **SemBench** (Lao et al., 2025) — evaluates accuracy, cost, efficiency of semantic query engines; does not measure cross-run consistency or cross-operator coherence
 - **DAB** (Ma et al., 2026) — benchmarks data agent performance; does not systematically categorise failure modes
-- **RGEval** (Sonthalia et al., ICWS 2025) — benchmarks LLM-generated GraphQL queries; establishes semantic equivalence evaluation methodology extended here
+- **RGEval** (Sonthalia et al., ICWS 2025) — benchmarks LLM-generated GraphQL queries; establishes semantic equivalence evaluation methodology extended here · [IEEE Xplore](https://ieeexplore.ieee.org/document/11169687)
 
 ## Status
 
@@ -93,7 +93,7 @@ This project extends the methodology of:
 
 [Google Scholar](https://scholar.google.com/citations?user=L5Jdou8AAAAJ) · [LinkedIn](https://linkedin.com/in/vansikasonthalia) · [Website](https://vansikasonthalia.github.io)
 
-Related publication: [Robust Evaluation of LLM-Generated GraphQL Queries for Web Services](https://ieeexplore.ieee.org/document/your-doi-here), IEEE ICWS 2025
+Related publication: [Robust Evaluation of LLM-Generated GraphQL Queries for Web Services](https://ieeexplore.ieee.org/document/11169687), IEEE ICWS 2025
 
 ## Citation
 
