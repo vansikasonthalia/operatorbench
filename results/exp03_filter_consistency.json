@@ -1,0 +1,52 @@
+{
+  "experiment": "03_filter_consistency",
+  "timestamp": "2026-04-25T11:08:34.484200",
+  "note": "AI_FILTER(VARCHAR, VARCHAR) does not exist. Correct syntax: single composed string passed to AI_FILTER().",
+  "results": {
+    "delivery_prompt": {
+      "condition": "Is this text about a delivery or shipping issue?",
+      "n_rows": 50,
+      "n_runs": 5,
+      "n_consistent": 50,
+      "consistency_rate": 1.0,
+      "n_flipped": 0,
+      "runs_pass_counts": [
+        6,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    "billing_prompt": {
+      "condition": "Does this text mention a payment or billing problem?",
+      "n_rows": 50,
+      "n_runs": 5,
+      "n_consistent": 50,
+      "consistency_rate": 1.0,
+      "n_flipped": 0,
+      "runs_pass_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "urgent_prompt": {
+      "condition": "Does this text indicate the order is urgent or time-sensitive?",
+      "n_rows": 50,
+      "n_runs": 5,
+      "n_consistent": 50,
+      "consistency_rate": 1.0,
+      "n_flipped": 0,
+      "runs_pass_counts": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    }
+  }
+}

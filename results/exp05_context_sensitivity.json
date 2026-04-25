@@ -1,0 +1,146 @@
+{
+  "experiment": "05_context_sensitivity",
+  "timestamp": "2026-04-25T12:01:19.731061",
+  "config": {
+    "n_rows": 100,
+    "labels": [
+      "urgent",
+      "standard",
+      "low priority"
+    ]
+  },
+  "aggregate": {
+    "n_rows": 100,
+    "n_stable": 82,
+    "n_drifted": 18,
+    "drift_rate": 0.18
+  },
+  "drifted_rows": [
+    {
+      "order_key": 600001,
+      "comment_snippet": "ts promise slyly. express packages above the carefully ironic account",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600001, Clerk: Clerk#000000052"
+    },
+    {
+      "order_key": 600004,
+      "comment_snippet": " even deposits. quickly",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600004, Clerk: Clerk#000000967"
+    },
+    {
+      "order_key": 600032,
+      "comment_snippet": "es sleep furiously pending accounts. idly special packages nag carefully. ",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600032, Clerk: Clerk#000000406"
+    },
+    {
+      "order_key": 600034,
+      "comment_snippet": "al packages. pending foxes wake carefully. fluffily final instructions to the",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600034, Clerk: Clerk#000000374"
+    },
+    {
+      "order_key": 600038,
+      "comment_snippet": "ounts wake furiously regular packages. slyly ironic packages cajole sly",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600038, Clerk: Clerk#000000299"
+    },
+    {
+      "order_key": 600065,
+      "comment_snippet": "e. carefully regular requests cajole quickly? bold, even deposits against the ",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600065, Clerk: Clerk#000000398"
+    },
+    {
+      "order_key": 600067,
+      "comment_snippet": "fully express packages. carefully bold accounts across the f",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600067, Clerk: Clerk#000000589"
+    },
+    {
+      "order_key": 600102,
+      "comment_snippet": "e the ironically special pinto beans. carefully unusual instructions ",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600102, Clerk: Clerk#000000032"
+    },
+    {
+      "order_key": 600131,
+      "comment_snippet": "s. slyly regular packages b",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600131, Clerk: Clerk#000000627"
+    },
+    {
+      "order_key": 600164,
+      "comment_snippet": "the ironic packages affix packages. ",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600164, Clerk: Clerk#000000420"
+    },
+    {
+      "order_key": 600196,
+      "comment_snippet": "ts. slyly special instructions are. carefully even re",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600196, Clerk: Clerk#000000569"
+    },
+    {
+      "order_key": 600197,
+      "comment_snippet": "al requests cajole furiously. carefully express ide",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600197, Clerk: Clerk#000000047"
+    },
+    {
+      "order_key": 600227,
+      "comment_snippet": "yly furiously regular the",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600227, Clerk: Clerk#000000055"
+    },
+    {
+      "order_key": 600257,
+      "comment_snippet": "s. fluffily regular packages nag carefully special accounts. pinto",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600257, Clerk: Clerk#000000670"
+    },
+    {
+      "order_key": 600263,
+      "comment_snippet": "s. boldly bold attainments detect regular foxes. deposits boost",
+      "label_minimal": "low priority",
+      "label_extended": "standard",
+      "added_context": "OrderKey: 600263, Clerk: Clerk#000000240"
+    },
+    {
+      "order_key": 600289,
+      "comment_snippet": "as are carefully. carefully final packages thra",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600289, Clerk: Clerk#000000275"
+    },
+    {
+      "order_key": 600327,
+      "comment_snippet": " accounts. quickly expre",
+      "label_minimal": "urgent",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600327, Clerk: Clerk#000000176"
+    },
+    {
+      "order_key": 600354,
+      "comment_snippet": "ly across the slyly pending accounts. quickly even accounts boost after ",
+      "label_minimal": "standard",
+      "label_extended": "low priority",
+      "added_context": "OrderKey: 600354, Clerk: Clerk#000000766"
+    }
+  ]
+}
