@@ -1,0 +1,1021 @@
+{
+  "experiment": "01_classify_consistency",
+  "timestamp": "2026-04-25T10:04:38.409994",
+  "config": {
+    "n_rows": 50,
+    "n_runs": 10,
+    "labels": [
+      "urgent order",
+      "standard order",
+      "low priority order"
+    ]
+  },
+  "aggregate": {
+    "n_rows": 50,
+    "n_runs": 10,
+    "n_consistent": 50,
+    "consistency_rate": 1.0
+  },
+  "row_stats": [
+    {
+      "order_key": 1,
+      "comment_snippet": "nstructions sleep furiously among ",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 2,
+      "comment_snippet": " foxes. pending accounts at the pending, silent asymptot",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 3,
+      "comment_snippet": "sly final accounts boost. carefully regular ideas cajole carefully. depos",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 4,
+      "comment_snippet": "sits. slyly regular warthogs cajole. regular, regular theodolites acro",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 5,
+      "comment_snippet": "quickly. bold deposits sleep slyly. packages use slyly",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 6,
+      "comment_snippet": "ggle. special, final requests are against the furiously specia",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 32,
+      "comment_snippet": "ise blithely bold, regular requests. quickly unusual dep",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 33,
+      "comment_snippet": "uriously. furiously final request",
+      "labels_across_runs": [
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "urgent order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 34,
+      "comment_snippet": "ly final packages. fluffily final deposits wake blithely ideas. spe",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 35,
+      "comment_snippet": "zzle. carefully enticing deposits nag furio",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 36,
+      "comment_snippet": " quick packages are blithely. slyly silent accounts wake qu",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 37,
+      "comment_snippet": "kly regular pinto beans. carefully unusual waters cajole never",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 38,
+      "comment_snippet": "haggle blithely. furiously express ideas haggle blithely furiously regular re",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 39,
+      "comment_snippet": "ole express, ironic requests: ir",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 64,
+      "comment_snippet": "wake fluffily. sometimes ironic pinto beans about the dolphin",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 65,
+      "comment_snippet": "ular requests are blithely pending orbits-- even requests against the deposit",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 66,
+      "comment_snippet": "y pending requests integrate",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 67,
+      "comment_snippet": "symptotes haggle slyly around the furiously iron",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 68,
+      "comment_snippet": " pinto beans sleep carefully. blithely ironic deposits haggle furiously acro",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 69,
+      "comment_snippet": " depths atop the slyly thin deposits detect among the furiously silent accou",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 70,
+      "comment_snippet": " carefully ironic request",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 71,
+      "comment_snippet": " express deposits along the blithely regul",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 96,
+      "comment_snippet": "oost furiously. pinto",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 97,
+      "comment_snippet": "hang blithely along the regular accounts. furiously even ideas after the",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 98,
+      "comment_snippet": "c asymptotes. quickly regular packages should have to nag re",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 99,
+      "comment_snippet": "e carefully ironic packages. pending",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 100,
+      "comment_snippet": "heodolites detect slyly alongside of the ent",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 101,
+      "comment_snippet": "ding accounts above the slyly final asymptote",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 102,
+      "comment_snippet": " slyly according to the asymptotes. carefully final packages integrate furious",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 103,
+      "comment_snippet": "ges. carefully unusual instructions haggle quickly regular f",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 128,
+      "comment_snippet": "ns integrate fluffily. ironic asymptotes after the regular excuses nag around ",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 129,
+      "comment_snippet": "ing tithes. carefully pending deposits boost about the silently express ",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 130,
+      "comment_snippet": "le slyly unusual, regular packages? express deposits det",
+      "labels_across_runs": [
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order",
+        "standard order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "standard order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 131,
+      "comment_snippet": "after the fluffily special foxes integrate s",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 132,
+      "comment_snippet": "sits are daringly accounts. carefully regular foxes sleep slyly about the",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 133,
+      "comment_snippet": "usly final asymptotes ",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 135,
+      "comment_snippet": "l platelets use according t",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 160,
+      "comment_snippet": "thely special sauternes wake slyly of t",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 161,
+      "comment_snippet": "carefully! special instructions sin",
+      "labels_across_runs": [
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order",
+        "urgent order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "urgent order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 162,
+      "comment_snippet": "nts hinder fluffily ironic instructions. express, express excuses ",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 163,
+      "comment_snippet": "y final packages. final foxes since the quickly even",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 164,
+      "comment_snippet": "cajole ironic courts. slyly final ideas are slyly. blithely final Tiresias sub",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 165,
+      "comment_snippet": "across the blithely regular accounts. bold",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 166,
+      "comment_snippet": "lets. ironic, bold asymptotes kindle",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 167,
+      "comment_snippet": "s nag furiously bold excuses. fluffily iron",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 192,
+      "comment_snippet": "y unusual platelets among the final instructions integrate rut",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 193,
+      "comment_snippet": "the furiously final pin",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 194,
+      "comment_snippet": "egular requests haggle slyly regular, regular pinto beans. asymptote",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 195,
+      "comment_snippet": "old forges are furiously sheaves. slyly fi",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    },
+    {
+      "order_key": 196,
+      "comment_snippet": "beans boost at the foxes. silent foxes",
+      "labels_across_runs": [
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order",
+        "low priority order"
+      ],
+      "n_unique_labels": 1,
+      "modal_label": "low priority order",
+      "modal_count": 10,
+      "is_fully_consistent": true
+    }
+  ]
+}

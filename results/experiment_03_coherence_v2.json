@@ -1,0 +1,1306 @@
+{
+  "experiment": "03_coherence_v2",
+  "timestamp": "2026-04-25T10:02:43.000041",
+  "config": {
+    "n_rows": 50,
+    "n_runs": 3,
+    "labels_a": [
+      "billing issue",
+      "delivery issue",
+      "product quality issue",
+      "other topic"
+    ],
+    "labels_b": [
+      "payment complaint",
+      "shipping complaint",
+      "item quality complaint",
+      "general inquiry"
+    ],
+    "labels_coarse": [
+      "complaint",
+      "positive feedback",
+      "neutral"
+    ],
+    "labels_fine": [
+      "billing complaint",
+      "delivery complaint",
+      "product complaint",
+      "service complaint",
+      "positive experience",
+      "neutral or mixed"
+    ],
+    "equiv_map": {
+      "billing issue": "payment complaint",
+      "delivery issue": "shipping complaint",
+      "product quality issue": "item quality complaint",
+      "other topic": "general inquiry"
+    }
+  },
+  "test_a_equiv_labels": [
+    {
+      "aggregate": {
+        "n_rows": 50,
+        "n_coherent": 0,
+        "n_violations": 50,
+        "coherence_rate": 0.0
+      },
+      "violations": [
+        {
+          "order_key": 1,
+          "comment_snippet": "nstructions sleep furiously among ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 2,
+          "comment_snippet": " foxes. pending accounts at the pending, silent asymptot",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 3,
+          "comment_snippet": "sly final accounts boost. carefully regular ideas cajole carefully. depos",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 4,
+          "comment_snippet": "sits. slyly regular warthogs cajole. regular, regular theodolites acro",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 5,
+          "comment_snippet": "quickly. bold deposits sleep slyly. packages use slyly",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 6,
+          "comment_snippet": "ggle. special, final requests are against the furiously specia",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 32,
+          "comment_snippet": "ise blithely bold, regular requests. quickly unusual dep",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 33,
+          "comment_snippet": "uriously. furiously final request",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 34,
+          "comment_snippet": "ly final packages. fluffily final deposits wake blithely ideas. spe",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 35,
+          "comment_snippet": "zzle. carefully enticing deposits nag furio",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 36,
+          "comment_snippet": " quick packages are blithely. slyly silent accounts wake qu",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 37,
+          "comment_snippet": "kly regular pinto beans. carefully unusual waters cajole never",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 38,
+          "comment_snippet": "haggle blithely. furiously express ideas haggle blithely furiously regular re",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 39,
+          "comment_snippet": "ole express, ironic requests: ir",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 64,
+          "comment_snippet": "wake fluffily. sometimes ironic pinto beans about the dolphin",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 65,
+          "comment_snippet": "ular requests are blithely pending orbits-- even requests against the deposit",
+          "label_set_a": "{\n  \"labels\": [\n    \"billing issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 67,
+          "comment_snippet": "symptotes haggle slyly around the furiously iron",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 68,
+          "comment_snippet": " pinto beans sleep carefully. blithely ironic deposits haggle furiously acro",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 69,
+          "comment_snippet": " depths atop the slyly thin deposits detect among the furiously silent accou",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 71,
+          "comment_snippet": " express deposits along the blithely regul",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 97,
+          "comment_snippet": "hang blithely along the regular accounts. furiously even ideas after the",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 98,
+          "comment_snippet": "c asymptotes. quickly regular packages should have to nag re",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 99,
+          "comment_snippet": "e carefully ironic packages. pending",
+          "label_set_a": "{\n  \"labels\": [\n    \"delivery issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 100,
+          "comment_snippet": "heodolites detect slyly alongside of the ent",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 101,
+          "comment_snippet": "ding accounts above the slyly final asymptote",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 102,
+          "comment_snippet": " slyly according to the asymptotes. carefully final packages integrate furious",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 103,
+          "comment_snippet": "ges. carefully unusual instructions haggle quickly regular f",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 128,
+          "comment_snippet": "ns integrate fluffily. ironic asymptotes after the regular excuses nag around ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 129,
+          "comment_snippet": "ing tithes. carefully pending deposits boost about the silently express ",
+          "label_set_a": "{\n  \"labels\": [\n    \"billing issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 130,
+          "comment_snippet": "le slyly unusual, regular packages? express deposits det",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 131,
+          "comment_snippet": "after the fluffily special foxes integrate s",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 132,
+          "comment_snippet": "sits are daringly accounts. carefully regular foxes sleep slyly about the",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 160,
+          "comment_snippet": "thely special sauternes wake slyly of t",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 161,
+          "comment_snippet": "carefully! special instructions sin",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 162,
+          "comment_snippet": "nts hinder fluffily ironic instructions. express, express excuses ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 163,
+          "comment_snippet": "y final packages. final foxes since the quickly even",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 164,
+          "comment_snippet": "cajole ironic courts. slyly final ideas are slyly. blithely final Tiresias sub",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 165,
+          "comment_snippet": "across the blithely regular accounts. bold",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 166,
+          "comment_snippet": "lets. ironic, bold asymptotes kindle",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 167,
+          "comment_snippet": "s nag furiously bold excuses. fluffily iron",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 192,
+          "comment_snippet": "y unusual platelets among the final instructions integrate rut",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 194,
+          "comment_snippet": "egular requests haggle slyly regular, regular pinto beans. asymptote",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 195,
+          "comment_snippet": "old forges are furiously sheaves. slyly fi",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 196,
+          "comment_snippet": "beans boost at the foxes. silent foxes",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 197,
+          "comment_snippet": "solve quickly about the even braids. carefully express deposits affix care",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"item quality complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 198,
+          "comment_snippet": "its. carefully ironic requests sleep. furiously express fox",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 224,
+          "comment_snippet": "r the quickly thin courts. carefully",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 225,
+          "comment_snippet": "s. blithely ironic accounts wake quickly fluffily special acc",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 226,
+          "comment_snippet": "s are carefully at the blithely ironic acc",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 227,
+          "comment_snippet": " express instructions. slyly regul",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        }
+      ]
+    },
+    {
+      "aggregate": {
+        "n_rows": 50,
+        "n_coherent": 0,
+        "n_violations": 50,
+        "coherence_rate": 0.0
+      },
+      "violations": [
+        {
+          "order_key": 1,
+          "comment_snippet": "nstructions sleep furiously among ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 2,
+          "comment_snippet": " foxes. pending accounts at the pending, silent asymptot",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 3,
+          "comment_snippet": "sly final accounts boost. carefully regular ideas cajole carefully. depos",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 4,
+          "comment_snippet": "sits. slyly regular warthogs cajole. regular, regular theodolites acro",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 5,
+          "comment_snippet": "quickly. bold deposits sleep slyly. packages use slyly",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 6,
+          "comment_snippet": "ggle. special, final requests are against the furiously specia",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 32,
+          "comment_snippet": "ise blithely bold, regular requests. quickly unusual dep",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 33,
+          "comment_snippet": "uriously. furiously final request",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 34,
+          "comment_snippet": "ly final packages. fluffily final deposits wake blithely ideas. spe",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 35,
+          "comment_snippet": "zzle. carefully enticing deposits nag furio",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 36,
+          "comment_snippet": " quick packages are blithely. slyly silent accounts wake qu",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 37,
+          "comment_snippet": "kly regular pinto beans. carefully unusual waters cajole never",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 38,
+          "comment_snippet": "haggle blithely. furiously express ideas haggle blithely furiously regular re",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 39,
+          "comment_snippet": "ole express, ironic requests: ir",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 64,
+          "comment_snippet": "wake fluffily. sometimes ironic pinto beans about the dolphin",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 65,
+          "comment_snippet": "ular requests are blithely pending orbits-- even requests against the deposit",
+          "label_set_a": "{\n  \"labels\": [\n    \"billing issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 67,
+          "comment_snippet": "symptotes haggle slyly around the furiously iron",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 68,
+          "comment_snippet": " pinto beans sleep carefully. blithely ironic deposits haggle furiously acro",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 69,
+          "comment_snippet": " depths atop the slyly thin deposits detect among the furiously silent accou",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 71,
+          "comment_snippet": " express deposits along the blithely regul",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 97,
+          "comment_snippet": "hang blithely along the regular accounts. furiously even ideas after the",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 98,
+          "comment_snippet": "c asymptotes. quickly regular packages should have to nag re",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 99,
+          "comment_snippet": "e carefully ironic packages. pending",
+          "label_set_a": "{\n  \"labels\": [\n    \"delivery issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 100,
+          "comment_snippet": "heodolites detect slyly alongside of the ent",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 101,
+          "comment_snippet": "ding accounts above the slyly final asymptote",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 102,
+          "comment_snippet": " slyly according to the asymptotes. carefully final packages integrate furious",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 103,
+          "comment_snippet": "ges. carefully unusual instructions haggle quickly regular f",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 128,
+          "comment_snippet": "ns integrate fluffily. ironic asymptotes after the regular excuses nag around ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 129,
+          "comment_snippet": "ing tithes. carefully pending deposits boost about the silently express ",
+          "label_set_a": "{\n  \"labels\": [\n    \"billing issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 130,
+          "comment_snippet": "le slyly unusual, regular packages? express deposits det",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 131,
+          "comment_snippet": "after the fluffily special foxes integrate s",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 132,
+          "comment_snippet": "sits are daringly accounts. carefully regular foxes sleep slyly about the",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 160,
+          "comment_snippet": "thely special sauternes wake slyly of t",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 161,
+          "comment_snippet": "carefully! special instructions sin",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 162,
+          "comment_snippet": "nts hinder fluffily ironic instructions. express, express excuses ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 163,
+          "comment_snippet": "y final packages. final foxes since the quickly even",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 164,
+          "comment_snippet": "cajole ironic courts. slyly final ideas are slyly. blithely final Tiresias sub",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 165,
+          "comment_snippet": "across the blithely regular accounts. bold",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 166,
+          "comment_snippet": "lets. ironic, bold asymptotes kindle",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 167,
+          "comment_snippet": "s nag furiously bold excuses. fluffily iron",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 192,
+          "comment_snippet": "y unusual platelets among the final instructions integrate rut",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 194,
+          "comment_snippet": "egular requests haggle slyly regular, regular pinto beans. asymptote",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 195,
+          "comment_snippet": "old forges are furiously sheaves. slyly fi",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 196,
+          "comment_snippet": "beans boost at the foxes. silent foxes",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 197,
+          "comment_snippet": "solve quickly about the even braids. carefully express deposits affix care",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"item quality complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 198,
+          "comment_snippet": "its. carefully ironic requests sleep. furiously express fox",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 224,
+          "comment_snippet": "r the quickly thin courts. carefully",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 225,
+          "comment_snippet": "s. blithely ironic accounts wake quickly fluffily special acc",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 226,
+          "comment_snippet": "s are carefully at the blithely ironic acc",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 227,
+          "comment_snippet": " express instructions. slyly regul",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        }
+      ]
+    },
+    {
+      "aggregate": {
+        "n_rows": 50,
+        "n_coherent": 0,
+        "n_violations": 50,
+        "coherence_rate": 0.0
+      },
+      "violations": [
+        {
+          "order_key": 1,
+          "comment_snippet": "nstructions sleep furiously among ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 2,
+          "comment_snippet": " foxes. pending accounts at the pending, silent asymptot",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 3,
+          "comment_snippet": "sly final accounts boost. carefully regular ideas cajole carefully. depos",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 4,
+          "comment_snippet": "sits. slyly regular warthogs cajole. regular, regular theodolites acro",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 5,
+          "comment_snippet": "quickly. bold deposits sleep slyly. packages use slyly",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 6,
+          "comment_snippet": "ggle. special, final requests are against the furiously specia",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 32,
+          "comment_snippet": "ise blithely bold, regular requests. quickly unusual dep",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 33,
+          "comment_snippet": "uriously. furiously final request",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 34,
+          "comment_snippet": "ly final packages. fluffily final deposits wake blithely ideas. spe",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 35,
+          "comment_snippet": "zzle. carefully enticing deposits nag furio",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 36,
+          "comment_snippet": " quick packages are blithely. slyly silent accounts wake qu",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 37,
+          "comment_snippet": "kly regular pinto beans. carefully unusual waters cajole never",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 38,
+          "comment_snippet": "haggle blithely. furiously express ideas haggle blithely furiously regular re",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 39,
+          "comment_snippet": "ole express, ironic requests: ir",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 64,
+          "comment_snippet": "wake fluffily. sometimes ironic pinto beans about the dolphin",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 65,
+          "comment_snippet": "ular requests are blithely pending orbits-- even requests against the deposit",
+          "label_set_a": "{\n  \"labels\": [\n    \"billing issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 67,
+          "comment_snippet": "symptotes haggle slyly around the furiously iron",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 68,
+          "comment_snippet": " pinto beans sleep carefully. blithely ironic deposits haggle furiously acro",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 69,
+          "comment_snippet": " depths atop the slyly thin deposits detect among the furiously silent accou",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 71,
+          "comment_snippet": " express deposits along the blithely regul",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 97,
+          "comment_snippet": "hang blithely along the regular accounts. furiously even ideas after the",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 98,
+          "comment_snippet": "c asymptotes. quickly regular packages should have to nag re",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 99,
+          "comment_snippet": "e carefully ironic packages. pending",
+          "label_set_a": "{\n  \"labels\": [\n    \"delivery issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 100,
+          "comment_snippet": "heodolites detect slyly alongside of the ent",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 101,
+          "comment_snippet": "ding accounts above the slyly final asymptote",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 102,
+          "comment_snippet": " slyly according to the asymptotes. carefully final packages integrate furious",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 103,
+          "comment_snippet": "ges. carefully unusual instructions haggle quickly regular f",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 128,
+          "comment_snippet": "ns integrate fluffily. ironic asymptotes after the regular excuses nag around ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 129,
+          "comment_snippet": "ing tithes. carefully pending deposits boost about the silently express ",
+          "label_set_a": "{\n  \"labels\": [\n    \"billing issue\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 130,
+          "comment_snippet": "le slyly unusual, regular packages? express deposits det",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 131,
+          "comment_snippet": "after the fluffily special foxes integrate s",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 132,
+          "comment_snippet": "sits are daringly accounts. carefully regular foxes sleep slyly about the",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 160,
+          "comment_snippet": "thely special sauternes wake slyly of t",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 161,
+          "comment_snippet": "carefully! special instructions sin",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 162,
+          "comment_snippet": "nts hinder fluffily ironic instructions. express, express excuses ",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 163,
+          "comment_snippet": "y final packages. final foxes since the quickly even",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"shipping complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 164,
+          "comment_snippet": "cajole ironic courts. slyly final ideas are slyly. blithely final Tiresias sub",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 165,
+          "comment_snippet": "across the blithely regular accounts. bold",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 166,
+          "comment_snippet": "lets. ironic, bold asymptotes kindle",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 167,
+          "comment_snippet": "s nag furiously bold excuses. fluffily iron",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 192,
+          "comment_snippet": "y unusual platelets among the final instructions integrate rut",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 194,
+          "comment_snippet": "egular requests haggle slyly regular, regular pinto beans. asymptote",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 195,
+          "comment_snippet": "old forges are furiously sheaves. slyly fi",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 196,
+          "comment_snippet": "beans boost at the foxes. silent foxes",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 197,
+          "comment_snippet": "solve quickly about the even braids. carefully express deposits affix care",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"item quality complaint\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 198,
+          "comment_snippet": "its. carefully ironic requests sleep. furiously express fox",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 224,
+          "comment_snippet": "r the quickly thin courts. carefully",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 225,
+          "comment_snippet": "s. blithely ironic accounts wake quickly fluffily special acc",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 226,
+          "comment_snippet": "s are carefully at the blithely ironic acc",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        },
+        {
+          "order_key": 227,
+          "comment_snippet": " express instructions. slyly regul",
+          "label_set_a": "{\n  \"labels\": [\n    \"other topic\"\n  ]\n}",
+          "label_set_b": "{\n  \"labels\": [\n    \"general inquiry\"\n  ]\n}",
+          "expected_b_given_a": null,
+          "is_coherent": false
+        }
+      ]
+    }
+  ],
+  "test_b_coarse_fine": [
+    {
+      "aggregate": {
+        "n_rows": 50,
+        "n_coherent": 50,
+        "n_violations": 0,
+        "coherence_rate": 1.0
+      },
+      "violations": []
+    },
+    {
+      "aggregate": {
+        "n_rows": 50,
+        "n_coherent": 50,
+        "n_violations": 0,
+        "coherence_rate": 1.0
+      },
+      "violations": []
+    },
+    {
+      "aggregate": {
+        "n_rows": 50,
+        "n_coherent": 50,
+        "n_violations": 0,
+        "coherence_rate": 1.0
+      },
+      "violations": []
+    }
+  ],
+  "summary": {
+    "test_a_avg_coherence": 0.0,
+    "test_b_avg_coherence": 1.0,
+    "total_violations_a": 150,
+    "total_violations_b": 0
+  }
+}

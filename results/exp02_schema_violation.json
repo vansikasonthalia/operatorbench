@@ -1,0 +1,88 @@
+{
+  "experiment": "02_schema_violation",
+  "timestamp": "2026-04-25T10:24:03.563287",
+  "config": {
+    "n_rows": 100
+  },
+  "results": {
+    "small_2": {
+      "n_rows": 100,
+      "n_labels": 2,
+      "labels": [
+        "positive",
+        "negative"
+      ],
+      "n_valid": 99,
+      "n_violations": 1,
+      "n_errors": 0,
+      "violation_rate": 0.01,
+      "error_rate": 0.0,
+      "violations": [
+        {
+          "order_key": 5,
+          "returned_label": null,
+          "declared_labels": [
+            "positive",
+            "negative"
+          ],
+          "comment_snippet": "quickly. bold deposits sleep slyly. packages use slyly"
+        }
+      ],
+      "errors": []
+    },
+    "medium_4": {
+      "n_rows": 100,
+      "n_labels": 4,
+      "labels": [
+        "billing issue",
+        "delivery issue",
+        "product issue",
+        "other"
+      ],
+      "n_valid": 100,
+      "n_violations": 0,
+      "n_errors": 0,
+      "violation_rate": 0.0,
+      "error_rate": 0.0,
+      "violations": [],
+      "errors": []
+    },
+    "large_8": {
+      "n_rows": 100,
+      "n_labels": 8,
+      "labels": [
+        "urgent billing",
+        "billing dispute",
+        "late delivery",
+        "damaged goods",
+        "wrong item",
+        "quality complaint",
+        "general inquiry",
+        "positive feedback"
+      ],
+      "n_valid": 99,
+      "n_violations": 1,
+      "n_errors": 0,
+      "violation_rate": 0.01,
+      "error_rate": 0.0,
+      "violations": [
+        {
+          "order_key": 290,
+          "returned_label": null,
+          "declared_labels": [
+            "urgent billing",
+            "billing dispute",
+            "late delivery",
+            "damaged goods",
+            "wrong item",
+            "quality complaint",
+            "general inquiry",
+            "positive feedback"
+          ],
+          "comment_snippet": "efully dogged deposits. furiou"
+        }
+      ],
+      "errors": []
+    }
+  }
+}

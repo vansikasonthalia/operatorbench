@@ -1,0 +1,185 @@
+{
+  "experiment": "04_cross_operator_coherence",
+  "timestamp": "2026-04-25T10:16:56.594862",
+  "config": {
+    "n_rows": 100,
+    "n_runs": 3
+  },
+  "results": [
+    {
+      "pipeline": "delivery",
+      "runs": [
+        {
+          "run_id": 1,
+          "n_scanned": 100,
+          "n_passed_filter": 9,
+          "n_coherent": 5,
+          "n_violations": 4,
+          "coherence_rate": 0.5556,
+          "violations": [
+            {
+              "order_key": 39,
+              "comment_snippet": "ole express, ironic requests: ir",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 199,
+              "comment_snippet": "g theodolites. special packag",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 262,
+              "comment_snippet": "l packages. blithely final pinto beans use carefu",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 263,
+              "comment_snippet": " pending instructions. blithely un",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            }
+          ]
+        },
+        {
+          "run_id": 2,
+          "n_scanned": 100,
+          "n_passed_filter": 9,
+          "n_coherent": 5,
+          "n_violations": 4,
+          "coherence_rate": 0.5556,
+          "violations": [
+            {
+              "order_key": 39,
+              "comment_snippet": "ole express, ironic requests: ir",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 199,
+              "comment_snippet": "g theodolites. special packag",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 262,
+              "comment_snippet": "l packages. blithely final pinto beans use carefu",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 263,
+              "comment_snippet": " pending instructions. blithely un",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            }
+          ]
+        },
+        {
+          "run_id": 3,
+          "n_scanned": 100,
+          "n_passed_filter": 9,
+          "n_coherent": 5,
+          "n_violations": 4,
+          "coherence_rate": 0.5556,
+          "violations": [
+            {
+              "order_key": 39,
+              "comment_snippet": "ole express, ironic requests: ir",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 199,
+              "comment_snippet": "g theodolites. special packag",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 262,
+              "comment_snippet": "l packages. blithely final pinto beans use carefu",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            },
+            {
+              "order_key": 263,
+              "comment_snippet": " pending instructions. blithely un",
+              "filter_passed": true,
+              "classify_label": "general inquiry",
+              "expected_label": "delivery issue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pipeline": "billing",
+      "runs": [
+        {
+          "run_id": 1,
+          "n_scanned": 100,
+          "n_passed_filter": 2,
+          "n_coherent": 1,
+          "n_violations": 1,
+          "coherence_rate": 0.5,
+          "violations": [
+            {
+              "order_key": 290,
+              "comment_snippet": "efully dogged deposits. furiou",
+              "filter_passed": true,
+              "classify_label": null,
+              "expected_label": "billing issue"
+            }
+          ]
+        },
+        {
+          "run_id": 2,
+          "n_scanned": 100,
+          "n_passed_filter": 2,
+          "n_coherent": 1,
+          "n_violations": 1,
+          "coherence_rate": 0.5,
+          "violations": [
+            {
+              "order_key": 290,
+              "comment_snippet": "efully dogged deposits. furiou",
+              "filter_passed": true,
+              "classify_label": null,
+              "expected_label": "billing issue"
+            }
+          ]
+        },
+        {
+          "run_id": 3,
+          "n_scanned": 100,
+          "n_passed_filter": 2,
+          "n_coherent": 1,
+          "n_violations": 1,
+          "coherence_rate": 0.5,
+          "violations": [
+            {
+              "order_key": 290,
+              "comment_snippet": "efully dogged deposits. furiou",
+              "filter_passed": true,
+              "classify_label": null,
+              "expected_label": "billing issue"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
