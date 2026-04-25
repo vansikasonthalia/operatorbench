@@ -1,0 +1,393 @@
+{
+  "experiment": "01_consistency",
+  "timestamp": "2026-04-25T09:10:21.945794",
+  "config": {
+    "n_rows": 20,
+    "n_runs": 5,
+    "operator": "AI_CLASSIFY",
+    "system": "Snowflake Cortex AI Functions",
+    "database": "SNOWFLAKE_SAMPLE_DATA.TPCH_SF1",
+    "labels": [
+      "urgent and critical",
+      "standard processing",
+      "low priority"
+    ]
+  },
+  "aggregate": {
+    "n_rows": 20,
+    "n_runs": 5,
+    "n_consistent_rows": 20,
+    "n_inconsistent_rows": 0,
+    "consistency_rate": 1.0,
+    "inconsistency_rate": 0.0
+  },
+  "run_times_seconds": [
+    1.822277307510376,
+    2.2968883514404297,
+    2.62652587890625,
+    1.3836302757263184,
+    1.5038599967956543
+  ],
+  "row_stats": [
+    {
+      "order_key": 3000001,
+      "comment_snippet": "l packages. furiously careful instructions grow furi",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000002,
+      "comment_snippet": "carefully unusual dependencie",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000003,
+      "comment_snippet": "n packages boost slyly bold deposits. deposits around the ironic th",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000004,
+      "comment_snippet": "nts wake carefully final decoys. quickly final accounts wake ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000005,
+      "comment_snippet": "yly after the quickly unusual ide",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000006,
+      "comment_snippet": "ronic pinto beans use furiously final, slow notorn",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000007,
+      "comment_snippet": "ses eat. deposits wake",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000032,
+      "comment_snippet": "lar deposits mold carefully against the dep",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000033,
+      "comment_snippet": "mes special packages nag quickly. ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"urgent and critical\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000034,
+      "comment_snippet": "lly final packages are slyly beyond the requests! regular, even courts r",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000035,
+      "comment_snippet": "fluffily ironic platelets sl",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000036,
+      "comment_snippet": "ding dinos. final, ironic dependencies across the ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000037,
+      "comment_snippet": "ix slyly. bold, bold foxes haggle alongside of the slyly pending ideas. ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000038,
+      "comment_snippet": " ironic, bold foxes nag quickly regula",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000039,
+      "comment_snippet": " packages according to ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"standard processing\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000064,
+      "comment_snippet": "he permanently express excuses. fluffily even foxes use ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000065,
+      "comment_snippet": "lyly fluffily even packages. special, ironic deposits w",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000066,
+      "comment_snippet": "ages. accounts sleep quickly. unusual attainments around the carefully ",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000067,
+      "comment_snippet": " even asymptotes are after the instructions. furi",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    },
+    {
+      "order_key": 3000068,
+      "comment_snippet": "the even Tiresias cajole upo",
+      "labels_across_runs": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "modal_label": "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}",
+      "modal_count": 5,
+      "is_consistent": true,
+      "unique_labels_seen": [
+        "{\n  \"labels\": [\n    \"low priority\"\n  ]\n}"
+      ],
+      "n_unique": 1
+    }
+  ]
+}
