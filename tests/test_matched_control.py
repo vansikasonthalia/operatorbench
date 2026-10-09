@@ -126,6 +126,13 @@ def test_dry_run_does_not_execute_or_write(tmp_path, monkeypatch, capsys):
         pytest.fail("Dry run attempted paid execution")
     monkeypatch.setattr(control, "execute", forbidden)
     folder = tmp_path / "experiment"
+    frame = pd.DataFrame({"abstract_text": ["one", "two", "three"]})
+    monkeypatch.setattr(control, "load_rows", lambda limit: frame.iloc[:limit])
+    monkeypatch.setattr(control, "make_plan", lambda args, rows: {
+        "jobs": control.schedule(list(rows.index), args.replicates, args.block_size, args.schedule_seed),
+        "instructions": {}, "replicates": args.replicates, "max_text_chars": args.max_text_chars,
+        "max_output_tokens": args.max_output_tokens, "batch_delay_seconds": args.batch_delay,
+    })
     control.main(["--dry-run", "--limit", "3", "--replicates", "2",
                   "--output-dir", str(folder)])
     assert not folder.exists()
@@ -134,6 +141,7 @@ def test_dry_run_does_not_execute_or_write(tmp_path, monkeypatch, capsys):
         control.main(["--execute", "--limit", "3"])
 
 
+@pytest.mark.framework
 def test_native_operators_share_question_and_preserve_rejected_raw_outputs(monkeypatch, tmp_path):
     import lotus
     from lotus.models import LM
@@ -162,6 +170,7 @@ def test_native_operators_share_question_and_preserve_rejected_raw_outputs(monke
         assert all(question in str(message) and control.FORMAT in str(message) for message in messages)
 
 
+@pytest.mark.framework
 def test_execution_archives_and_resumes_without_repeating_completed_calls(tmp_path, monkeypatch):
     import litellm
     import lotus.models

@@ -45,7 +45,7 @@ PRE-REGISTERED PREDICTIONS (written before the run -- do not edit afterwards)
 ----------------------------------------------------------------------------
 The hypotheses below are preserved as the historical preregistration, including
 their original causal wording. They are not the current interpretation; see the
-scope statement above and `paper/FINDINGS.md` F12.
+scope statement above and `docs/RESULTS.md`.
 
   H1 (F7 wording is the cause): the ablated filter admits materially FEWER rows,
      and the contradiction rate among those it does admit falls well below the

@@ -49,3 +49,17 @@ def test_admitted_ids_cannot_silently_expand_the_input_universe():
         build_ledger({3: {"label": "negative", "raw": "negative"}}, {}, [1, 2],
                      label_column="label", raw_column="raw", valid_labels={"negative"},
                      disagreement=lambda label: label == "positive")
+
+
+def test_example_command_prints_complete_constructed_ledger():
+    import json
+    from pathlib import Path
+    import subprocess
+    import sys
+    result = subprocess.run([sys.executable, "-m", "scripts.admission_ledger_example", "--json"],
+                            cwd=Path(__file__).resolve().parents[1], check=True,
+                            capture_output=True, text=True)
+    report = json.loads(result.stdout)
+    assert report["input_rows"] == list(range(7))
+    assert report["ledger"]["identity"]["holds"]
+    assert report["ledger"]["identity"]["observed_count_change"] == 0

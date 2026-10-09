@@ -1,29 +1,4 @@
-"""
-Tests that the label-version choice is explicit and the retired column is fenced off.
-
-THE HAZARD
-----------
-The frozen abstracts dataset carries two label columns. `topic_label` is
-F9-defective: `prep_datasets.py` derived it from `ccdv/arxiv-classification`
-class indices, and two of the four classes it labelled "ML" were commutative
-algebra and control theory. `topic_label_v2` is the authors' own declared arXiv
-primary category and is the only one any reported figure may use.
-
-D-W3-05 deliberately keeps the defective column in the frozen data so the record
-of what the hand-check instrument displayed is not rewritten after the fact. The
-cost of that decision is a loaded gun: `df.topic_label` is valid Python that
-returns wrong labels silently.
-
-`test_no_script_reads_the_retired_column` is the fence. It reads the source of
-every analysis script and fails if one touches the retired column outside a small
-allowlist of files that legitimately must (the generator, the corrector, and the
-config line the hand-check sheet reads). If someone adds `df.topic_label` to a new
-analysis script, this test fails and names the file.
-
-The allowlist is deliberately short and each entry carries its reason. Adding to
-it should feel like a decision, because it is one.
-"""
-
+"""Label-version selection, provenance and safeguards against retired labels."""
 import re
 import sys
 from pathlib import Path
@@ -65,7 +40,21 @@ def _source_files():
             yield p
 
 
-def test_default_is_the_corrected_version():
+@pytest.fixture
+def label_file(tmp_path, monkeypatch):
+    from harness import labels
+    source = tmp_path / "labels.csv"
+    source.write_text("row_id,topic_label_v1,topic_label_v2\n"
+                      "7,machine_learning,other\n"
+                      "12,other,machine_learning\n"
+                      "20,other,unknown\n", encoding="utf-8")
+    monkeypatch.setattr(labels, "ROOT", tmp_path)
+    monkeypatch.setattr(labels, "LABELS_CSV", source)
+    monkeypatch.setattr(labels, "LABELS_MANIFEST", tmp_path / "manifest.json")
+    return source
+
+
+def test_default_is_the_corrected_version(label_file):
     assert LABEL_VERSION == "v2"
     assert CURRENT_LABEL_COL == "topic_label_v2"
     _, prov = load_abstract_labels()
@@ -79,7 +68,7 @@ def test_retired_version_refused_without_explicit_consent():
     assert "F9" in str(e.value)
 
 
-def test_retired_version_available_with_explicit_consent_and_flagged():
+def test_retired_version_available_with_explicit_consent_and_flagged(label_file):
     _, prov = load_abstract_labels("v1", allow_retired_v1=True)
     assert prov["label_version"] == "v1"
     assert "WARNING" in prov
@@ -90,7 +79,7 @@ def test_bad_version_rejected():
         load_abstract_labels("v3")
 
 
-def test_provenance_records_what_a_reader_needs():
+def test_provenance_records_what_a_reader_needs(label_file):
     prov = label_provenance()
     for key in ("label_version", "label_column", "label_file",
                 "label_file_sha256", "caveat"):
@@ -100,6 +89,7 @@ def test_provenance_records_what_a_reader_needs():
     assert len(prov["label_file_sha256"]) == 64
 
 
+@pytest.mark.archive
 def test_row_id_helpers_match_the_known_dataset_shape():
     labels, _ = load_abstract_labels()
     assert len(labels) == 500
@@ -144,3 +134,9 @@ def test_allowlist_entries_all_still_exist_and_still_need_the_exemption():
         elif not pattern.search(p.read_text(encoding="utf-8")):
             stale.append(f"{rel} (no longer mentions it -- drop the exemption)")
     assert not stale, f"Stale allowlist entries: {stale}"
+
+
+def test_row_id_helpers_exclude_unknown_categories(label_file):
+    labels, _ = load_abstract_labels()
+    assert labelled_row_ids(labels) == {7, 12}
+    assert ml_row_ids(labels) == {12}

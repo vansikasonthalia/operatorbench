@@ -17,3 +17,29 @@ def example():
             "ledger": build_ledger(before, after, range(7), label_column="label", raw_column="raw",
                                    valid_labels={"ML", "systems", "theory", "other"},
                                    disagreement=lambda label: label.strip().lower() != "ml")}
+
+
+def main():
+    import argparse
+    import json
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="Print complete records and ledger")
+    args = parser.parse_args()
+    report = example()
+    if args.json:
+        print(json.dumps(report, indent=2))
+        return
+    ledger = report["ledger"]
+    print("Constructed example; no model calls or experimental observations.")
+    print("Both versions admit 5 of 7 rows and count 3 disagreements.")
+    for name, rows in ledger["sets"].items():
+        print(f"{name}: {rows}")
+    print("One excluded disagreement and one new disagreement cancel.")
+    print("Two common-row label changes act in opposite directions.")
+    print(f"Disagreement count identity: {json.dumps(ledger['identity'])}")
+    print("Use --json to inspect raw/saved validity, transitions and records.")
+
+
+if __name__ == "__main__":
+    main()

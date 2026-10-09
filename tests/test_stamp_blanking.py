@@ -1,5 +1,6 @@
 """Tests for the F13 stamp-removal control (scripts/run_stamp_ablation.py). No API calls."""
 
+import pytest
 import sys
 from pathlib import Path
 
@@ -29,6 +30,7 @@ def test_text_without_stamp_is_unchanged():
     assert blank_stamps(text) == (text, 0)
 
 
+@pytest.mark.archive
 def test_frozen_frame_audit_is_clean():
     df = load_rows()
     blanked, audit = blanked_frame(df)

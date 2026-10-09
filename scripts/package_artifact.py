@@ -11,8 +11,9 @@ from scripts.reproduce_artifact import ROOT, DEFAULT_OUTPUT, inventory
 PREFIX = "OperatorBench/"
 MANIFEST = PREFIX + "artifact-manifest.json"
 REVIEW_DOCS = {"docs/ARTIFACT-README.md", "docs/matched_control.md",
-               "docs/REVISION-EVALUATION.md", "docs/REVISION-RUNNER.md"}
-REVIEW_PAPER = {"paper/reproducibility.tex", "paper/FINDINGS.md", "paper/METHODS-DISCLOSURES.md"}
+               "docs/REVISION-EVALUATION.md", "docs/REVISION-RUNNER.md",
+               "docs/RESULTS.md", "docs/CODE-GUIDE.md"}
+REVIEW_PAPER = {"paper/reproducibility.tex", "paper/README.md"}
 PROTOCOL_FILES = ("artifacts/revision-evaluation-20261008/plan.json",
                   "artifacts/revision-evaluation-20261008/plan.sha256")
 
@@ -76,7 +77,8 @@ def package(output):
     files = {name: (ROOT / name, record) for name, record in current.items()
              if (not name.startswith("docs/") or name in REVIEW_DOCS)
              and (not name.startswith("paper/") or name in REVIEW_PAPER)}
-    for name in (*PROTOCOL_FILES, ".gitattributes", ".gitignore", "LICENSE", "NOTICE.md", "CITATION.cff"):
+    for name in (*PROTOCOL_FILES, ".gitattributes", ".gitignore", "LICENSE", "NOTICE.md", "CITATION.cff",
+                 "pytest.ini", "requirements-test.txt"):
         source = ROOT / name
         if name in PROTOCOL_FILES or source.is_file():
             data = source.read_bytes()

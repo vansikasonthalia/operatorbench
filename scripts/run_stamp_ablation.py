@@ -7,7 +7,7 @@ WHY THIS EXISTS
 parsed from the arXiv stamp -- e.g. `arXiv:1512.00608v1 [math.AC] 2 Dec 2015`
 -- which sits INSIDE the 4,000-char window both operators receive (median
 position: char 80). The model can therefore see the label the proxy analyses
-compare it against. See `paper/FINDINGS.md` F13.
+compare it against. See the auxiliary historical controls in `paper/reproducibility.tex`.
 
 This run removes only that cue and re-runs the frozen abstracts pipeline once.
 

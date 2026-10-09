@@ -116,6 +116,7 @@ def test_analysis_conclusion_follows_changed_data(tmp_path, monkeypatch, keep_ml
     assert result["B_selectivity_of_removal"]["verdict"].startswith(expected)
 
 
+@pytest.mark.framework
 def test_saved_run_checksums_detect_partial_overwrite(tmp_path, monkeypatch):
     from harness.runner import PipelineRunner
     from harness import provenance

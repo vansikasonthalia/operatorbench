@@ -4,7 +4,7 @@ OperatorBench -- capture the real environment, from the venv that can actually r
 WHY A SCRIPT RATHER THAN A CHECKED-IN LOCK FILE
 -----------------------------------------------
 `requirements.txt` records the four versions the findings were produced under, by
-hand, from CONTEXT.md. That is the *intent*. It is not proof, and it does not
+hand. Those pins are not execution-time proof, and do not
 cover the transitive tree -- and a transitive dependency of litellm or datasets
 can change behaviour just as effectively as a direct one.
 

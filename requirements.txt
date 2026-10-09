@@ -1,32 +1,7 @@
-# OperatorBench -- pinned environment
-#
-# WHY THESE ARE PINNED, AND WHY lotus-ai IS PINNED EXACTLY
-# --------------------------------------------------------
-# The F7/F12 findings rest on LOTUS's INTERNAL system prompts -- sem_filter is
-# wrapped in a claim-verification prompt, sem_map in an instruction-following
-# one. Those are implementation details of 1.2.4, not API surface. A newer LOTUS
-# could reword them without breaking a single call signature, and the paper's
-# central mechanism claim would no longer reproduce. So lotus-ai is pinned with
-# `==`, not `>=`, and that pin is load-bearing rather than cautious.
-#
-# litellm matters for a second reason: it is called with drop_params=True, so it
-# SILENTLY DISCARDS kwargs a provider adapter does not support. (No seed reached
-# the hosted provider because the hosted backend is configured with seed=None,
-# so none was ever passed -- not because of drop_params.) A different litellm
-# could change that behaviour and quietly alter what the provider receives.
-#
-# These are the reproduction-environment versions recorded in the 28 Sept
-# snapshot (results/environment.json) and CONTEXT.md. The historical RQ1/RQ3
-# run manifests do not establish which versions those runs used.
-#
-# For an exact, machine-generated lock of the full transitive tree, run in your
-# venv:  python scripts/capture_environment.py
-# which writes requirements.lock.txt and results/environment.json.
-
-lotus-ai==1.2.4          # EXACT. F7/F12 depend on this version's internal prompts.
-litellm==1.96.0          # drop_params=True behaviour; see above.
+# Optional model-runner dependencies; public unit tests use requirements-test.txt.
+# These versions describe the saved environment snapshot, not every historical run.
+lotus-ai==1.2.4
+litellm==1.96.0
 pandas==2.3.3
 datasets==5.0.1
-
-# Test suite (tests/ -- 78 tests). Not needed to reproduce runs, only to verify.
-pytest>=8.0
+pytest>=8,<9

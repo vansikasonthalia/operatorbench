@@ -49,6 +49,7 @@ def mocked_run(monkeypatch):
     return plan, frame, manifest, prompts, calls, evaluate
 
 
+@pytest.mark.framework
 def test_native_preflight_uses_all_seven_cells_without_provider_calls():
     plan = small_plan()
     frame = pd.DataFrame({"abstract_text": ["seven\0line\n", "three", "nine"]}, index=plan["row_ids"])
@@ -62,6 +63,7 @@ def test_native_preflight_uses_all_seven_cells_without_provider_calls():
     assert "\0" in prompts["reference_filter"]["7"][1]["content"]
 
 
+@pytest.mark.framework
 def test_execution_joins_out_of_order_requests_and_resumes_without_repeating(mocked_run, tmp_path):
     plan, frame, manifest, prompts, calls, _ = mocked_run
     runner.execute(tmp_path, plan, frame, manifest, prompts)
@@ -76,6 +78,7 @@ def test_execution_joins_out_of_order_requests_and_resumes_without_repeating(moc
     assert not (tmp_path / ".run.lock").exists()
 
 
+@pytest.mark.framework
 def test_failed_attempt_is_retained_and_not_marked_complete(mocked_run, tmp_path, monkeypatch):
     import litellm
     plan, frame, manifest, prompts, calls, evaluate = mocked_run
@@ -101,6 +104,7 @@ def test_failed_attempt_is_retained_and_not_marked_complete(mocked_run, tmp_path
     assert (tmp_path / "llm_calls_job_0000_001.jsonl").exists()
 
 
+@pytest.mark.framework
 def test_changed_request_log_or_binding_is_rejected(mocked_run, tmp_path):
     plan, frame, manifest, prompts, calls, _ = mocked_run
     runner.execute(tmp_path, plan, frame, manifest, prompts)
@@ -113,12 +117,14 @@ def test_changed_request_log_or_binding_is_rejected(mocked_run, tmp_path):
         runner.read_completed(tmp_path, plan, plan["jobs"][0], manifest, prompts)
 
 
+@pytest.mark.framework
 def test_incomplete_run_cannot_be_aggregated(mocked_run, tmp_path):
     plan, _, manifest, prompts, _, _ = mocked_run
     with pytest.raises(ValueError, match="incomplete"):
         runner.analyse(tmp_path, plan, manifest, prompts)
 
 
+@pytest.mark.framework
 def test_rehashed_request_still_requires_the_bound_native_prompt(mocked_run, tmp_path):
     plan, frame, manifest, prompts, _, _ = mocked_run
     runner.execute(tmp_path, plan, frame, manifest, prompts)
@@ -134,6 +140,7 @@ def test_rehashed_request_still_requires_the_bound_native_prompt(mocked_run, tmp
         runner.read_completed(tmp_path, plan, plan["jobs"][0], manifest, prompts)
 
 
+@pytest.mark.framework
 def test_existing_lock_prevents_execution_without_removing_it(mocked_run, tmp_path):
     plan, frame, manifest, prompts, calls, _ = mocked_run
     lock = tmp_path / ".run.lock"
@@ -144,6 +151,7 @@ def test_existing_lock_prevents_execution_without_removing_it(mocked_run, tmp_pa
     assert lock.read_text() == "existing process"
 
 
+@pytest.mark.framework
 def test_duplicate_native_row_prompts_are_rejected():
     plan = small_plan()
     frame = pd.DataFrame({"abstract_text": ["same", "same", "different"]}, index=plan["row_ids"])

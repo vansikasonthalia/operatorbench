@@ -1,59 +1,29 @@
-# ---------------------------------------------------------------------------
-# OperatorBench
-# ---------------------------------------------------------------------------
-
-# SECRETS — never commit. The OpenAI key is set via the environment, not a file.
+# Local environments, generated files, private material and withheld input text.
 .env
 .env.*
 *.key
 secrets.*
-
-# Virtual environment (pinned instead by requirements.txt + requirements.lock.txt)
 .venv/
 venv/
-
-# Byte-compiled files.
-#
-# These MUST stay out of the repo and out of any synced folder. This project is
-# worked on from two machines -- a Windows venv and a Linux shell -- against the
-# same directory. Python 3.10 bytecode is platform-independent and cached by
-# source mtime+size, so a .pyc compiled on one side gets reused by the other.
-# When that happened on 28 Sept, pytest on Windows loaded .pyc files whose
-# recorded co_filename was a Linux path, could not find the source to display,
-# and printed `> ???` instead of the failing line -- turning a one-line bug into
-# an unreadable traceback.
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
-
-# Response cache: a local SQLite artifact, not data. Rebuildable, and large.
 cache.db
 cache.db-journal
-
-# OS noise
 Thumbs.db
 desktop.ini
 .DS_Store
-
-# Third-party document text and request logs stay in the local archive.
 logs/
 operatorbench-logs.zip
 data/**/*.csv
 results/**/*.csv
 results/**/llm_calls*.jsonl
 results/**/native_prompts.json
-
-# ---------------------------------------------------------------------------
-# PRIVATE / THIRD-PARTY — kept in the working folder, never committed (1 Oct 2026)
-# ---------------------------------------------------------------------------
-# Personal application material (grades, test scores, recommenders, shortlists).
 Claude/00-MASTER-CONTEXT.md
 Claude outputs/MS_*.xlsx
 Claude outputs/NEW-PROJECT-KICKOFF.md
-# Other authors' papers: cite them, do not redistribute them.
 Papers/
-# Local install transcript; environment is captured by requirements.lock.txt.
 install_log.txt
 .artifact-venv/
 audits/reproduction/
@@ -63,8 +33,6 @@ artifacts/*
 artifacts/revision-evaluation-20261008/*
 !artifacts/revision-evaluation-20261008/plan.json
 !artifacts/revision-evaluation-20261008/plan.sha256
-
-# Private application drafts and internal publication planning.
 Statement of Purpose*.txt
 vans_gistory.md
 docs/VENUE-ASSESSMENT-*.md

@@ -260,12 +260,8 @@ def main():
     print("POOLED replicate counts, treating repeated measurements of the same")
     print("frozen rows as independent samples. That interval was retracted.")
     print()
-    print("Where it actually lived, corrected 28 Sept 2026: the retracted interval")
-    print("appeared in the F2 narrative in paper/FINDINGS.md (now struck through and")
-    print("labelled), NOT in rq3_summary.json. run_rq3.py's saved summary carries")
-    print("pooled counts as DESCRIPTIVE totals only, with an 'interpretation' field")
-    print("stating that a pooled Wilson interval is invalid. Do not tell readers to")
-    print("distrust that artifact -- it is correct.")
+    print("The saved rq3_summary.json uses pooled counts only as descriptive totals.")
+    print("See the manuscript for per-replicate and clustered uncertainty estimates.")
 
     out = [analyse(dom, args.bootstrap, args.seed) for dom in ("abstracts", "reviews")]
     for r in out:

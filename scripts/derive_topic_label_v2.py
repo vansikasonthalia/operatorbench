@@ -9,7 +9,7 @@ WHY THIS EXISTS
 
 The comment says "typically". It guessed, and the guess is wrong -- index 0 is
 math.AC (Commutative Algebra) and index 3 is cs.SY (Systems and Control).
-See `paper/FINDINGS.md` F9.
+See the corrected-proxy discussion in `paper/reproducibility.tex`.
 
 This script derives a corrected label from the **authors' own declared arXiv
 primary category**, which is present in `abstract_text` itself (the arXiv stamp

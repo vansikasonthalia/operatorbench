@@ -42,7 +42,7 @@ PIPELINES = {
         # "dataset label" field on the already-completed coding sheet.
         # Do NOT "fix" this: the hand-check is coded and silently changing
         # what the instrument displayed is worse than the disclosure in
-        # paper/METHODS-DISCLOSURES.md. If the sheet is ever regenerated,
+        # paper/reproducibility.tex. If the sheet is ever regenerated,
         # switch to topic_label_v2 FIRST and record that you did.
         "ground_truth_col": "topic_label",
         "filter": {

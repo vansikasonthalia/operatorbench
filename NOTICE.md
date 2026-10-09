@@ -35,8 +35,7 @@ experiment specifications, aggregate results and selected audit reports.
 It excludes dataset text, result CSVs containing input documents, raw request
 logs, and native prompts containing copied documents. The original frozen
 files remain unchanged in the local research archive. This public snapshot
-alone cannot run the complete saved-output reproduction; it is not the full
-reproducibility package required by a future experimental-analysis submission.
+alone cannot run the complete saved-output reproduction.
 
 Dependency packages retain their own licenses. Installing dependencies does
 not change their licenses. No third-party package source is vendored here.
