@@ -331,6 +331,9 @@ D_1-D_0
 \end{aligned}
 \label{eq:ledger}
 \end{equation}
+This follows by partitioning $S_0$ into $C$ and $S_0\setminus S_1$, and
+$S_1$ into $C$ and $S_1\setminus S_0$, then subtracting the two sums.
+It is a finite-set accounting identity, independent of the model or framework.
 The terms count disagreement introduced by new admissions, removed by
 exclusions, and changed on common admissions, respectively. Report each
 admitted-set size beside $D_j/|S_j|$. A zero common-row term does not imply
@@ -575,24 +578,51 @@ not hiding offsetting label transitions. All resolved disagreements
 disappear through exclusion. Because the
 revised criterion matches the map's, some reduction is expected by
 construction; the informative question is \emph{which} rows were removed.
+Figure~\ref{fig:admission-flow} shows the row partitions and their contributions.
 
-\begin{table}[t]
+\begin{figure}[t]
 \centering
 \small
-\caption{Complete count accounting for the historical criterion revision.
-Contributions use the signs in Equation~\ref{eq:ledger}. Common-row new and
-resolved disagreements are both zero. Never-admitted rows are counted in
-the 500-row input universe and have no inferred map labels.}
-\label{tab:admission-accounting}
-\begin{tabular}{lrrrrr}
-\toprule
-Rep. & New contribution & Excluded contribution & Common net & $D_1-D_0$ & Never admitted \\
-\midrule
-1 & 0 & $-32$ & 0 & $-32$ & 346 \\
-2 & 0 & $-34$ & 0 & $-34$ & 344 \\
-\bottomrule
+\fbox{\parbox{0.88\linewidth}{\centering
+500 input documents in each replicate\\[3pt]
+Before revision: 154 / 156 admitted; 36 / 38 disagreements}}
+
+\smallskip
+$\downarrow\qquad\qquad\downarrow\qquad\qquad\downarrow$
+
+\smallskip
+\begin{tabular}{@{}ccc@{}}
+\fbox{\parbox{0.27\linewidth}{\centering
+\textbf{Retained}\\
+94 / 94 documents\\
+4 / 4 disagreements\\
+0 changed map labels}}
+&
+\fbox{\parbox{0.27\linewidth}{\centering
+\textbf{Excluded}\\
+60 / 62 documents\\
+32 / 34 disagreements\\
+removed from evaluation}}
+&
+\fbox{\parbox{0.27\linewidth}{\centering
+\textbf{Never admitted}\\
+346 / 344 documents\\
+No observed map labels\\
+in either pipeline}}
 \end{tabular}
-\end{table}
+
+\smallskip
+\fbox{\parbox{0.88\linewidth}{\centering
+After revision: 94 / 94 admitted; 4 / 4 disagreements\\[3pt]
+No new admissions. Count change: $0-32+0=-32$ / $0-34+0=-34$.}}
+\caption{Where the disagreement reduction comes from. Paired numbers denote
+replicates 1 and 2, respectively. The three boxes partition the input because
+there are no newly admitted rows. All removed disagreements belong to excluded
+documents; retained labels are unchanged. Never-admitted documents have no
+inferred map labels. Exclusion is a selection change, not an adjudicated
+correction of the excluded answers.}
+\label{fig:admission-flow}
+\end{figure}
 
 \paragraph{Which rows were removed.}
 Three paired analyses on the categorised rows address this, each reported
