@@ -1,0 +1,15 @@
+{
+  "run_id": "f7_ablation_abstracts_rep1",
+  "purpose": "F7 scoped predicate-criterion intervention: aboutness to primary topic",
+  "baseline_filter_langex": "Is this paper about machine learning? {abstract_text}",
+  "ablated_filter_langex": "Is machine learning the primary topic of this paper? {abstract_text}",
+  "map_langex": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. Abstract: {abstract_text}",
+  "map_changed": false,
+  "contradiction_predicate_changed": false,
+  "baseline_run": "rq3_abstracts_rep1",
+  "n_rows": 500,
+  "limitation": "The filter criterion changed; LOTUS wrappers did not. This artifact supports conclusions only for this criterion pair and setup, not a general causal share.",
+  "capture_status": "posthoc_experiment_manifest",
+  "provenance_status": "This frozen manifest predates the metadata-merge fix. Runner provenance (including execution-time package versions, request parameters, hashes, and provider-applied temperature) is absent and cannot be reconstructed from the current artifact. The current experiment script preserves runner provenance for future runs.",
+  "result_field_names_note": "contradiction_* and rewording-related keys are legacy artifact names; the outcome is the operational criterion-disagreement metric."
+}

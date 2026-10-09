@@ -1,0 +1,154 @@
+{
+  "reviews": {
+    "domain": "reviews",
+    "backend": "hosted",
+    "model": "gpt-4o-mini",
+    "n_replicates": 2,
+    "n_rows": 50,
+    "filter_consistency": {
+      "n_runs": 2,
+      "n_rows": 50,
+      "n_stable": 50,
+      "n_flipped": 0,
+      "stability_rate": 1.0,
+      "flip_rate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0714,
+      "flip_details": []
+    },
+    "map_consistency": {
+      "n_runs": 2,
+      "n_rows": 50,
+      "n_stable": 50,
+      "n_flipped": 0,
+      "stability_rate": 1.0,
+      "flip_rate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0714,
+      "flip_details": []
+    },
+    "pipeline_consistency": {
+      "n_runs": 2,
+      "n_rows": 22,
+      "n_stable": 22,
+      "n_flipped": 0,
+      "stability_rate": 1.0,
+      "flip_rate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.1487,
+      "flip_details": []
+    },
+    "filter_pass_counts_per_replicate": [
+      22,
+      22
+    ],
+    "filter_pass_count_range": [
+      22,
+      22
+    ],
+    "n_always_passed": 22,
+    "map_label_distributions": [
+      {
+        "positive": 27,
+        "negative": 22,
+        "mixed": 1
+      },
+      {
+        "positive": 27,
+        "negative": 22,
+        "mixed": 1
+      }
+    ],
+    "schema_violations_per_replicate": [
+      {
+        "n_violations": 1,
+        "rate": 0.02
+      },
+      {
+        "n_violations": 1,
+        "rate": 0.02
+      }
+    ]
+  },
+  "abstracts": {
+    "domain": "abstracts",
+    "backend": "hosted",
+    "model": "gpt-4o-mini",
+    "n_replicates": 2,
+    "n_rows": 50,
+    "filter_consistency": {
+      "n_runs": 2,
+      "n_rows": 50,
+      "n_stable": 50,
+      "n_flipped": 0,
+      "stability_rate": 1.0,
+      "flip_rate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0714,
+      "flip_details": []
+    },
+    "map_consistency": {
+      "n_runs": 2,
+      "n_rows": 50,
+      "n_stable": 49,
+      "n_flipped": 1,
+      "stability_rate": 0.98,
+      "flip_rate": 0.02,
+      "ci_lower": 0.0035,
+      "ci_upper": 0.105,
+      "flip_details": [
+        {
+          "row_id": 16,
+          "labels": [
+            "other",
+            "theory"
+          ]
+        }
+      ]
+    },
+    "pipeline_consistency": {
+      "n_runs": 2,
+      "n_rows": 18,
+      "n_stable": 18,
+      "n_flipped": 0,
+      "stability_rate": 1.0,
+      "flip_rate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.1759,
+      "flip_details": []
+    },
+    "filter_pass_counts_per_replicate": [
+      18,
+      18
+    ],
+    "filter_pass_count_range": [
+      18,
+      18
+    ],
+    "n_always_passed": 18,
+    "map_label_distributions": [
+      {
+        "theory": 17,
+        "ML": 14,
+        "other": 10,
+        "systems": 9
+      },
+      {
+        "theory": 18,
+        "ML": 14,
+        "systems": 9,
+        "other": 9
+      }
+    ],
+    "schema_violations_per_replicate": [
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      },
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      }
+    ]
+  }
+}

@@ -1,113 +1,111 @@
 # OperatorBench
 
-**Characterising Reliability Failure Modes in LLM-Powered Semantic SQL Operators**
+**Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines**  
+Vansika Sonthalia · Research preprint · 9 October 2026
 
-[![Status](https://img.shields.io/badge/status-active%20research-brightgreen)]()
-[![Target venue](https://img.shields.io/badge/target-VLDB%202027%20EA%26B-blue)]()
-[![arXiv](https://img.shields.io/badge/arXiv-coming%20Aug%202026-red)]()
+This repository accompanies a study of how filtering changes the population
+on which an LLM pipeline is evaluated. A lower disagreement rate can result
+from excluding documents while leaving the labels on retained documents unchanged.
 
-> *A cross-system empirical study of structural reliability failure modes in LLM-powered semantic SQL operators across Snowflake Cortex AISQL, DocETL, and LOTUS.*
+**Publication status:** author preprint; not peer reviewed. arXiv submission
+is being prepared; no arXiv identifier has been assigned.
 
----
+- [Paper source](paper/reproducibility.tex)
+- [Versioned release](https://github.com/vansikasonthalia/operatorbench/releases/tag/v0.1.0)
+- [Results and scope](#main-findings)
+- [Evidence and reproduction guide](docs/ARTIFACT-README.md)
+- [Licensing and data availability](NOTICE.md)
 
-## Motivation
+## Main findings
 
-Modern enterprise data systems expose operators like `AI_FILTER`, `AI_CLASSIFY`, and `AI_JOIN` that embed LLM calls inside SQL queries. These operators violate core SQL guarantees:
+On a selected sample of 500 arXiv documents, changing a LOTUS filter from
+ML aboutness to primary-topic membership produced the following results:
 
-- The same query on the same data returns **different outputs across runs**
-- Outputs **violate declared schemas** silently, with no error raised
-- Chained operators produce **logically contradictory results**
-- Irrelevant schema columns **change operator outputs** unpredictably
+| Measure | Before | After |
+| --- | ---: | ---: |
+| Admitted documents, two intervention comparisons | 154 / 156 | 94 / 94 |
+| Disagreements | 36 / 38 | 4 / 4 |
+| Changed labels on the 94 common admissions | — | 0 |
+| Recall against author-category proxy | 87.83% | 61.74% |
 
-No systematic empirical study of these failure modes exists. This project fills that gap.
+Exclusion accounts for all 32 and 34 removed disagreements. These figures
+measure criterion disagreement and a category-proxy coverage tradeoff; they
+do not establish improved semantic correctness.
 
-## Research Questions
+A matched binary control records 8,000 requests across four replicates.
+A separately fixed revision evaluation records 2,800 requests on 100 reused
+documents. A filter paraphrase introduces the same membership exception in
+each replicate; narrowing excludes two documents as permitted by its declared
+requirement. Complete paired reporting reconstructs the ledger's aggregate
+terms, and separately implemented core assertions recover the same exceptions.
 
-| RQ | Question |
-|---|---|
-| RQ1 | How stable are semantic operator outputs across repeated executions on identical inputs? |
-| RQ2 | How frequently do operators produce outputs that violate their declared output types? |
-| RQ3 | When operators are chained, how often do their outputs exhibit logical contradictions? |
-| RQ4 | How sensitive are operator outputs to schema-irrelevant columns? |
-| RQ5 | Can observed failure modes be detected at query execution time through lightweight validation primitives? |
+## What is available
 
-## Systems Under Study
+This public snapshot includes the current paper source, original software,
+fixed experiment specifications, aggregate results and selected audit reports.
+Dataset text, result CSVs containing input documents, and request logs with
+copied documents are retained in the local frozen archive while redistribution
+terms are resolved. **The public snapshot alone is not a complete reproduction
+package.** See [NOTICE.md](NOTICE.md) for sources and the precise boundary.
 
-| System | Type | Operators |
-|---|---|---|
-| [Snowflake Cortex AISQL](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions) | Commercial cloud warehouse | `AI_FILTER`, `AI_CLASSIFY`, `AI_SUMMARIZE`, `AI_EXTRACT` |
-| [DocETL](https://github.com/ucbepic/docetl) | Open-source pipeline framework | `filter`, `map`, `reduce`, `resolve` |
-| [LOTUS](https://github.com/stanford-futuredata/lotus) | Open-source dataframe library | `sem_filter`, `sem_map`, `sem_join`, `sem_agg` |
+The original public pilot has been moved to `legacy/pilot/` for provenance.
+Its broad cross-system and logical-contradiction claims are superseded by this
+preprint. It is not part of the current paper's frozen evaluation.
 
-## Datasets
+## Explore the accounting without model calls
 
-All datasets are public. No proprietary data is used.
+Python 3.10 or newer:
 
-- [Data Agent Benchmark (DAB)](https://github.com/DABench/DABench) — 54 queries across 12 datasets, 9 domains
-- TPC-H — standard database benchmark
-- BIRD — text-to-SQL benchmark
-- Spider — cross-domain text-to-SQL
-
-## Proposed Validation Primitives
-
-Based on observed failure patterns, the project will design and evaluate:
-
-```sql
--- Checks output conforms to declared type/category
-ASSERT_TYPE(ai_classify(text, ['pos','neg','neu']), ['pos','neg','neu'])
-
--- Checks output stability across re-execution
-ASSERT_CONSISTENT(ai_filter(text, 'mentions billing'), n_runs=3)
-
--- Checks logical coherence across chained operators  
-ASSERT_COHERENT(filter_result, classify_result, rule='if filtered then classified')
-
--- Checks irrelevant columns don't affect output
-ASSERT_CONTEXT_INDEPENDENT(ai_classify(text, labels), irrelevant_cols=['id','date'])
+```bash
+python -m pip install -r requirements-artifact.txt
+python -m scripts.admission_ledger_example
 ```
 
-## Prior Work
+The example is constructed, not an additional experiment. For local tests:
 
-This project extends the methodology of:
+```bash
+python -m pip install pytest
+python -m pytest tests/test_admission_ledger.py tests/test_revision_contracts.py tests/test_package_artifact.py
+```
 
-- **SemBench** (Lao et al., 2025) — evaluates accuracy, cost, efficiency of semantic query engines; does not measure cross-run consistency or cross-operator coherence
-- **DAB** (Ma et al., 2026) — benchmarks data agent performance; does not systematically categorise failure modes
-- **RGEval** (Sonthalia et al., ICWS 2025) — benchmarks LLM-generated GraphQL queries; establishes semantic equivalence evaluation methodology extended here · [IEEE Xplore](https://ieeexplore.ieee.org/document/11169687)
+## Reanalyse the complete frozen archive
 
-## Status
+These commands require the original data, result CSVs and raw logs in addition
+to this public snapshot. They do not make model calls:
 
-| Phase | Status | Target date |
-|---|---|---|
-| Infrastructure setup | 🔄 In progress | May 2026 |
-| Phase 1: DAB pilot on Snowflake Cortex | ⬜ Planned | Jun 2026 |
-| Phase 2: Extended benchmark + DocETL | ⬜ Planned | Jul 2026 |
-| Week 10 decision gate | ⬜ Planned | Jul 2026 |
-| Phase 3: LOTUS + cross-system comparison | ⬜ Planned | Aug 2026 |
-| Phase 4: Primitive design + evaluation | ⬜ Planned | Sep 2026 |
-| arXiv preprint | ⬜ Planned | Aug 2026 |
-| VLDB 2027 EA&B submission | ⬜ Planned | Oct 2026 |
+```bash
+python -m scripts.reproduce_artifact
+python -m scripts.run_revision_evaluation --aggregate-only
+```
 
-## Author
+The first command reanalyses the historical and matched studies. The second
+verifies and aggregates the completed revision study using its frozen plan.
+The [artifact guide](docs/ARTIFACT-README.md) describes their requirements.
+Do not regenerate the frozen inputs with `scripts/prep_datasets.py`.
 
-**Vansika Sonthalia** — Data Engineer, Tredence Inc.
+## Limits of the evidence
 
-[Google Scholar](https://scholar.google.com/citations?user=L5Jdou8AAAAJ) · [LinkedIn](https://linkedin.com/in/vansikasonthalia) · [Website](https://vansikasonthalia.github.io)
-
-Related publication: [Robust Evaluation of LLM-Generated GraphQL Queries for Web Services](https://ieeexplore.ieee.org/document/11169687), IEEE ICWS 2025
+The main finding concerns selected documents, one framework and one hosted
+model family. Category declarations are a proxy, not independent correctness
+labels. The revision study reuses previously studied documents. The historical
+archive retains 178 malformed log lines and incomplete provenance; successful
+reanalysis does not repair those gaps. No detection or information advantage
+over complete paired reporting is claimed.
 
 ## Citation
 
-If you find this work useful, please cite:
-
 ```bibtex
-@misc{sonthalia2026operatorbench,
-  title={Characterising Reliability Failure Modes in LLM-Powered Semantic SQL Operators},
-  author={Sonthalia, Vansika},
-  year={2026},
-  note={Work in progress. \url{https://github.com/vansikasonthalia/operatorbench}}
+@unpublished{sonthalia2026exclusion,
+  author = {Vansika Sonthalia},
+  title = {Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines},
+  year = {2026},
+  note = {Author preprint; not peer reviewed},
+  url = {https://github.com/vansikasonthalia/operatorbench}
 }
 ```
 
----
+## License
 
-*Research proposal available on request.*
+Original software and usage documentation: [MIT](LICENSE). The paper retains
+its author's copyright; its intended arXiv license is perpetual and
+non-exclusive. Third-party data is not covered by the MIT grant. See [NOTICE.md](NOTICE.md).

@@ -1,0 +1,4531 @@
+{
+  "scope": "Post-hoc prototype demonstration. Requirements were chosen after seeing the saved changes; these verdicts are not detection accuracy, prospective validation, or evidence of novelty.",
+  "policy": "Preserve-results requires equal admission sets and unchanged common saved labels. A declared filter change permits narrowing and requires unchanged common labels. A declared map change preserves admissions but permits label changes. A declared joint change permits narrowing and label changes. All require valid observed raw and saved outputs. Full-input assessments require complete evidence; observed-cohort assessments explicitly waive that requirement.",
+  "checks_source_sha256": "8f0f5e038daaee89111390a7b6a521cc8cb047cb6d8580c8200233bd853b4ffd",
+  "analysis_source_sha256": "5073cb3a4d7088b15887dec6c94e43e9d1c20bc5da555083dbbe06dcbe9c69bc",
+  "reporting_source_sha256": "7a3586cab4d1b0625e00adb45a1af3f2e057f1197ca7cbfa7b4ef7838967dd5b",
+  "cases": [
+    {
+      "name": "historical_r1",
+      "evidence": "executed_historical_pipeline",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "satisfied",
+            "unassessed_rows": []
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              43,
+              45,
+              50,
+              63,
+              65,
+              76,
+              77,
+              91,
+              96,
+              106,
+              113,
+              117,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              318,
+              326,
+              330,
+              335,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              430,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 94,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 248,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 500,
+          "unassessed_rows": [],
+          "n_reference_input": 500,
+          "complete": true
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "satisfied",
+        "checks": {
+          "complete_input": {
+            "status": "satisfied",
+            "unassessed_rows": []
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 94,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 248,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 500,
+          "unassessed_rows": [],
+          "n_reference_input": 500,
+          "complete": true
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 94,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 248,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 500,
+          "unassessed_rows": [],
+          "n_reference_input": 500,
+          "complete": true
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "historical_r2",
+      "evidence": "executed_historical_pipeline",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "satisfied",
+            "unassessed_rows": []
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              43,
+              45,
+              50,
+              63,
+              65,
+              75,
+              76,
+              77,
+              91,
+              96,
+              106,
+              113,
+              117,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              200,
+              202,
+              213,
+              215,
+              218,
+              220,
+              221,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              318,
+              326,
+              330,
+              335,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              430,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 94,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 250,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 500,
+          "unassessed_rows": [],
+          "n_reference_input": 500,
+          "complete": true
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "satisfied",
+        "checks": {
+          "complete_input": {
+            "status": "satisfied",
+            "unassessed_rows": []
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 94,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 250,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 500,
+          "unassessed_rows": [],
+          "n_reference_input": 500,
+          "complete": true
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 94,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 250,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 500,
+          "unassessed_rows": [],
+          "n_reference_input": 500,
+          "complete": true
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r1_filter_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              206,
+              272,
+              275,
+              285,
+              310,
+              344,
+              365,
+              413,
+              418,
+              421,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              96,
+              108,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              346,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              206,
+              272,
+              275,
+              285,
+              310,
+              344,
+              365,
+              413,
+              418,
+              421,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r1_map_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              206,
+              272,
+              275,
+              285,
+              310,
+              344,
+              365,
+              413,
+              418,
+              421,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 154,
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              63,
+              76,
+              77,
+              91,
+              113,
+              127,
+              131,
+              140,
+              169,
+              178,
+              187,
+              200,
+              220,
+              227,
+              277,
+              284,
+              297,
+              301,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              425,
+              438,
+              453,
+              487,
+              491
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 308,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              206,
+              272,
+              275,
+              285,
+              310,
+              344,
+              365,
+              413,
+              418,
+              421,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 308,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 308,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r1_both_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              206,
+              272,
+              275,
+              285,
+              310,
+              344,
+              365,
+              413,
+              418,
+              421,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              96,
+              108,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              346,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 100,
+            "row_ids": [
+              63,
+              140
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              206,
+              272,
+              275,
+              285,
+              310,
+              344,
+              365,
+              413,
+              418,
+              421,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            206,
+            272,
+            275,
+            285,
+            310,
+            344,
+            365,
+            413,
+            418,
+            421,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r2_filter_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              205,
+              206,
+              275,
+              310,
+              365,
+              378,
+              413,
+              418,
+              421,
+              437,
+              446,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              96,
+              106,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 253,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              205,
+              206,
+              275,
+              310,
+              365,
+              378,
+              413,
+              418,
+              421,
+              437,
+              446,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 253,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 253,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r2_map_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              205,
+              206,
+              275,
+              310,
+              365,
+              378,
+              413,
+              418,
+              421,
+              437,
+              446,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 153,
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              63,
+              76,
+              77,
+              91,
+              113,
+              127,
+              131,
+              140,
+              169,
+              178,
+              187,
+              200,
+              213,
+              220,
+              227,
+              277,
+              284,
+              297,
+              301,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              425,
+              438,
+              453,
+              487,
+              491
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 306,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              205,
+              206,
+              275,
+              310,
+              365,
+              378,
+              413,
+              418,
+              421,
+              437,
+              446,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 306,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 306,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r2_both_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              205,
+              206,
+              275,
+              310,
+              365,
+              378,
+              413,
+              418,
+              421,
+              437,
+              446,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              96,
+              106,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 100,
+            "row_ids": [
+              63,
+              140
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 253,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              117,
+              152,
+              168,
+              188,
+              196,
+              198,
+              205,
+              206,
+              275,
+              310,
+              365,
+              378,
+              413,
+              418,
+              421,
+              437,
+              446,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 253,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 253,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            117,
+            152,
+            168,
+            188,
+            196,
+            198,
+            205,
+            206,
+            275,
+            310,
+            365,
+            378,
+            413,
+            418,
+            421,
+            437,
+            446,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r3_filter_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              150,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              255,
+              263,
+              272,
+              275,
+              310,
+              344,
+              418,
+              437,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              90,
+              91,
+              96,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              220,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 102,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 255,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              150,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              255,
+              263,
+              272,
+              275,
+              310,
+              344,
+              418,
+              437,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 102,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 255,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 102,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 255,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r3_map_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              150,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              255,
+              263,
+              272,
+              275,
+              310,
+              344,
+              418,
+              437,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 153,
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              113,
+              127,
+              131,
+              140,
+              169,
+              178,
+              187,
+              200,
+              213,
+              220,
+              227,
+              277,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              438,
+              453,
+              487,
+              491
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 306,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              150,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              255,
+              263,
+              272,
+              275,
+              310,
+              344,
+              418,
+              437,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 306,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 306,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r3_both_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              150,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              255,
+              263,
+              272,
+              275,
+              310,
+              344,
+              418,
+              437,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              90,
+              91,
+              96,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              220,
+              224,
+              227,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 102,
+            "row_ids": [
+              140
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 255,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              107,
+              117,
+              150,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              255,
+              263,
+              272,
+              275,
+              310,
+              344,
+              418,
+              437,
+              446,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 255,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 255,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 479,
+          "unassessed_rows": [
+            55,
+            94,
+            107,
+            117,
+            150,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            255,
+            263,
+            272,
+            275,
+            310,
+            344,
+            418,
+            437,
+            446,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r4_filter_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              105,
+              107,
+              117,
+              146,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              222,
+              272,
+              275,
+              310,
+              353,
+              365,
+              378,
+              413,
+              421,
+              437,
+              446,
+              449,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              96,
+              106,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              274,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              105,
+              107,
+              117,
+              146,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              222,
+              272,
+              275,
+              310,
+              353,
+              365,
+              378,
+              413,
+              421,
+              437,
+              446,
+              449,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "common_labels": {
+            "status": "satisfied",
+            "n_checked": 100,
+            "row_ids": []
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r4_map_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              105,
+              107,
+              117,
+              146,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              222,
+              272,
+              275,
+              310,
+              353,
+              365,
+              378,
+              413,
+              421,
+              437,
+              446,
+              449,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 154,
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              63,
+              76,
+              77,
+              91,
+              113,
+              127,
+              131,
+              140,
+              169,
+              178,
+              187,
+              200,
+              213,
+              220,
+              227,
+              274,
+              277,
+              284,
+              297,
+              301,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              438,
+              453,
+              487,
+              491
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 308,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              105,
+              107,
+              117,
+              146,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              222,
+              272,
+              275,
+              310,
+              353,
+              365,
+              378,
+              413,
+              421,
+              437,
+              446,
+              449,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 308,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "equal"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 308,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    },
+    {
+      "name": "matched_r4_both_change",
+      "evidence": "derived_from_recorded_answers",
+      "preserve_results": {
+        "contract": {
+          "admission_relation": "equal",
+          "preserve_common_labels": true,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "violated",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              105,
+              107,
+              117,
+              146,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              222,
+              272,
+              275,
+              310,
+              353,
+              365,
+              378,
+              413,
+              421,
+              437,
+              446,
+              449,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "violated",
+            "row_ids": [
+              18,
+              21,
+              23,
+              37,
+              45,
+              76,
+              77,
+              91,
+              96,
+              106,
+              113,
+              127,
+              131,
+              169,
+              178,
+              181,
+              187,
+              199,
+              200,
+              202,
+              213,
+              218,
+              220,
+              221,
+              224,
+              227,
+              274,
+              277,
+              284,
+              288,
+              291,
+              297,
+              301,
+              305,
+              311,
+              326,
+              330,
+              347,
+              357,
+              367,
+              372,
+              389,
+              395,
+              414,
+              417,
+              425,
+              434,
+              438,
+              452,
+              453,
+              459,
+              487,
+              491,
+              499
+            ],
+            "relation": "equal"
+          },
+          "common_labels": {
+            "status": "violated",
+            "n_checked": 100,
+            "row_ids": [
+              63,
+              140
+            ]
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_full_input": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": true
+        },
+        "status": "not_evaluable",
+        "checks": {
+          "complete_input": {
+            "status": "not_evaluable",
+            "unassessed_rows": [
+              55,
+              94,
+              105,
+              107,
+              117,
+              146,
+              152,
+              168,
+              188,
+              196,
+              205,
+              206,
+              222,
+              272,
+              275,
+              310,
+              353,
+              365,
+              378,
+              413,
+              421,
+              437,
+              446,
+              449,
+              457,
+              492
+            ]
+          },
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      },
+      "declared_change_observed_cohort": {
+        "contract": {
+          "admission_relation": "subset",
+          "preserve_common_labels": false,
+          "forbid_new_common_disagreements": false,
+          "require_valid_outputs": true,
+          "require_complete_input": false
+        },
+        "status": "satisfied",
+        "checks": {
+          "admissions": {
+            "status": "satisfied",
+            "row_ids": [],
+            "relation": "subset"
+          },
+          "output_validity": {
+            "status": "satisfied",
+            "n_records": 254,
+            "invalid_outputs": {
+              "before": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              },
+              "after": {
+                "raw": {
+                  "count": 0,
+                  "row_ids": []
+                },
+                "saved": {
+                  "count": 0,
+                  "row_ids": []
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "n_evaluated": 474,
+          "unassessed_rows": [
+            55,
+            94,
+            105,
+            107,
+            117,
+            146,
+            152,
+            168,
+            188,
+            196,
+            205,
+            206,
+            222,
+            272,
+            275,
+            310,
+            353,
+            365,
+            378,
+            413,
+            421,
+            437,
+            446,
+            449,
+            457,
+            492
+          ],
+          "n_reference_input": 500,
+          "complete": false
+        },
+        "interpretation": "A verdict concerns the supplied requirements and observed cohort, not semantic truth. Known violations remain violations when other requirements cannot be assessed. Empty common cohorts cannot certify label preservation or absence of new common-row disagreement."
+      }
+    }
+  ],
+  "interpretation": "Requirements make intent explicit but do not discover intent or judge whether a changed question is appropriate. These checks use information already available in a complete paired report. Observed-cohort satisfaction does not imply a full-input verdict; input omissions remain visible. For filter-only cases, the common four-cell validity policy omits rows even though their required filter/map answers are valid. Not evaluable concerns this supplied view, not the absence of all original responses; a separately derived full-input filter-only view could be evaluated."
+}

@@ -1,0 +1,74 @@
+{
+  "verdict": "Q1 -- the wrapper changes answers to a fixed question in this setup",
+  "threshold_differing_rows": 6,
+  "noise_ceilings": {
+    "about_claim": 2,
+    "primary_instruction": 3,
+    "primary_claim": 0
+  },
+  "about_instruction_off_schema_rows": [],
+  "W_about_wrapper_effect": {
+    "yes_counts": {
+      "claim": 154,
+      "instruction": 147
+    },
+    "differing_rows": 7,
+    "yes_only_claim": 7,
+    "yes_only_instruction": 0,
+    "mcnemar_p": 0.015625,
+    "exceeds_threshold": true
+  },
+  "W_primary_wrapper_effect": {
+    "yes_counts": {
+      "claim": 94,
+      "instruction": 123
+    },
+    "differing_rows": 37,
+    "yes_only_claim": 4,
+    "yes_only_instruction": 33,
+    "mcnemar_p": 1e-06,
+    "exceeds_threshold": true
+  },
+  "C_claim_criterion_effect": {
+    "yes_counts": {
+      "about": 154,
+      "primary": 94
+    },
+    "differing_rows": 60,
+    "yes_only_about": 60,
+    "yes_only_primary": 0,
+    "mcnemar_p": 0.0,
+    "exceeds_threshold": true
+  },
+  "C_instruction_criterion_effect": {
+    "yes_counts": {
+      "about": 147,
+      "primary": 123
+    },
+    "differing_rows": 36,
+    "yes_only_about": 30,
+    "yes_only_primary": 6,
+    "mcnemar_p": 7e-05,
+    "exceeds_threshold": true
+  },
+  "disagreement_same_wrapper": {
+    "definition": "about/instruction says True, RQ1 map (instruction wrapper) label != ML",
+    "k": 30,
+    "n": 147,
+    "rate": 0.20408163265306123,
+    "ci": [
+      0.14686010514896874,
+      0.2763759252299188
+    ]
+  },
+  "disagreement_cross_wrapper_reference": {
+    "definition": "about/claim admits (rq3 rep1), RQ1 rep1 map label != ML -- same map run as above",
+    "k": 35,
+    "n": 154,
+    "rate": 0.22727272727272727,
+    "ci": [
+      0.16819628437818138,
+      0.2996246196167097
+    ]
+  }
+}

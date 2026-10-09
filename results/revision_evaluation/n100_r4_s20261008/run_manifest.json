@@ -1,0 +1,25 @@
+{
+  "protocol_sha256": "75df0d25857637ad1196014d292339a105d18ab99e1a2ca6a67482ac949c33a1",
+  "runner_source_sha256": "762980ee0abdee31189147afd314c556311175c57541ea96410efd4ea8677874",
+  "interceptor_source_sha256": "2c7d60deeeb39cbca0067646706139c7ec3e98cb83972687946a4902acc51b07",
+  "python": "3.10.11",
+  "packages": {
+    "lotus-ai": "1.2.4",
+    "litellm": "1.96.0",
+    "pandas": "2.3.3"
+  },
+  "framework_source_sha256": {
+    "lotus/templates/task_instructions.py": "059909938902f3fa44ae1fc9666ce91452266f1e4e8d57c5c81134c24e51a8a3",
+    "lotus/sem_ops/sem_filter.py": "ae20bcb11b8750a9283a988ad2233d2f9a8b755f57a65c47b37029b1e70be7c7",
+    "lotus/sem_ops/sem_map.py": "bfa7465c0cb2c0440e9c0cfb9ea3f394afa60b93c593472c2cab55994a456b16",
+    "lotus/sem_ops/postprocessors.py": "8f5c33600c849ad9806fcec752ee3d14646cebd5ec441637ff0b271ae6a98956",
+    "lotus/models/lm.py": "83e843ee8b381757525130ff09b0134fa77d3688a4321a9170e88ce79030e0e3"
+  },
+  "native_prompts_sha256": "caad81b7e1f51c313a860b06ade45dd834ad8eef8fdb92c1eb7ac2364039c8cb",
+  "requested_lm_kwargs": {
+    "model": "gpt-4o-mini-2024-07-18",
+    "temperature": 0.0,
+    "max_completion_tokens": 16
+  },
+  "analysis_evidence_rule": "Revision-specific assessability: both filters must be valid; a map must be valid only if its corresponding filter admits. Unneeded map format failures remain recorded. Required filter/map format failures violate output validity even when semantic checks are unassessed. Known filter membership exceptions remain visible outside the joint assessable cohort."
+}

@@ -1,0 +1,11 @@
+{
+  "run_id": "rq4_abstracts_rep2",
+  "injected_filter_langex": "Is this paper about machine learning? [submitted: {submission_month}] {abstract_text}",
+  "injected_map_langex": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. [submitted: {submission_month}] Abstract: {abstract_text}",
+  "baseline": "rq3_abstracts_rep2",
+  "n_eligible_rows": 449,
+  "injection_column": "submission_month",
+  "note": "paired against the RQ3 replicate restricted to the same rows",
+  "capture_status": "posthoc_experiment_manifest",
+  "provenance_status": "This frozen manifest predates the metadata-merge fix. Runner provenance (including execution-time package versions, request parameters, hashes, and provider-applied temperature) is absent and cannot be reconstructed from the current artifact. The current experiment script preserves runner provenance for future runs."
+}

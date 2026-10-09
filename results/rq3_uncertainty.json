@@ -1,0 +1,174 @@
+{
+  "purpose": "correct uncertainty for RQ3; supersedes the pooled Wilson interval",
+  "invalid_method": "Wilson on counts pooled across replicates of a frozen row set",
+  "why_invalid": "replicates re-measure the same rows; pooled n counts each distinct row once per replicate, and F3 shows the repeats are perfectly correlated",
+  "report_these": [
+    "run_to_run.spread_pp",
+    "row_sampling.always_contradicts.wilson",
+    "cluster_bootstrap.ci"
+  ],
+  "domains": [
+    {
+      "domain": "abstracts",
+      "n_replicates": 3,
+      "pooled_rate_DESCRIPTIVE_ONLY": 0.2371,
+      "pooled_k": 110,
+      "pooled_n_row_OBSERVATIONS": 464,
+      "distinct_rows_union": 156,
+      "distinct_rows_admitted_every_replicate": 154,
+      "observations_per_distinct_row": 2.97,
+      "INVALID_pooled_wilson": [
+        0.2006,
+        0.2778
+      ],
+      "run_to_run": {
+        "per_replicate_rates": {
+          "1": 0.2338,
+          "2": 0.2436,
+          "3": 0.2338
+        },
+        "mean": 0.237,
+        "spread_pp": 0.98
+      },
+      "row_sampling": {
+        "always_contradicts": {
+          "k": 36,
+          "n": 154,
+          "rate": 0.2338,
+          "wilson": [
+            0.1739,
+            0.3066
+          ],
+          "width_pp": 13.27
+        },
+        "ever_contradicts": {
+          "k": 36,
+          "n": 154,
+          "rate": 0.2338,
+          "wilson": [
+            0.1739,
+            0.3066
+          ]
+        }
+      },
+      "schema_violations": {
+        "note": "SAME independence defect as the contradiction rate: pooled counts repeat rows. Row-level figures below are the reportable ones.",
+        "pooled_k_DESCRIPTIVE": 0,
+        "pooled_n_row_OBSERVATIONS": 464,
+        "per_replicate_counts": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "row_level": {
+          "n_rows_admitted_every_replicate": 154,
+          "ever_violates": {
+            "k": 0,
+            "wilson": [
+              0.0,
+              0.0243
+            ]
+          },
+          "always_violates": {
+            "k": 0,
+            "wilson": [
+              0.0,
+              0.0243
+            ]
+          }
+        }
+      },
+      "cluster_bootstrap": {
+        "B": 20000,
+        "seed": 20260928,
+        "resampled_rows": 156,
+        "ci": [
+          0.1724,
+          0.3047
+        ],
+        "width_pp": 13.23
+      }
+    },
+    {
+      "domain": "reviews",
+      "n_replicates": 3,
+      "pooled_rate_DESCRIPTIVE_ONLY": 0.0221,
+      "pooled_k": 18,
+      "pooled_n_row_OBSERVATIONS": 814,
+      "distinct_rows_union": 272,
+      "distinct_rows_admitted_every_replicate": 270,
+      "observations_per_distinct_row": 2.99,
+      "INVALID_pooled_wilson": [
+        0.014,
+        0.0347
+      ],
+      "run_to_run": {
+        "per_replicate_rates": {
+          "1": 0.0258,
+          "2": 0.0221,
+          "3": 0.0185
+        },
+        "mean": 0.0221,
+        "spread_pp": 0.74
+      },
+      "row_sampling": {
+        "always_contradicts": {
+          "k": 5,
+          "n": 270,
+          "rate": 0.0185,
+          "wilson": [
+            0.0079,
+            0.0426
+          ],
+          "width_pp": 3.47
+        },
+        "ever_contradicts": {
+          "k": 7,
+          "n": 270,
+          "rate": 0.0259,
+          "wilson": [
+            0.0126,
+            0.0525
+          ]
+        }
+      },
+      "schema_violations": {
+        "note": "SAME independence defect as the contradiction rate: pooled counts repeat rows. Row-level figures below are the reportable ones.",
+        "pooled_k_DESCRIPTIVE": 15,
+        "pooled_n_row_OBSERVATIONS": 814,
+        "per_replicate_counts": {
+          "1": 5,
+          "2": 6,
+          "3": 4
+        },
+        "row_level": {
+          "n_rows_admitted_every_replicate": 270,
+          "ever_violates": {
+            "k": 5,
+            "wilson": [
+              0.0079,
+              0.0426
+            ]
+          },
+          "always_violates": {
+            "k": 3,
+            "wilson": [
+              0.0038,
+              0.0322
+            ]
+          }
+        }
+      },
+      "cluster_bootstrap": {
+        "B": 20000,
+        "seed": 20260928,
+        "resampled_rows": 272,
+        "ci": [
+          0.0074,
+          0.0405
+        ],
+        "width_pp": 3.31
+      }
+    }
+  ]
+}

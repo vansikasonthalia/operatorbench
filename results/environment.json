@@ -1,0 +1,79 @@
+{
+  "captured_utc": "2026-09-28T15:27:00+00:00",
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+    "lotus-ai": "1.2.4",
+    "litellm": "1.96.0",
+    "openai": "2.53.0",
+    "pandas": "2.3.3",
+    "datasets": "5.0.1",
+    "numpy": "1.26.4"
+  },
+  "temperature": null,
+  "max_text_chars": 4000,
+  "truncation_note": "Inputs are truncated to max_text_chars. This is the same window derive_topic_label_v2.py parsed the arXiv stamp from, so the value is load-bearing for the label proxy.",
+  "cache_enabled": null,
+  "seed": {
+    "seed_configured_on_lm": null,
+    "seeded_reproducibility_verified": false,
+    "replicate_semantics": "Unseeded hosted executions. The pinned reproduction LOTUS source declares temperature default 0.0, but the historical package version and provider-applied per-call value are not established.",
+    "why": "No seed value was configured on the LOTUS LM."
+  },
+  "labels": {
+    "label_version": "v2",
+    "label_column": "topic_label_v2",
+    "label_file": "data/abstracts/abstracts_v1_labels_v2.csv",
+    "label_file_sha256": "63726e3f19fcd63fda984edf9f6b37cf20910c183aac2d6988cc0c1605546ef9",
+    "retired_column_not_used": "topic_label",
+    "caveat": "Author-declared arXiv PRIMARY CATEGORY. This answers a different question from an 'is this about X?' filter predicate, so agreement with it is a proxy measurement, not filter accuracy.",
+    "label_manifest": {
+      "generated": "2026-09-14",
+      "method": "authors' declared arXiv primary category, parsed from the arXiv stamp within the first 4000 chars (the same window the operators saw)",
+      "coverage": {
+        "tagged": 449,
+        "untagged": 51
+      },
+      "label_counts": {
+        "other": 334,
+        "machine_learning": 115,
+        "unknown": 51
+      },
+      "sha256_prefix": "63726e3f19fcd63f"
+    }
+  },
+  "prompt_config": {
+    "prompt_config_sha256": "b29304d36d0e2c232e94cf8242afd53fe242e6a9161375a371b81e4252a5a1c7",
+    "domains": {
+      "abstracts": {
+        "filter_predicate": "Is this paper about machine learning? {abstract_text}",
+        "map_instruction": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. Abstract: {abstract_text}",
+        "map_output_col": "mapped_topic",
+        "valid_labels": [
+          "ML",
+          "other",
+          "systems",
+          "theory"
+        ]
+      },
+      "reviews": {
+        "filter_predicate": "Is this review negative? {review_text}",
+        "map_instruction": "Respond with exactly one word. Classify the sentiment of this review as: positive, negative, or neutral. Review: {review_text}",
+        "map_output_col": "mapped_sentiment",
+        "valid_labels": [
+          "negative",
+          "neutral",
+          "positive"
+        ]
+      }
+    },
+    "note": "If this sha changes, the frozen predicates changed and runs either side of the change are not comparable (D-W2-03)."
+  },
+  "datasets": {
+    "data/abstracts/abstracts_v1.csv": "4e273eae5ac4ec16c2f353ddc6bd90730a0c2a9d022b050df4e95d11c0b76cc4",
+    "data/abstracts/abstracts_v1_injection.csv": "3b98255858ed6f8de0b4df7f359d64a1b1ac066a81d9a3acee68f4a58a749cc2",
+    "data/abstracts/abstracts_v1_labels_v2.csv": "63726e3f19fcd63fda984edf9f6b37cf20910c183aac2d6988cc0c1605546ef9",
+    "data/reviews/reviews_v1.csv": "19ed1b1329eaae97c428296b4790d0d1e5cb74f0a431f1c755e1e189c847f282"
+  },
+  "temperature_note": "null means the harness never sets temperature. LOTUS 1.2.4 declares temperature=0.0 as the LM class default. The frozen run records do not provide per-call temperature observations."
+}

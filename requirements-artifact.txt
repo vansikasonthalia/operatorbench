@@ -1,0 +1,3 @@
+# Saved-output reanalysis only; Python 3.10 or newer. No model client required.
+pandas==2.3.3
+numpy==1.26.4

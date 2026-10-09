@@ -1,0 +1,2124 @@
+% Standalone draft for incorporation into the final manuscript.
+% Evidence: historical, matched-control and revision-evaluation archives.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,tabularx,array}
+\usepackage{amsmath,amssymb,enumitem,graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\title{Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines}
+\author{Vansika Sonthalia\thanks{Research preprint; not peer reviewed. Code and evidence: \url{https://github.com/vansikasonthalia/operatorbench}.}}
+\date{9 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+A conditional disagreement rate can improve through exclusion while labels
+on retained rows stay unchanged. We document this evaluation failure mode
+in LOTUS filter--map pipelines using hosted \texttt{gpt-4o-mini}. On 500
+selected arXiv documents, changing the filter from ML aboutness to
+primary-topic membership reduces admissions from 154 and 156 to 94 and
+disagreement counts from 36 and 38 to 4. All 94 common-row labels remain
+unchanged; exclusion accounts for the entire reduction. Recall against
+author-declared categories falls from 87.83\% to 61.74\%.
+An admission ledger records selection changes, common-row label changes,
+coverage and raw output validity. Complete paired reporting recovers its
+aggregate terms. A four-replicate binary control on the same 500 documents
+finds primary-topic operator directional asymmetry among format-valid pairs
+after multiplicity correction; exploratory sensitivities retain its direction.
+A separate evaluation fixes requirements before new executions on 100 reused
+documents. A filter paraphrase introduces the same admission exception in
+all four replicates, while narrowing removes two admissions and satisfies
+its subset requirement. Separately implemented core record assertions
+recover the same exceptions as the ledger checker.
+The contribution is an audited empirical case and reproducible diagnostic
+reporting: lower conditional disagreement need not mean improved labels or
+preserved coverage. The evidence concerns recorded answers in one framework
+and model family, with correctness left to independent assessment.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+Semantic query systems expose natural-language operations through interfaces
+that can be composed into data-processing pipelines. LOTUS provides a
+semantic operator model and optimized implementations, while DocETL supports
+declarative document workflows and agentic rewriting
+\cite{lotus,docetl}. These abstractions make it possible to express filtering
+and transformation without writing a task-specific model implementation.
+They also leave users responsible for the criteria encoded by their
+natural-language expressions.
+
+Consider a pipeline that first keeps papers about machine learning and
+then labels their primary topic as ML, systems, theory, or other. A theory
+paper about a learning algorithm can satisfy the filter and receive a
+non-ML primary-topic label. This result need not be logically contradictory.
+It can reveal that the operators were asked different questions. A measured
+disagreement rate is consequently meaningful only together with its
+operational rule, admitted-row denominator, and intended application.
+
+OperatorBench examines this design choice through two frozen pipelines,
+individual-operator repeats, and scoped interventions. Its central
+comparison changes the abstracts filter from broad aboutness to primary-topic
+membership while retaining the map instruction. The resulting decrease in
+disagreement is accompanied by a substantial recall cost against a declared
+category proxy. A lower disagreement rate therefore cannot be interpreted
+as an unconditional accuracy improvement. Repeatability, output-schema
+validity, agreement between criteria, and correctness relative to a reference
+answer different questions.
+
+We make three empirical and artifact contributions:
+\begin{enumerate}[leftmargin=1.5em]
+\item An audited selection effect (\S\ref{sec:f12}): exclusion accounts for
+all 32 and 34 removed disagreements in two criterion-intervention replicates.
+Labels on all 94 common admissions stay fixed while recall against the
+category proxy falls. This identifies the source and coverage cost of the
+measured improvement.
+\item Scoped comparisons of operator decisions and revision requirements.
+A four-replicate control holds the binary question and answer instruction
+fixed within each operator contrast (\S\ref{sec:matched-results}). A
+separately fixed evaluation on 100 reused documents finds one recurring
+membership-preservation exception and a permitted narrowing
+(\S\ref{sec:revision-evaluation}). The comparisons distinguish observed
+changes from application-declared requirements; they supply no independent
+correctness labels.
+\item Reproducible accounting and exception traces (\S\ref{sec:ledger}).
+The admission ledger organizes row partitions, label transitions, coverage
+and validity. Paired common-row counts plus admission totals recover its
+aggregate terms (\S\ref{sec:reporting-comparison}); core record assertions
+recover the same requirement exceptions (\S\ref{sec:revision-evaluation}).
+The artifact exposes how each result is obtained, with shared preprocessing
+and supplemental checks disclosed separately from independent core checks.
+\end{enumerate}
+Existing work studies semantic-query quality and execution
+tradeoffs, as well as developer-defined evaluation criteria
+\cite{sembench,promptevals,evalgen}; we do not claim that reliability or
+pipeline evaluation is otherwise unstudied. The present evidence is limited
+to one hosted model family and framework, a selected sample, and incompletely
+recorded historical requests. The sections below describe the operator model, frozen study design,
+the admission-ledger case, the repeated matched control, robustness analyses,
+the separately fixed revision evaluation, and limitations. Supporting
+evaluations and full evidence disclosures appear
+in the appendices.
+
+
+\section{Background: Semantic Operators}
+\label{sec:background}
+
+Semantic operator frameworks such as LOTUS~\cite{lotus} extend the
+relational model with AI-powered operations over unstructured data.
+A user writes a \emph{language expression} (langex)---a natural-language
+template with column placeholders---and the framework wraps it in an
+operator-specific prompt, dispatches it to an LLM for each row, and returns
+the result as a column or a filter decision.
+Two operators are central to our study.
+
+\paragraph{sem\_filter$(l\colon X \to \mathit{Bool})$.}
+The user supplies a predicate langex~$l$, such as
+\texttt{"Is this paper about machine learning? \{abstract\_text\}"}.
+For each row the framework sends a prompt to the LLM and retains
+the row if the parsed answer is \textsc{True}. Retention records an
+operator decision about $l(r)$; it does not prove that the predicate is
+true under an independently adjudicated interpretation.
+
+\paragraph{sem\_map$(l\colon X \to Y)$.}
+The user supplies an instruction langex, such as
+\texttt{"Respond with exactly one word. Classify the primary topic of
+this paper as: ML, systems, theory, or other. Abstract: \{abstract\_text\}"}.
+For each row the LLM generates a free-text value that becomes a new column.
+Unlike \texttt{sem\_filter}, the output is unconstrained:
+nothing mechanically forces the model to choose from the user's declared
+label set.
+
+\paragraph{Langex and the operator-specific prompt.}
+The user writes a langex; the framework also supplies an operator-specific
+system message before sending the request to the LLM.  This message is not
+surfaced in the user-facing langex interface, although it can be inspected in
+the framework source or captured from a run.  The two system messages,
+extracted from LOTUS~1.2.4's source code and confirmed by intercepted LLM
+calls, are:
+
+\smallskip
+\noindent\textbf{sem\_filter} (claim verification):
+\begin{quote}\small\ttfamily
+The user will provide a claim and some relevant context.
+Your job is to determine whether the claim is true for the given context.
+Use the following format to provide your answer:
+Answer: <Your answer here. The answer should be either True or False>
+\end{quote}
+
+\noindent\textbf{sem\_map} (instruction following):
+\begin{quote}\small\ttfamily
+The user will provide an instruction and some relevant context.
+Your job is to answer the user's instruction given the context.
+\end{quote}
+
+\smallskip
+\noindent
+The prompts frame the tasks differently: the filter requests a binary
+truth judgment for a predicate, while the map requests an open-ended answer
+to an instruction. For the same concept (``machine learning''), the user may
+ask whether a paper is about ML in the filter and ask for its primary topic
+in the map. These criteria can differ. We do not establish that the
+operator-specific wrappers generally cause the measured disagreement; the F12
+intervention changes the filter criterion while leaving both wrappers fixed.
+Appendix~\ref{sec:f14} reports a historical operator-framing contrast, and
+Section~\ref{sec:matched-results} reports a repeated comparison with identical
+binary answer instructions. Neither isolates the system message alone.
+LOTUS's operator API does not check cross-operator criterion agreement before
+execution.
+
+\paragraph{Composition.}
+LOTUS defines semantic operators through reference algorithms and
+demonstrates programs that combine multiple operator calls~\cite{lotus}.
+Its accuracy guarantees concern optimized operators relative to their
+reference algorithms; they do not imply equivalence between separately
+specified natural-language criteria.
+In relational algebra, composition is defined when one operator's output has
+the form expected by the next; this closure property does not imply that two
+independently specified natural-language criteria agree.  We use
+\emph{compositional consistency} for that narrower empirical question: whether
+the downstream label agrees with the admission criterion expressed by the
+upstream filter.  LOTUS documents how its operators can be composed, but does
+not provide a built-in check for this cross-operator agreement.  We do not
+interpret composability itself as a promise that independently written
+criteria are semantically equivalent.
+
+
+\section{Evaluation Design and Admission Ledger}
+\label{sec:design}
+
+OperatorBench is a diagnostic case study of criterion disagreement
+in semantic operator pipelines. Existing work evaluates semantic-query quality
+and execution tradeoffs~\cite{lotus,sembench}. Our design focuses on an
+explicit filter--map disagreement rule and a scoped criterion intervention;
+we do not claim that previous work excludes reliability or composed queries.
+
+\subsection{Evaluation Overview}
+The main analysis applies the admission ledger to a historical filter-criterion
+revision, then compares both binary criteria through both operators in four
+matched replicates. The latter evaluates all rows and has a different outcome
+from admission-conditioned pipeline disagreement. Two post-hoc robustness
+checks are reported separately from its predefined analysis.
+A third study fixes revision requirements before new executions on 100
+previously studied documents and compares the ledger checker with core
+record assertions (\S\ref{sec:revision-evaluation}). The requirements express
+intended preservation or narrowing on the recorded answers.
+
+Supporting evaluations characterize individual repeatability, schema
+conformance, category stratification, and date and stamp controls. The four
+historical research-question definitions appear in
+Appendix~\ref{app:questions}; detailed supporting results are retained in
+Appendices~\ref{sec:rq1}--\ref{app:coding}.
+
+\subsection{Domains and Datasets}
+
+We study two domains:
+
+\paragraph{Abstracts.}
+500 records from the \texttt{ccdv/arxiv-classification} dataset. Despite the
+domain name, each record is a full paper (mean length about 51{,}600
+characters), not an abstract; the 4{,}000-character window the operators see
+usually covers the title, author block and abstract. The frozen
+sample was balanced 250/250 using the original preparation script's grouping
+of label IDs $\{0,1,2,3\}$ as ``ML'' versus all other IDs. A later audit
+found that this grouping was wrong: IDs 0 and 3 correspond to \texttt{math.AC}
+and \texttt{cs.SY}, respectively (F9). We retain the frozen sample, but do not
+describe it as balanced on true ML status. The author-category proxy is
+available for 449 rows; proxy-based results describe this selected sample and
+are not population estimates. Text was truncated to 4{,}000 characters before
+the operators saw it. The filter predicate is ``Is this paper about machine
+learning?'' and the map instruction is ``Respond with exactly one word.
+Classify the primary topic of this paper as: ML, systems, theory, or other.''
+
+\paragraph{Reviews.}
+500 movie reviews from the IMDB test split, class-balanced 250~positive /
+250~negative. Text was truncated to 4{,}000 characters before the operators
+saw it; 15 of 500 reviews exceed this limit (median omitted length 802
+characters). The filter predicate is ``Is this review negative?'' and the map
+instruction is ``Respond with exactly one word. Classify the sentiment of this
+review as: positive, negative, or neutral.''
+
+Both datasets are frozen to versioned CSV files with SHA-256 manifests
+(SHA-256 prefixes: abstracts \texttt{4e273eae5ac4ec16}, reviews
+\texttt{19ed1b1329eaae97}) and
+were never resampled after the initial draw.
+
+\subsection{Model and Evidence Status}
+Historical calls used hosted \texttt{gpt-4o-mini} via LiteLLM. Sparse or post-hoc
+metadata does not verify their package versions or provider-applied settings;
+the pinned reproduction environment is LOTUS~1.2.4, whose temperature default
+is 0.0. The historical harness did not explicitly set temperature or a seed.
+Details of operator isolation, batching, and the reproduction environment
+appear in Appendix~\ref{app:environment}. The subsequent matched control
+pins its model snapshot and records requested settings and artifact bindings
+(\S\ref{sec:matched-methods}).
+
+An offline audit reproduced the historical saved calculations, but request
+coverage and execution provenance remain incomplete. The matched control
+has complete coverage of its 8,000 recorded requests, and the robustness
+analyses preserve the original archive. Evidence layers, gaps, checksums,
+and reproduction commands are disclosed in Appendix~\ref{sec:reproducibility}.
+
+\subsection{Protocol Decisions}
+
+Several protocol decisions were fixed before the first run and support
+reproduction of the measurements:
+
+\paragraph{Frozen predicates.}
+Historical langex predicates and label sets were frozen in
+\texttt{configs/pipelines.py} before those experiments. The subsequent
+control has a separate recorded protocol (\S\ref{sec:matched-methods}).
+The headline rules are domain-specific: reviews count only a
+\texttt{positive} map label after negative-review admission, whereas
+abstracts count every map label other than \texttt{ML} after ML-aboutness
+admission, including out-of-schema labels. For reviews, adding invalid
+outputs or counting every non-negative label produces sensitivity analyses.
+For abstracts, the non-target rule is already the headline definition.
+Invalid outputs are also reported separately in both domains; none was
+observed in the historical abstracts RQ3 replicates. The new binary control
+uses a separate format-validity rule and does observe invalid responses.
+
+\paragraph{Filter-positive denominator.}
+The RQ3 criterion-disagreement rate is computed only on rows that passed
+\texttt{sem\_filter}.
+Rows rejected by the filter never reach the map, so disagreements can
+only be observed on admitted rows.
+The denominator is frozen in writing before any run.
+
+\paragraph{Replicates, not seeds.}
+Because the historical harness never configured a seed and the run records do not
+establish determinism, each run is an unseeded replicate.
+We report per-replicate rates with the spread (max minus min) as a
+stability check, rather than averaging across replicates.
+Attaching a Wilson interval to counts pooled across replicates would treat
+the same physical row in different runs as independent.
+
+\paragraph{Intervals and resampling.}
+Per-replicate proportions use Wilson 95\% intervals with their denominators.
+Pooled totals across replicates are descriptive counts, without a binomial
+interval. For RQ3, a cluster bootstrap resamples rows admitted at least once
+with their observed replicates held together. Persistent disagreement among
+always-admitted rows targets a separate outcome. Their intervals describe
+conditional row-resampling sensitivity, not population or future-execution
+uncertainty (Appendix~\ref{app:rq3-details}).
+
+\paragraph{Flip-rate caveat.}
+Flip rate (the fraction of rows that change their output across
+replicates) is monotonically non-decreasing in the number of replicates
+when evaluated on a fixed eligible cohort. A cohort restricted to rows
+admitted or format-valid in every execution can shrink when another execution
+is added; its flip rate need not be monotone. We report the eligible cohort,
+its size, and the replicate count beside each rate; rates computed at different
+replicate counts are not used to rank repeatability.
+
+\subsection{Admission Ledger for Pipeline Revisions}
+\label{sec:ledger}
+
+A conditional rate alone cannot distinguish changing labels from changing
+which rows are evaluated. For two pipeline configurations on the same input
+rows, let $S_0$ and $S_1$ be their admitted sets, $C=S_0\cap S_1$ their common
+admissions, and $d_j(r)$ the binary disagreement indicator under the stated
+rule for an admitted row in configuration $j$. Write
+$D_j=\sum_{r\in S_j}d_j(r)$. The count change has the accounting identity
+\begin{equation}
+\begin{aligned}
+D_1-D_0
+ &= \sum_{r\in S_1\setminus S_0}d_1(r)
+  - \sum_{r\in S_0\setminus S_1}d_0(r) \\
+ &\quad + \sum_{r\in C}\bigl(d_1(r)-d_0(r)\bigr).
+\end{aligned}
+\label{eq:ledger}
+\end{equation}
+The terms count disagreement introduced by new admissions, removed by
+exclusions, and changed on common admissions, respectively. Report each
+admitted-set size beside $D_j/|S_j|$. A zero common-row term does not imply
+unchanged labels: opposing changes can cancel, and a label can change without
+changing the disagreement indicator. Record both directions of indicator
+change and raw label transitions separately.
+
+To apply this procedure, state the intended relationship between admission
+and labeling, fix the counting and invalid-output rules, and join runs by
+stable row IDs. Partition rows into excluded, newly admitted, common, and
+never-admitted sets; report the ledger, label transitions on common rows,
+and raw invalid counts. Where reference labels exist, report coverage of
+those labels and their limitations. The ledger requires outputs only where
+each pipeline actually admits a row; it does not infer labels for rejected
+rows. It diagnoses the source of a measured change, while correctness still
+requires a suitable reference. Section~\ref{sec:f12} applies it to the
+historical intervention; the all-row binary control measures a separate
+decision-comparison outcome.
+
+The offline implementation in \path{harness/admission.py} takes two saved
+row-ID mappings, the complete input universe, a shared disagreement rule,
+and the declared label set. It emits all four row partitions, all three
+accounting terms, both directions of common-row indicator change, raw and
+saved label-transition tables, and separate validity counts. It checks that
+the ledger reconciles the observed count change. An empty admitted set has
+an undefined conditional rate rather than a reported zero.
+
+\subsection{Matched-Control Protocol}
+\label{sec:matched-methods}
+
+After the historical study, we ran a $2\times2$ control on the same 500
+arXiv documents and 4,000-character windows. The criteria were ``Is this
+paper about machine learning?'' (aboutness, $A$) and ``Is machine learning
+the primary topic of this paper?'' (primary topic, $P$). Each question was
+asked through both \texttt{sem\_filter} ($F$) and \texttt{sem\_map} ($M$),
+with the identical instruction ``Respond exactly as Answer: True or
+Answer: False.'' Both operators processed every row; filter rejections
+were retained for analysis. LOTUS's native system messages and user-message
+tags remained in place. Thus this compares operator access and associated
+prompt construction, not a system-message-only intervention. The binary map
+task differs from the historical four-label map and does not measure the
+historical pipeline disagreement rule.
+
+\paragraph{Execution.}
+We used \texttt{gpt-4o-mini-2024-07-18}, LOTUS~1.2.4, LiteLLM~1.96.0, and
+pandas~2.3.3, explicitly requesting temperature~0.0 and a 16-token output
+allowance. No provider seed was supplied. LOTUS caching, proxy cascades,
+few-shot examples, and chain-of-thought strategies were disabled or unused.
+In each of four replicates, rows were shuffled into blocks of ten. All four
+conditions processed each block in a rotating order before proceeding to the
+next; positions were balanced across the full schedule. The schedule seed
+20261007 controls ordering, not model randomness. Calls within an operator
+block were concurrent, and completed operator blocks were separated by a
+requested 12-second delay. The 800 completed operator blocks contain 8,000
+recorded requests. The run spans 7--8 October 2026, including a 7.51-hour gap
+between two conditions within one block late in replicate~4
+(Appendix~\ref{sec:matched-evidence}).
+
+\paragraph{Parsing and inference.}
+The protocol, parser, schedule, and analysis family were saved before the
+first full-run model call; they were not externally registered. A ten-row
+pilot checked execution and was excluded from the full-study analysis. One
+shared parser accepts only \texttt{Answer: True} or \texttt{Answer: False},
+ignoring case and outer whitespace. Other responses are invalid, never
+silently mapped to a Boolean. We retain both raw responses and framework
+outputs, and exclude invalid answers pairwise while reporting exclusions.
+For each replicate we compare $F$ with $M$ separately under $A$ and $P$,
+and $A$ with $P$ separately within $F$ and $M$. We report directional
+discordant counts, decision-difference rates with Wilson 95\% intervals,
+and signed changes. Exact McNemar tests assess directional asymmetry, with
+Holm correction across all 16 planned comparisons. Repeated rows are not
+pooled into independent trials. No equivalence margin or automatic
+mechanism verdict was specified. Repeatability conditions on answers being
+valid in all four replicates. Results appear in
+\S\ref{sec:matched-results}.
+
+
+\section{Admission Ledger and Coverage Tradeoff}
+\label{sec:rq3}
+\label{sec:interpretation}
+We apply the ledger to the historical arXiv pipeline, whose filter asks about
+ML and whose map assigns a primary-topic label. The reviews pipeline supplies
+a second historical illustration under a different operational rule. We first
+state those rules and the baseline counts, then examine what changes when the
+arXiv filter asks for primary-topic membership.
+
+\subsection{The Operational Rule}
+
+A row counts as a \emph{criterion disagreement} when the filter admits it and
+the map returns a label that the frozen rule treats as inconsistent with
+admission. The rule was fixed in \texttt{configs/pipelines.py} before any run
+and is not changed post hoc (D-W2-03). Our code and result files retain the
+historical name \texttt{contradiction} for this rule; it does not assert
+logical inconsistency. ``This paper is about machine learning'' and ``this
+paper's primary topic is theory'' are jointly satisfiable, so a disagreement
+does not by itself establish that either output is wrong or identify
+why the outputs differ. The instructions specify different criteria;
+the operational count measures their observed output relationship.
+
+The two setups do not count the same things (Table~\ref{tab:rq3-rule}). For
+abstracts, every label other than \texttt{ML} counts, including the in-schema
+labels \texttt{theory}, \texttt{systems} and \texttt{other}. For reviews, only
+\texttt{positive} counts; \texttt{neutral} and the out-of-schema
+\texttt{mixed} do not. This asymmetry matters for the cross-setup comparison
+below.
+
+\begin{table}[t]
+\centering
+\caption{Operational disagreement rules (RQ3). Both are frozen in
+  \texttt{configs/pipelines.py}.}
+\label{tab:rq3-rule}
+\smallskip
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+ & Abstracts & Reviews \\
+\midrule
+Filter admits when & ``about machine learning'' & ``review is negative'' \\
+Map label set & ML, systems, theory, other & positive, negative, neutral \\
+Counted as disagreement & any label $\neq$ \texttt{ML} & \texttt{positive} only \\
+In-schema non-target labels & counted & \texttt{neutral} not counted \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Per-Replicate Rates}
+
+Table~\ref{tab:rq3} reports the disagreement rate in each of three hosted
+replicates, with Wilson intervals computed per replicate.
+
+\begin{table}[t]
+\centering
+\caption{Criterion-disagreement rate among filter-admitted rows (RQ3), per
+  replicate, hosted \texttt{gpt-4o-mini}. Wilson 95\% intervals. Spread is the
+  maximum minus the minimum replicate rate.}
+\label{tab:rq3}
+\smallskip
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+Setup & Rep. & Disagreements / admitted & Rate [95\% CI] & Spread \\
+\midrule
+Abstracts & 1 & 36 / 154 & 23.38\% [17.39, 30.66] & \\
+          & 2 & 38 / 156 & 24.36\% [18.29, 31.66] & 0.98 pp \\
+          & 3 & 36 / 154 & 23.38\% [17.39, 30.66] & \\
+\midrule
+Reviews   & 1 & 7 / 271 & 2.58\% [1.26, 5.23] & \\
+          & 2 & 6 / 272 & 2.21\% [1.01, 4.73] & 0.74 pp \\
+          & 3 & 5 / 271 & 1.85\% [0.79, 4.25] & \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+On abstracts, roughly one admitted row in four meets the disagreement rule
+in every replicate; replicates~1 and~3 agree exactly, and replicate~2 differs
+by two admitted rows. In replicate~1 the 36 disagreements map to
+\texttt{theory} (25), \texttt{systems} (7) and \texttt{other} (4). On
+reviews, the strict rule yields about 2\%.
+
+The blended arXiv rate depends on the selected category mix. Among admitted
+rows, ML-declared papers have 13/101 disagreements in each replicate, while
+other-category papers have 20/37, 22/39, and 20/37. Sixteen admitted rows per
+replicate lack a category, including three disagreements. Full stratified
+intervals, persistence, and conditional resampling results appear in
+Appendix~\ref{app:rq3-details}. No abstracts schema violations were observed;
+the historical reviews violations and rule sensitivities are reported in
+Appendix~\ref{sec:rq2}.
+
+\subsection{Filter Agreement with the Author-Category Proxy}
+
+Against the declared categories, the baseline filter's admissions have
+precision 73.19\% [65.24, 79.88], 72.14\% [64.20, 78.90] and 73.19\%
+[65.24, 79.88] in the three replicates, and recall 87.83\% [80.60, 92.61] in
+all three (449 rows carry a category; 51 do not and are excluded). The same
+101 ML-declared papers are admitted and the same 14 are not.
+
+These figures measure agreement with a proxy, not filter error. The filter
+was asked an aboutness question; a category declaration records a paper's
+primary field. A control-theory paper that trains neural networks can be
+about machine learning and still declare \texttt{cs.SY}. What the proxy does
+offer is a reference supplied by the authors rather than by us or by a
+model.
+
+The proxy is visible in the input: all 449 available category declarations
+occur in arXiv stamps inside the text window. Removing those stamps in one
+historical control did not detect a change under its stated rules; this does
+not establish that the model ignores them (Appendix~\ref{app:stamp}).
+
+\subsection{Changing the Filter's Criterion}
+\label{sec:f12}
+
+We replaced the filter predicate ``Is this paper about machine learning?''
+with ``Is machine learning the primary topic of this paper?'', leaving the
+map instruction, the disagreement rule, the data and both wrappers
+unchanged. The hypotheses (a collapse below about 10\%, no change, or a mixed
+outcome) were written into the experiment script before it was run; they
+were not registered externally. The run was repeated against replicates~1
+and~2.
+
+Table~\ref{tab:f12} reports the result. In two hosted replicates on arXiv
+abstracts, changing the filter from ``about ML'' to ``ML is the primary
+topic'' reduced the operational disagreement count from 36 to 4 and from 38
+to 4. The change raised observed precision against the author-declared
+category proxy but reduced recall; paired tests found no significant change
+in overall agreement with that proxy. This is a tradeoff for this predicate
+pair and setup, not evidence of a general accuracy gain.
+
+\begin{table}[t]
+\centering
+\caption{Filter-criterion intervention (abstracts). Map instruction,
+  disagreement rule, data and wrappers unchanged. Precision and recall are
+  against the author-declared category proxy. Entries are point estimates;
+  intervals are discussed in the text.}
+\label{tab:f12}
+\smallskip
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+Rep. & Filter criterion & Admitted & Disagreements & Proxy precision & Proxy recall \\
+\midrule
+1 & about ML          & 154 & 36 (23.38\%) & 73.19\% & 87.83\% \\
+1 & ML primary topic  &  94 & 4 (4.26\%)   & 84.52\% & 61.74\% \\
+2 & about ML          & 156 & 38 (24.36\%) & 72.14\% & 87.83\% \\
+2 & ML primary topic  &  94 & 4 (4.26\%)   & 84.52\% & 61.74\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\paragraph{How the count fell.}
+The ledger in Equation~\ref{eq:ledger} has no newly admitted rows and 94
+common admissions in each replicate. The filter excludes 60 rows in
+replicate~1 and 62 in replicate~2, removing 32 and 34 disagreements,
+respectively. No common-row disagreement indicator changes, and raw map
+labels are identical on all 94 common rows; the unchanged count is therefore
+not hiding offsetting label transitions. All resolved disagreements
+disappear through exclusion. Because the
+revised criterion matches the map's, some reduction is expected by
+construction; the informative question is \emph{which} rows were removed.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Complete count accounting for the historical criterion revision.
+Contributions use the signs in Equation~\ref{eq:ledger}. Common-row new and
+resolved disagreements are both zero. Never-admitted rows are counted in
+the 500-row input universe and have no inferred map labels.}
+\label{tab:admission-accounting}
+\begin{tabular}{lrrrrr}
+\toprule
+Rep. & New contribution & Excluded contribution & Common net & $D_1-D_0$ & Never admitted \\
+\midrule
+1 & 0 & $-32$ & 0 & $-32$ & 346 \\
+2 & 0 & $-34$ & 0 & $-34$ & 344 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Which rows were removed.}
+Three paired analyses on the categorised rows address this, each reported
+per replicate. First, overall agreement with the proxy did not improve:
+88.64\% to 87.31\% in replicate~1 (exact McNemar $p = 0.50$; 30 rows agree
+only under the baseline, 24 only under the revision) and 88.20\% to 87.31\%
+in replicate~2 ($p = 0.69$). Second, removal was selective. Among categorised
+rows the baseline admitted, the revision removed proxy-negative admissions
+at about 2.2 times the rate of proxy-positive ones: 64.9\% versus 29.7\% in
+replicate~1 (Fisher exact $p = 0.0003$) and 66.7\% versus 29.7\% in
+replicate~2 ($p = 0.0001$). Third, in absolute terms the revision removed 30
+proxy-positive admissions to remove 24 (replicate~1) or 26 (replicate~2)
+proxy-negative ones, so precision rose from 73.19\% to 84.52\% with
+overlapping intervals ([65.24, 79.88] versus [75.30, 90.73]) while recall fell
+from 87.83\% to 61.74\%. The ratio of 2.2 holds only for categorised rows the
+baseline admitted (138 rows in replicate~1, 140 in replicate~2); it says
+nothing about rows the baseline rejected.
+
+The intervention removes proxy-negative admissions at a higher rate than
+proxy-positive ones, but does not establish an accuracy gain. Choosing between the two criteria trades recall for
+precision against the proxy. The pipeline offered no signal that the choice
+was being made.
+
+\section{Matched Criterion-by-Operator Control}
+\label{sec:matched-results}
+
+The design in \S\ref{sec:matched-methods} removes answer-instruction
+differences between conditions and repeats each condition on every document.
+Table~\ref{tab:matched-cells} reports positive and invalid counts; all
+2,000 answers in each condition are valid except the primary-topic map.
+Its invalid counts are 21, 21, 21, and 26 (4.20\%, 4.20\%, 4.20\%, and
+5.20\% of 500 per replicate). All 89 invalid responses are exactly
+\texttt{Answer: False.}: the trailing period fails the predefined parser.
+They are retained as invalid rather than reinterpreted after observing the
+results. These are format failures, not adjudicated semantic errors.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Matched-control cell outcomes. Each entry gives the number of
+positive answers / invalid responses among 500 documents. $A$: aboutness;
+$P$: primary topic; $F$: filter; $M$: map. Remaining answers are valid negatives.}
+\label{tab:matched-cells}
+\begin{tabular}{lrrrr}
+\toprule
+Rep. & $A,F$ & $A,M$ & $P,F$ & $P,M$ \\
+\midrule
+1 & 155 / 0 & 158 / 0 & 100 / 0 & 114 / 21 \\
+2 & 154 / 0 & 158 / 0 & 100 / 0 & 113 / 21 \\
+3 & 154 / 0 & 158 / 0 & 102 / 0 & 113 / 21 \\
+4 & 155 / 0 & 158 / 0 & 100 / 0 & 112 / 26 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Criterion contrasts.}
+Within the filter, changing aboutness to primary topic changes 52--55 of
+500 decisions per replicate (10.40--11.00\%), always from positive to
+negative. Within the map, it changes 43--45 valid paired decisions
+(8.98--9.49\%), again all from positive to negative. The map comparisons
+exclude 21--26 invalid primary-topic responses, leaving 479, 479, 479, and
+474 pairs. All eight criterion comparisons show directional asymmetry after
+Holm correction ($p_H<10^{-11}$; Table~\ref{tab:matched-contrasts}). These
+changes are consistent with asking for a narrower relationship, not by
+themselves evidence of corrected mistakes.
+
+\paragraph{Operator contrasts.}
+Under aboutness, filter and map differ on 7, 6, 6, and 5 of 500 rows
+(1.40\%, 1.20\%, 1.20\%, and 1.00\%). Map has a net 3--4 more positives
+(0.60--0.80 percentage points), but directional asymmetry is not significant
+after correction ($p_H=0.875$ in every replicate). This is not an
+equivalence result. Under primary topic, they differ on 18, 17, 13, and 16
+valid pairs (3.76\%, 3.55\%, 2.71\%, and 3.38\%); map has a net 11--14 more
+positives (2.30--2.92 percentage points). All four directional tests remain
+significant after correction ($p_H=0.0105$, $0.0164$, $0.0205$, and $0.0209$).
+These tests assess imbalance between the two discordant directions, not
+accuracy or an interaction between criterion and operator.
+
+Appendix~\ref{app:matched-comparisons} retains all 16 per-replicate comparisons.
+
+\paragraph{Repeatability and interpretation.}
+Across the four replicates, answers flip on 2/500 rows for aboutness filter
+(0.40\%), 0/500 for aboutness map (0\%), 5/500 for primary-topic filter
+(1.00\%), and 5/467 rows valid in every primary-topic map replicate
+(1.07\%). These four-replicate measurements are distinct from RQ1's five
+historical executions. The observed criterion contrasts affect more rows
+than the operator contrasts, while the primary-topic operator contrast has
+a consistent directional imbalance. This supports a scoped account of
+criterion differences alongside the reported operator contrasts;
+we have not tested whether the two operator contrasts themselves differ
+significantly. The old control's filter-more-positive direction is therefore
+not a general property of the wrappers. The new binary task, answer format,
+and execution protocol differ from the historical pipeline, so their
+observations cannot be combined to estimate the causes of its 23--24\%
+conditional disagreement. Neither comparison establishes which answers are
+correct or isolates the system message from other native prompt differences.
+
+\section{Exploratory Offline Robustness Analyses}
+\label{sec:matched-sensitivity}
+
+After inspecting the completed run, we evaluated two offline alternatives:
+allowing one terminal period after an otherwise valid binary response, and
+excluding the ten documents in the row block spanning the largest execution
+gap. These analyses were not specified before execution. The original strict
+parser, all-row sample, and Table~\ref{tab:matched-contrasts} remain primary.
+Each alternative recalculates all 16 comparisons, with a separate Holm
+correction within that family. The exploratory $p_H^*$ values do not correct
+for choosing these two alternatives or other post-hoc analyst choices.
+Table~\ref{tab:matched-sensitivity} reports the primary-topic operator
+comparison under the parser alternative and all four replicate~4 contrasts
+under the gap alternative; full results are retained in the artifact.
+
+\paragraph{Terminal-period sensitivity.}
+Allowing the period reclassifies the 89 \texttt{Answer: False.} responses as
+negatives for this alternative only. Every corresponding primary-topic
+filter answer is also negative, so the added pairs are concordant. The
+primary-topic operator's directional counts remain $(2,16)$, $(2,15)$,
+$(1,12)$, and $(2,14)$; its raw McNemar and adjusted $p$-values are unchanged.
+The difference rates become 3.60\%, 3.40\%, 2.60\%, and 3.20\% with all
+500 pairs included. Thus this narrow punctuation sensitivity does not remove
+the observed directional imbalance. It does not change the strict format
+failure counts or establish that the reclassified semantic answers are correct.
+
+\paragraph{Execution-gap sensitivity.}
+The 450.54-minute gap occurs between operator jobs 788 and 789, within
+replicate~4's 48th row block. We exclude the same ten documents from all four
+conditions in that replicate, retain strict parsing, and leave replicates
+1--3 intact. For primary topic, 465 valid pairs remain, with 2 filter-only
+positives and 13 map-only positives (3.23\% differing; Wilson 95\% interval
+[1.96, 5.25]; $p_H^*=0.0369$). Both criterion contrasts remain
+one-directional. The primary-topic operator contrast therefore retains its
+direction under this exclusion and passes the separately corrected
+exploratory test. This checks the affected block only; it does not establish
+that the gap had no effect or exclude temporal effects elsewhere.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Selected exploratory robustness results. Notation follows
+Table~\ref{tab:matched-contrasts}. Changed is $(b+c)/n$ in percent with
+Wilson 95\% intervals. Each alternative has its own 16-comparison Holm
+family; $p_H^*$ does not account for post-hoc selection of alternatives.
+The original strict results remain primary.}
+\label{tab:matched-sensitivity}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrrll}
+\toprule
+Left / right & Rep. & $n$ & $b$ & $c$ & Changed (\%) [95\% CI] & $p_H^*$ \\
+\midrule
+\multicolumn{7}{l}{\textit{Allow a terminal period; primary-topic operator comparison}} \\
+$P,F$ / $P,M$ & 1 & 500 & 2 & 16 & 3.60 [2.29, 5.62] & 0.0105 \\
+ & 2 & 500 & 2 & 15 & 3.40 [2.13, 5.38] & 0.0164 \\
+ & 3 & 500 & 1 & 12 & 2.60 [1.53, 4.40] & 0.0205 \\
+ & 4 & 500 & 2 & 14 & 3.20 [1.98, 5.13] & 0.0209 \\
+\midrule
+\multicolumn{7}{l}{\textit{Exclude the interrupted row block; retain strict parsing}} \\
+$A,F$ / $A,M$ & 4 & 490 & 1 & 2 & 0.61 [0.21, 1.78] & 1.0000 \\
+$P,F$ / $P,M$ & 4 & 465 & 2 & 13 & 3.23 [1.96, 5.25] & 0.0369 \\
+$A,F$ / $P,F$ & 4 & 490 & 53 & 0 & 10.82 [8.36, 13.88] & $<10^{-11}$ \\
+$A,M$ / $P,M$ & 4 & 465 & 42 & 0 & 9.03 [6.75, 11.98] & $<10^{-11}$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\section{Reporting Views and Revision Requirements}
+\label{sec:reporting-comparison}
+
+We compare four views of the same saved outputs: conditional rates alone;
+disagreement counts and admission coverage; those totals plus common-row
+paired counts; and the full ledger. The paired view includes the common-set
+size, before/after common-row disagreement counts, both indicator-change
+directions, and the number of saved-label changes. This is a descriptive
+comparison of retained information, not a blinded diagnosis study or a
+measurement of detection accuracy.
+
+We use the two executed historical revisions and twelve binary comparisons
+derived after inspecting the matched control. Within each binary replicate,
+we retain the rows with valid answers in all four original cells: 479, 479,
+479, and 474 rows. Invalid exclusions are reported separately from semantic
+filter exclusions. Starting from aboutness filter and aboutness map answers,
+we change only the filter to primary topic, only the map to primary topic,
+or both. A true filter answer admits the row; a false map answer counts as
+disagreement. These masks reuse recorded all-row answers, including answers
+originally obtained on filter-negative rows. They are not executions of
+composed pipelines, do not reproduce the historical four-label task, and
+share documents and responses. We neither pool them nor attach additional
+significance tests. Changing a question may intentionally change the task;
+the resulting disagreement is not established error.
+
+Appendix~\ref{app:reporting-details} retains the full fourteen-view accounting in Table~\ref{tab:reporting-comparison}.
+
+Rates alone omit coverage, and counts with coverage expose contraction
+without generally identifying its accounting mechanism. As a constructed
+witness, both revisions can start with one disagreement among two admissions
+and end with zero among one, on a three-row input universe. One excludes the
+disagreeing row with no common-row change. The other resolves disagreement
+on the retained row and excludes an agreeing row. Their counts and coverage
+are identical; paired common-row counts distinguish them. This example
+establishes an information limit, not an empirical failure frequency.
+
+The stronger paired view recovers every aggregate ledger term. If $u_0$
+and $u_1$ count disagreements on common rows before and after, exclusion
+removes $D_0-u_0$, new admissions introduce $D_1-u_1$, and common rows
+contribute $u_1-u_0$. Admission totals and the common-set size also recover
+all four partition sizes. The code verifies these reconstructions for all
+fourteen recorded comparisons. In the binary joint changes of replicates
+1 and 3, unchanged disagreement counts conceal exclusion and newly
+disagreeing common rows that cancel (Table~\ref{tab:reporting-comparison}).
+The ledger makes these components explicit and retains row IDs, raw
+transitions, and separate validity reporting. It supplies no aggregate
+information advantage over a sufficiently complete paired report, and this
+comparison establishes neither superior diagnostic performance nor broader
+novelty. Its reproducible views and constructed witnesses are produced by
+\path{scripts/compare_admission_reporting.py}.
+
+\subsection{Prototype Checks of Declared Revision Requirements}
+\label{sec:revision-contracts}
+
+A ledger describes observed changes without deciding which changes are
+permitted. The prototype in \path{harness/revision.py} accepts an explicit
+requirement for the revised admission set: equality, subset, superset, or
+no membership restriction. Optional requirements preserve saved labels on
+common rows, forbid newly disagreeing common rows, and require valid raw
+and saved outputs under the ledger's stated rules. It returns per-requirement
+verdicts with exception row IDs. These checks express application intent;
+they neither infer equivalence between natural-language questions nor
+independently assess semantic correctness.
+
+The result is \texttt{satisfied}, \texttt{violated}, or
+\texttt{not\_evaluable}. Unassessed input rows prevent a full-input
+certificate. An explicit restriction to the observed cohort permits a
+cohort-specific verdict while retaining the omitted row IDs. Label
+preservation and absence of new common-row disagreement cannot be certified
+when the common set is empty. If a known exception violates a requirement,
+the overall result is violated even when another requirement is not
+evaluable. Input completeness concerns the supplied row universe, not
+historical request coverage or provenance.
+
+Appendix~\ref{app:requirement-illustrations} reports fourteen post-hoc
+illustrations. The historical revisions satisfy subset admission with
+unchanged common labels but violate equal-admission preservation. The binary
+views use a shared format-valid cohort and leave the full-input requirement
+not evaluable. This verdict concerns that supplied cohort; it does not imply
+that all omitted rows lack the responses needed for every individual revision.
+
+The prototype uses information already available in a complete paired
+report. It demonstrates executable requirements and exception tracing;
+the separate evaluation below fixes requirements before new outputs and
+compares them with direct record assertions. Agreement with that baseline
+does not establish additional diagnostic value. We claim neither a new
+assertion paradigm nor validated semantic compatibility detection.
+
+\subsection{Evaluation Under Requirements Fixed Before New Executions}
+\label{sec:revision-evaluation}
+
+\paragraph{Design and scope.}
+On 8 October, we locally fixed a protocol before obtaining its new model
+outputs. It selects 100 rows from the previously analysed 500-document
+arXiv corpus without using labels or model outcomes, with selection seed
+20261008, and retains bound input windows of up to 4,000 characters. The protocol binds
+row IDs, inputs, questions, requirements, schedule and analysis sources.
+The runner separately binds installed framework sources and native prompts
+before calls (Appendix~\ref{sec:revision-evidence}). This is prospective
+fixation for these new executions, not an externally witnessed
+preregistration. Earlier findings informed the design, and these documents
+are not a holdout.
+
+Seven binary cells query every selected row in each of four replicates:
+reference filter and map, independently executed repeats of both, a
+paraphrased filter, a narrower filter, and a paraphrased map. The reference
+question is ``Is this paper about machine learning?'' Both paraphrases ask
+``Does this paper concern machine learning?'' The narrower filter asks
+``Is machine learning a substantive research topic of this paper, rather
+than only background or a passing mention?'' Every cell appends the exact
+instruction ``Respond exactly as Answer: True or Answer: False.'' Native
+operator wrappers remain in use. Requested settings are snapshot
+\texttt{gpt-4o-mini-2024-07-18}, temperature 0, and a 16-token output allowance;
+caching is disabled and no provider seed is set. Cell order rotates
+across ten-row blocks; this does not eliminate temporal effects.
+
+Derived filter--map views compare four revisions with the reference pair.
+Identical-prompt repeats and both paraphrases require equal admissions and
+unchanged parsed binary labels on common admissions. Narrowing requires subset
+admission and unchanged common labels. All require valid needed outputs and
+complete input assessment. Equality and inclusion express intended
+relationships; they are not proven equivalences between the questions.
+Filter revisions reuse reference map answers, making common-label
+preservation hold by construction. The map revision reuses reference filter
+answers, making membership preservation hold by construction. These views
+are not new executions of composed pipelines.
+
+Assessability is determined separately for each revision: both filter
+answers must be valid, and a map answer is needed only if its corresponding
+filter admits the row. The original strict binary parser is retained.
+Invalid responses are never recoded as negatives. Required format failures
+and known filter-membership exceptions remain visible outside the joint
+assessable cohort. The direct baseline in
+\path{harness/revision_assertions.py} uses sets and record comparisons
+without calling the ledger or its checker. Both paths receive the same
+revision-specific assessable records and validity functions. The compared
+labels are \texttt{True}/\texttt{False} values derived by the strict raw-response
+parser; native framework outputs are retained separately in the checkpoints.
+The two checker functions separately compute core admission, common-label,
+admitted-output validity and input-completeness evidence. The runner computes
+two supplemental checks once---required-response format and known filter
+membership on the original input---and attaches that shared evidence to both
+results. Agreement on these supplements holds by construction; neither it
+nor shared parsing independently validates preprocessing. We compare core
+statuses and exception IDs, then retain the supplements in the final verdicts.
+The fixed analysis is descriptive:
+no significance test, equivalence test, pooled independence assumption or
+diagnostic-accuracy score is used.
+
+\paragraph{Results.}
+Table~\ref{tab:revision-evaluation} reports every planned revision; the
+displayed counts and verdicts hold separately in replicates 1, 2, 3 and 4.
+All 100 rows are assessable for each comparison. Four of the 2,800 raw
+responses fail the strict format rule, all with a terminal period in
+\texttt{Answer: False.}: reference map in replicate~2 (row~382), paraphrased
+map in replicate~3 (row~336), and reference and repeat maps in replicate~4
+(rows~150 and 382, respectively). These rows are rejected by the relevant
+filters. Their unneeded map failures remain reported but do not invalidate
+the required pipeline outputs or remove rows from semantic assessment.
+No required response is invalid.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Revision evaluation on 100 reused documents. Each row's counts and
+verdict hold separately in all four replicates. $N$ counts admissions and
+$D$ counts admitted rows with a negative map answer. No saved label changes
+occur on common admissions. The requirements also preserve common labels
+and require valid needed outputs and complete input assessment.}
+\label{tab:revision-evaluation}
+\begin{tabular}{lcrrrrl}
+\toprule
+Revision & Admission rule & $N_0$ & $N_1$ & $D_0$ & $D_1$ & Verdict \\
+\midrule
+Identical-prompt repeat & Equal & 35 & 35 & 0 & 0 & Satisfied \\
+Filter paraphrase & Equal & 35 & 36 & 0 & 1 & Violated \\
+Filter narrowing & Subset & 35 & 33 & 0 & 0 & Satisfied \\
+Map paraphrase & Equal & 35 & 35 & 0 & 0 & Satisfied \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:revision-trace} traces the sole new admission under the filter
+paraphrase and both exclusions under narrowing. Each entry identifies the
+exact raw answer through the table's legend; the questions and native
+operator access are specified in the design above. These selected traces
+explain the observed membership changes without adjudicating answer truth.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Recorded responses for the three membership-change rows, identical
+in all four replicates. T denotes the exact raw string \texttt{Answer: True};
+F denotes \texttt{Answer: False}. Filter columns use native
+\texttt{sem\_filter}; map columns use native \texttt{sem\_map}. Reference
+asks about ML, paraphrase asks whether the paper concerns ML, and narrowing
+asks for a substantive ML research topic. The reference map is reused in
+both filter revisions.}
+\label{tab:revision-trace}
+\begin{tabular}{rccccc}
+\toprule
+Row & \shortstack{Reference\\filter} & \shortstack{Reference\\map}
+& \shortstack{Paraphrased\\filter} & \shortstack{Narrower\\filter}
+& \shortstack{Paraphrased\\map} \\
+\midrule
+236 & F & F & T & F & T \\
+37 & T & T & T & F & T \\
+220 & T & T & T & F & T \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The filter paraphrase admits row~236 in every replicate, where the reference
+filter rejects it and the reused reference map answers \texttt{False}.
+The admission-equality requirement is therefore violated, and the conditional
+disagreement rate rises from 0 to $1/36=2.78\%$. The ledger attributes the
+entire count increase to this new admission; no common-row disagreement
+appears or resolves. Narrowing removes rows~37 and 220 in every replicate,
+without new admissions or disagreements, and satisfies the declared subset
+requirement. A zero rate alone hides this reduction from 35 to 33 admissions.
+Identical-prompt repeats preserve admissions and common labels. The map
+paraphrase also preserves labels on the 35 admitted rows; this does not imply
+all-row map equivalence. For example, its answer on the rejected row~236 is
+\texttt{True}, whereas the reference map answers \texttt{False}.
+
+The separately implemented core checks agree on statuses and exception IDs
+in all 16 revision--replicate comparisons. In particular, both core admission
+checks identify row~236 without relying on the shared membership supplement.
+The final verdicts also agree, with shared supplemental evidence attached to
+both. Paired common-row counts and admission totals reconstruct every
+aggregate ledger term. The independent calculations check the core
+implementations on common prepared records; they establish neither
+preprocessing correctness nor a detection advantage.
+
+\paragraph{Interpretation.}
+This evaluation adds a repeated membership-preservation exception under a
+requirement fixed before the new outputs, alongside an explicitly permitted
+narrowing and stable admitted-row repeat comparisons. It extends the earlier
+post-hoc demonstrations without turning their requirements into prospective
+ones. The exception is a failure of the intended equality requirement, not
+proof that either answer on row~236 is semantically wrong. Repeating the same
+exception four times does not produce four independent document examples,
+establish a causal correction for hosted variation, or show population
+generality. The evidence supports declaring requirements and retaining exact
+row-level exceptions; it does not establish a new validation paradigm.
+
+\section{Discussion}
+
+\paragraph{Choose coverage deliberately.}
+The intervention's lower disagreement rate comes from exclusion, with fixed
+labels on common admissions (\S\ref{sec:f12}). A user seeking broad ML-related
+coverage and one seeking primary-topic membership may therefore prefer
+different predicates. The category-proxy tradeoff documents that choice;
+repeatability alone cannot decide which criterion serves the application.
+
+\paragraph{Report the ledger with the rate.}
+Specify the intended relationship between admission and labeling before
+execution. Report admitted-set sizes, disagreement introduced or removed with
+selection, both directions of indicator change on common rows, raw label
+transitions, and invalid responses (\S\ref{sec:ledger}). Retain raw outputs so
+normalization does not erase format failures. These reporting practices follow
+from this case; their usefulness across other systems remains untested.
+
+\paragraph{Distinguish permitted changes from preservation failures.}
+In the separately fixed revision evaluation
+(\S\ref{sec:revision-evaluation}), a narrower filter satisfies its declared
+subset requirement while a paraphrase violates intended equality through one
+repeated admission exception. Both observations require coverage and explicit
+requirements, rather than a rate alone. The direct assertions identify the
+same exceptions; the ledger supplies a common reporting structure for those
+checks and the selection accounting.
+
+\paragraph{Compare operators under matched questions.}
+The repeated control shows that shared questions and answer instructions do
+not ensure agreement (\S\ref{sec:matched-results}). All-row evaluation avoids
+RQ3's admission-conditioned population, while format exclusions still make
+primary-topic comparisons conditional on valid answers. Inspect the complete
+native prompts: the historical and new contrasts have different directions,
+so one framing cannot be declared universally more inclusive.
+
+\paragraph{Interface implications.}
+An interface could expose a declared relationship between filter decisions and
+map labels and present its exceptions with the ledger. The prototype checks
+explicit revision requirements (\S\ref{sec:revision-contracts}), while leaving
+their selection to the application. It does not infer compatibility between
+prompts or distinguish permitted overlapping descriptions from semantic
+errors. The separately fixed evaluation agrees with direct assertions
+(\S\ref{sec:revision-evaluation}); no independently validated error detector
+is supplied.
+
+\section{Limitations}
+
+\paragraph{Construct validity.}
+Disagreement under the frozen rules is not logical contradiction or
+adjudicated error. The historical tasks differ in prompts, corpora, schemas,
+and counting rules, so their rate gap does not isolate a domain or schema
+effect. The abstracts schema mixes subject area (\texttt{ML}) with contribution
+type (\texttt{theory}), allowing descriptions that can both be correct.
+Raw and normalized validity counts agree in the historical archive
+(Appendix~\ref{sec:rq2}), but that does not validate normalization generally.
+The binary control avoids this mixed schema without supplying independent
+correctness labels. Its all-row decision contrasts and historical conditional
+pipeline disagreement are different outcomes. The 89 primary-topic map
+format failures are condition-dependent; pairwise exclusion does not assume
+missing-at-random answers. The period sensitivity tests one alternative only.
+
+\paragraph{Sampling and reference labels.}
+The arXiv sample uses an erroneous original label grouping and was not
+resampled. Corrected declarations identify 115 ML-category rows, 334 other
+rows, and 51 unknowns; proxy analyses exclude unknowns and describe this
+selected sample, not the population. Primary categories differ from ML
+aboutness and are visible in the input. The single stamp-removal control
+does not exclude smaller or different cue effects (Appendix~\ref{app:stamp}).
+Both domains use 4,000-character windows rather than complete documents.
+The revision evaluation selects 100 of the already studied arXiv rows without
+labels or outcomes, but its prompts and requirements are informed by earlier
+findings. New executions under a locally fixed plan do not provide an
+independent holdout or external preregistration.
+
+\paragraph{Execution and scope.}
+Evidence comes from one hosted model family, one framework, and two
+operators, without local-backend or cross-model replication. Historical
+repeatability uses five runs, pipeline disagreement three, and the criterion
+intervention two; stamp removal and the new historical wrapper configuration
+each have one run. The matched control has four replicates per condition with
+a pinned snapshot and recorded requested settings. No provider seed was set.
+Historical provenance gaps limit reconstruction
+(Appendix~\ref{sec:reproducibility}). Rotating order does not eliminate temporal
+effects, including the 7.51-hour gap within replicate~4. Excluding that block
+checks only those documents. Operator access changes system messages and user
+construction together; the study cannot isolate either component or the
+sources of end-to-end hosted variation.
+The revision evaluation has four replicates of seven cells on the same 100
+documents. Its filter-only and map-only comparisons reuse one reference
+component; preservation of that component is by construction, and the views
+do not measure composed-pipeline execution behavior. Unneeded map format
+failures remain visible despite complete semantic assessment.
+
+\paragraph{Inference and qualitative evidence.}
+Repeated rows are not independent trials. Wilson intervals, persistent-row
+intervals, and conditional row resampling target different outcomes and
+do not establish representativeness; document or block dependence can affect
+row-level inference. The primary matched tests correct all 16 planned
+comparisons. Each exploratory alternative has its own correction, which
+does not cover post-hoc selection of alternatives. No equivalence or formal
+criterion-by-operator interaction test is provided. Repeatability conditions
+on validity in every replicate. The date control has only three discordant
+pairs and compares common admissions (Appendix~\ref{sec:rq4}). Historical
+coding covers 35 of 36 persistent disagreements, with one nonblind coder,
+no agreement statistic, and no established construct validity; its retired
+category display and prior model-assisted exposure further limit independence
+(Appendix~\ref{app:coding}).
+The revision evaluation uses descriptive counts without significance or
+equivalence claims. Its single repeated membership exception and agreement
+with a direct assertion baseline establish neither detection accuracy nor
+an information advantage. Satisfaction certifies only the declared
+relationships on assessed recorded answers, not semantic truth.
+
+\section{Related Work}
+
+\paragraph{Selective prediction.}
+SelectiveNet studies prediction with rejection and the risk--coverage
+tradeoff \cite{selectivenet}. The general observation that selection can
+improve a conditional metric is therefore established. Our outcome is
+criterion disagreement, not independently measured predictive risk; the
+ledger reports recorded changes across pipeline revisions rather than
+introducing a new rejection strategy. The paired-count comparison
+(\S\ref{sec:reporting-comparison}) further limits claims of methodological
+novelty.
+
+\paragraph{Semantic operators and optimization.}
+LOTUS defines composable AI-based operators and optimizations with accuracy
+guarantees, while acknowledging ambiguity in natural-language semantics
+\cite{lotus}. Palimpzest chooses implementations for declarative AI-powered
+analytics according to execution tradeoffs \cite{palimpzest}. Our fixed LOTUS
+case examines the relationship between distinct expressions; it does not
+establish a violation of optimization guarantees or compare query engines.
+
+\paragraph{Document processing and validation.}
+DocETL uses agentic rewrites and validation for individual outputs and
+sub-pipelines; gleaning can refine map outputs \cite{docetl}. Multi-Objective
+Agentic Rewrites searches over document-processing rewrites under multiple
+objectives \cite{moar}. The admission ledger addresses a different evaluation
+question: whether improved conditional disagreement reflects selection,
+changed labels, or both. We do not evaluate these optimizers.
+
+\paragraph{Benchmarks and evaluation criteria.}
+SemBench measures semantic-query quality, cost, latency, and repeated-run
+variability \cite{sembench}. PROMPTEVALS collects developer prompts and
+assertion criteria \cite{promptevals}; EvalGen aligns evaluation implementations
+with human feedback and studies criteria drift \cite{evalgen}. OperatorBench
+provides an explicit filter--map rule, a criterion intervention, matched
+operator comparisons, and a separately fixed revision evaluation alongside
+selection accounting. Its direct assertion baseline recovers the same
+requirement violations as the ledger checker. It complements this
+work without claiming that reliability, composed queries, or criterion
+alignment were previously unstudied.
+
+\paragraph{Judging and structured-query evaluation.}
+LLM-judge research examines agreement with human preferences and evaluator
+biases \cite{judge}; recent work also studies rubric artifacts and
+counterfactual sensitivity \cite{rubric}. These concerns motivate separating
+a measured criterion from an independently validated reference. RGEval
+evaluates generated GraphQL queries despite syntactic variation \cite{rgeval}.
+Our object is the relationship between operator criteria, for which stable
+output or schema validity alone does not establish correctness.
+
+\paragraph{Positioning.}
+Our empirical contribution is the traced selection effect and its coverage
+tradeoff in this semantic-pipeline case, supplemented by matched decision
+contrasts and a repeated revision exception. The reporting procedure combines
+admission accounting with raw validity and row-level traces. This focus differs
+from learning a rejection policy, measuring query quality across engines, or
+generating application assertions. The accounting is recoverable from a
+complete paired report, and the core assertion baseline recovers the same
+exceptions. Our evidence establishes this diagnostic case and its reproducible
+artifacts; additional practical value over complete paired reporting remains
+unmeasured.
+
+\section{Conclusion}
+An admission ledger distinguishes changing the evaluated population from
+changing its downstream labels. On the selected arXiv sample, every resolved
+disagreement in the criterion intervention disappears through exclusion:
+labels on common admissions stay fixed while recall against the author-category
+proxy falls. A lower conditional rate therefore need not show better labels.
+The subsequent matched control evaluates both questions through both operators
+on all 500 documents in four replicates. It finds primary-topic directional
+asymmetry after correction; exploratory punctuation and interrupted-block
+sensitivities retain its direction. These findings do not establish correctness,
+a criterion-by-operator interaction, or a system-message-only causal effect.
+A separate evaluation fixes requirements before new executions on 100 reused
+documents. In each of four replicates, a filter paraphrase introduces the
+same admission exception and disagreement, whereas narrowing satisfies its
+declared subset requirement. Separately implemented core record assertions
+identify the same exceptions; the final verdicts also share supplemental
+format and membership evidence. Core agreement checks implementations on
+the same prepared records and provides no detection advantage or correctness
+guarantee.
+The practical reporting requirement is to retain admission counts, the
+selection ledger, raw label transitions, and invalid responses alongside
+disagreement rates. The audited artifacts support that diagnostic in this
+setup, while historical provenance gaps remain. Independent adjudication and
+broader workloads are needed for stronger correctness or generalization claims.
+
+\begin{thebibliography}{10}
+\bibitem{selectivenet} Yonatan Geifman and Ran El-Yaniv. 2019.
+SelectiveNet: A Deep Neural Network with an Integrated Reject Option.
+Proceedings of the 36th International Conference on Machine Learning,
+PMLR 97, 2151--2159.
+\url{https://proceedings.mlr.press/v97/geifman19a.html}.
+\bibitem{lotus} Liana Patel, Siddharth Jha, Melissa Pan, Harshit Gupta, Parth Asawa, Carlos Guestrin, and Matei Zaharia. 2025. Semantic Operators and Their Optimization: Enabling LLM-Based
+Data Processing with Accuracy Guarantees in LOTUS. PVLDB 18(11), 4171--4184. DOI: \url{https://doi.org/10.14778/3749646.3749685}.
+\url{https://www.vldb.org/pvldb/vol18/p4171-patel.pdf}.
+\bibitem{docetl} Shreya Shankar, Tristan Chambers, Tarak Shah, Aditya G. Parameswaran, and Eugene Wu. 2025. DocETL: Agentic Query Rewriting and Evaluation for Complex
+Document Processing. PVLDB 18(9), 3035--3048. DOI: \url{https://doi.org/10.14778/3746405.3746426}.
+\url{https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf}.
+\bibitem{palimpzest} Chunwei Liu, Matthew Russo, Michael Cafarella, Lei Cao, Peter Baile Chen, Zui Chen, Michael Franklin, Tim Kraska, Samuel Madden, Rana Shahout, and Gerardo Vitagliano. 2025. Palimpzest: Optimizing AI-Powered Analytics with Declarative
+Query Processing. CIDR.
+\url{https://vldb.org/cidrdb/papers/2025/p12-liu.pdf}.
+\bibitem{moar} Lindsey Linxi Wei, Shreya Shankar, Sepanta Zeighami, Yeounoh Chung, Fatma Ozcan, and Aditya G. Parameswaran. 2025. Multi-Objective Agentic Rewrites for Unstructured Data Processing.
+arXiv:2512.02289.
+\url{https://arxiv.org/abs/2512.02289}.
+\bibitem{sembench} Jiale Lao, Andreas Zimmerer, Olga Ovcharenko, Tianji Cong, Matthew Russo, Gerardo Vitagliano, Michael Cochez, Fatma \"Ozcan, Gautam Gupta, Thibaud Hottelier, H. V. Jagadish, Kris Kissel, Sebastian Schelter, Andreas Kipf, and Immanuel Trummer. 2025. SemBench: A Benchmark for Semantic Query Processing Engines.
+arXiv:2511.01716v1.
+\url{https://arxiv.org/html/2511.01716v1}.
+\bibitem{promptevals} Reya Vir, Shreya Shankar, Harrison Chase, William Hinthorn, and Aditya Parameswaran. 2025. PROMPTEVALS: A Dataset of Assertions and Guardrails for
+Custom Production Large Language Model Pipelines. NAACL-HLT, Volume 1, 4225--4245. DOI: \url{https://doi.org/10.18653/v1/2025.naacl-long.213}.
+\url{https://aclanthology.org/2025.naacl-long.213/}.
+\bibitem{evalgen} Shreya Shankar, J.D. Zamfirescu-Pereira, Bj\"orn Hartmann, Aditya G. Parameswaran, and Ian Arawjo. 2024. Who Validates the Validators? Aligning LLM-Assisted Evaluation
+of LLM Outputs with Human Preferences. UIST.
+\url{https://arxiv.org/abs/2404.12272}.
+\bibitem{judge} Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin, Zhuohan Li, Dacheng Li, Eric P. Xing, Hao Zhang, Joseph E. Gonzalez, and Ion Stoica. 2023. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS, Datasets and Benchmarks Track.
+\url{https://arxiv.org/abs/2306.05685}.
+\bibitem{rubric} Anshul Bagaria, Sowmya S Sundaram, Gokul S Krishnan, and Balaraman Ravindran. 2026. Judging LLM-as-a-Judge: Concerning Rubric Artifacts in LLM-based
+Automated Text Generation Evaluation. arXiv:2609.02942; accepted to EMNLP 2026.
+\url{https://arxiv.org/abs/2609.02942}.
+\bibitem{rgeval} Vansika Sonthalia, Manish Kesarwani, and Sameep Mehta. 2025. Robust Evaluation of LLM-Generated GraphQL Queries for Web
+Services. ICWS.
+\url{https://research.ibm.com/publications/robust-evaluation-of-llm-generated-graphql-queries-for-web-services}.
+\end{thebibliography}
+
+\clearpage
+\appendix
+
+\section{Historical Evaluation Questions}
+\label{app:questions}
+
+We pose four questions about repeatability, schema conformance, disagreement,
+and a context perturbation:
+
+\begin{description}[leftmargin=1em,style=unboxed]
+\item[RQ1 (Individual repeatability).]
+  Across five unseeded executions, what fraction of rows change output at
+  least once for each operator? This characterizes run-to-run variation in
+  this hosted setup; it does not define a general determinism threshold.
+\item[RQ2 (Schema conformance).]
+  Does \texttt{sem\_map} produce outputs within the user's declared label
+  set? We distinguish schema validity from criterion disagreement. The
+  frozen abstracts rule can count invalid labels, so invalid-output counts
+  must be reported separately.
+\item[RQ3 (Cross-operator disagreement).]
+  Among rows that pass \texttt{sem\_filter}, how often does
+  \texttt{sem\_map} assign a label that disagrees with the filter's
+  admission criterion?
+  This is the headline measurement.
+\item[RQ4 (Context sensitivity).]
+  Does adding a redundant structured date cue (the submission month,
+  already present in the abstract text) change whether the two operators
+  agree?  This is a control: a null result under this specific manipulation
+  would be consistent with robustness to this perturbation, though with only
+  three discordant pairs per replicate it has little power to detect a change
+  and cannot by itself rule out context sensitivity in general.
+\end{description}
+
+\section{RQ1: Individual Operator Repeatability}
+\label{sec:rq1}
+
+Before measuring cross-operator criterion disagreement, we characterize each
+operator's run-to-run variation in isolation. This describes one possible
+source of variation; it does not by itself explain or validate the downstream
+disagreement measure.
+
+\paragraph{Setup.}
+Five replicates, 500 rows, both domains, hosted \texttt{gpt-4o-mini}. The
+temperature provenance caveat in \S\ref{sec:design} applies to these
+historical runs. Each operator runs in isolation over the same fixed 500-row
+frame, so the map's denominator does not depend on the filter. With proxy
+cascades disabled, neither operator has an alternative execution plan to
+choose, so we measure run-time output variation only and do not report a
+separate build-time (plan) variation.
+
+\paragraph{Results.}
+Table~\ref{tab:rq1} reports the flip rate---the fraction of rows whose
+output changed in at least one of the five replicates---for each operator
+and domain. Its third column is a derived cohort summary of the isolated
+map runs, not a measurement from additional filter--map pipeline executions.
+
+\begin{table}[t]
+\centering
+\caption{Individual operator flip rates (RQ1). Five replicates, 500 rows,
+  hosted \texttt{gpt-4o-mini}. Wilson 95\% intervals.
+  The third column restricts the isolated map outputs to rows admitted by
+  every isolated filter replicate
+  ($n_{\text{reviews}}=268$, $n_{\text{abstracts}}=154$). Wilson intervals
+  are shown for all three columns.}
+\label{tab:rq1}
+\smallskip
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+Domain & \texttt{sem\_filter} & \texttt{sem\_map} & Map on always-admitted rows \\
+\midrule
+Reviews   & 0.80\% [0.31, 2.04] & 1.40\% [0.68, 2.86] & 1.49\% [0.58, 3.77] \\
+Abstracts & 0.20\% [0.04, 1.12] & 3.00\% [1.83, 4.89] & 1.30\% [0.36, 4.61] \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Because the label distributions are skewed (for example, the reviews filter
+admits about 54\% of rows), raw agreement can be inflated by chance. Treating
+the five replicates as raters, Fleiss' $\kappa$ remains high for every operator:
+0.991 (reviews filter), 0.989 (reviews map), 0.997 (abstracts filter) and 0.979
+(abstracts map). Replicates are unseeded executions rather than independent
+raters, so $\kappa$ is reported only as a skew-corrected companion to the flip
+rate.
+
+Both operators show low observed flip rates in these runs. The filter's
+point estimate is lower than the map's in both domains: across 500 rows and
+5 replicates, only 1 abstract row and 4 review rows ever changed their
+admission decision. Filter pass
+counts per replicate are nearly identical---reviews
+$[271, 270, 270, 271, 271]$, abstracts $[154, 155, 155, 154, 154]$---a
+one-row spread across five runs.
+
+The map shows more observed variation on abstracts (3.00\%) than on reviews
+(1.40\%). These are different tasks with different prompts and label sets, so
+the comparison does not isolate the effect of label-set size. Each of the
+15~flipping abstract rows alternates between exactly two labels; most pairs
+involve \texttt{theory} or \texttt{other} (e.g., \texttt{theory}
+$\leftrightarrow$ \texttt{other}), and three involve \texttt{ML}.
+
+\paragraph{Temperature caveat.}
+The pinned LOTUS reproduction version declares a temperature default of~0.0,
+and the harness does not override it. The post-hoc RQ1 manifests do not
+establish the historical LOTUS version or contain a per-call observation of
+the value applied by the provider, so we report the source default only as a
+reproduction detail, not as a measured historical setting.
+The flip rates---0.20\% to 3.00\%---measure end-to-end run-to-run variation
+under this hosted setup.  Because we did not run the local pinned-seed tier,
+we cannot separate model, serving-stack, and operator contributions to that
+variation; we therefore do not attribute the residual flips to any one
+source.
+
+\paragraph{Flip rate and replicate count.}
+The abstracts map flip rate was 2.00\% at $n=3$ and 3.00\% at $n=5$:
+each additional replicate can only add flipping rows, never remove them.
+All rates in this paper carry their replicate count.
+
+\paragraph{Implication for RQ3.}
+RQ1 flip rates and RQ3 criterion-disagreement rates have different
+denominators and estimands: RQ1 counts rows whose isolated output changed
+across five executions, while RQ3 applies the frozen disagreement rule to map labels
+among admitted rows. The low observed RQ1 flip
+rates characterize repeatability; persistence across the RQ3 replicates is
+separate evidence about the observed disagreement pattern.
+
+
+\section{RQ2: Schema Conformance}
+\label{sec:rq2}
+
+Historical map outputs are checked for schema membership after normalization
+(the harness can extract a label from a verbose response). The 7 October audit
+checked all 30 saved map runs: raw exact-label failure counts, after whitespace
+trimming and case folding, equal normalized invalid-label counts in each run.
+All stored normalized labels match the current normalizer. These are distinct
+measurements whose agreement on the archived runs does not establish that
+normalization preserves format compliance on future responses.
+
+Before interpreting map labels as evidence of disagreement, we check
+whether those labels are valid members of the declared schema. A label
+outside the schema (e.g., \texttt{mixed} when the declared set is
+\{\texttt{positive}, \texttt{negative}, \texttt{neutral}\}) is not classed as
+a criterion disagreement by the frozen reviews predicate, which counts only
+\texttt{positive}. We report such outputs separately as schema violations and
+include them in a sensitivity analysis. (The frozen abstracts predicate counts
+any label other than \texttt{ML}, so an out-of-schema label would count there;
+no abstracts violations were observed, so no reported figure is affected.)
+
+\subsection{Systematic Violations (F4)}
+
+Table~\ref{tab:rq2} reports schema violations per replicate for the
+reviews domain.
+
+\begin{table}[t]
+\centering
+\caption{Schema violations per replicate (RQ2, reviews). Three replicates,
+  hosted \texttt{gpt-4o-mini}. Wilson 95\% intervals. All
+  violations produce the label \texttt{mixed}.}
+\label{tab:rq2}
+\smallskip
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrl}
+\toprule
+Replicate & Violations & Denominator & Rate [95\% Wilson CI] & Violating rows \\
+\midrule
+1 & 5 & 271 & 1.85\% [0.79, 4.25] & 236, 259, 299, 406, 429 \\
+2 & 6 & 272 & 2.21\% [1.01, 4.73] & 236, 259, 299, 397, 406, 429 \\
+3 & 4 & 271 & 1.48\% [0.58, 3.73] & 236, 299, 397, 429 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Three features stand out. First, all 15 observed violation events across the
+three replicates produced the same out-of-schema label: \texttt{mixed}.
+Second, the violations concentrate on a small set of inputs: only 6
+distinct rows ever violate, and 3 of those (rows 236, 299, 429) violate
+in every replicate. Third, abstracts show zero violations in each replicate
+($0/154$, $0/156$, $0/154$; Wilson upper bounds 2.43\%, 2.40\%, and
+2.43\%, respectively). The abstracts and reviews tasks differ in corpus,
+predicate, instruction, and schema; this comparison cannot identify whether
+the \texttt{other} label explains the difference.
+
+The same small set of review rows recurs across these runs, and row~397
+produced \texttt{mixed} in one replicate and \texttt{positive} in another.
+This is evidence of repeatable row-level difficulty in this setup; it does
+not establish a general failure mechanism or explain why the output changed.
+
+\subsection{Row 397: Where Violation Meets Disagreement (F5)}
+
+Row~397 illustrates the interplay between schema violation and
+cross-operator disagreement.  The same input, under the same prompt,
+oscillates between runs:
+
+\begin{itemize}
+\item In replicate~2, the map outputs \texttt{mixed}---a \emph{schema
+  violation}, not counted as a disagreement under the frozen predicate.
+\item In replicate~1, the map outputs \texttt{positive}---a valid label
+  that \emph{disagrees} with the filter's negative-review admission.
+\end{itemize}
+
+\noindent
+One input and prompt produced two outcomes across these replicates. This
+shows that the operational outcome can depend on whether the model chooses an
+in-schema label; it does not by itself identify a schema-design effect.
+
+\paragraph{Sensitivity analysis.}
+To quantify the sensitivity to the violation boundary, we compute a graded
+bracket of disagreement rates under progressively looser definitions.
+On reviews replicate~1 (271 admitted rows), the strict predicate gives
+2.58\% (7/271) and including out-of-schema labels gives 4.43\% (12/271).
+In the earlier preliminary run (269 admitted rows), the bracket was strict
+1.86\%~$\to$ including out-of-schema labels 4.09\%~$\to$ any non-negative
+label 9.29\%.  The
+frozen predicate defines the headline; the bracket is reported as context.
+The frozen criterion-disagreement predicate is not changed post hoc~(D-W2-03).
+
+\paragraph{Implication.}
+RQ2 and RQ3 report distinct outcomes: schema violations and in-schema
+criterion disagreements. Row~397 shows that one input can produce either
+outcome across replicates. The cross-domain comparison does not establish
+that a catch-all label absorbs disagreement, because the tasks and schemas
+also differ. A matched intervention that varies only schema structure would
+be needed to test that mechanism. LOTUS does not provide a built-in diagnostic
+for either outcome.
+
+
+\section{Additional Historical Pipeline Analyses}
+\label{app:rq3-details}
+\subsection{Uncertainty}
+Replicates re-measure the same frozen rows, so pooling them into one
+binomial sample would count each row about three times. We therefore do not
+attach an interval to the pooled totals (abstracts 110 events over 464
+row-observations; reviews 18 over 814), which we report only as descriptive
+event counts. We report intervals for two distinct outcomes. The first
+is persistent disagreement among rows admitted in every replicate: on
+abstracts, 36 of the 154 rows
+admitted in every replicate disagree in every replicate (23.38\%
+[17.39, 30.66]); on reviews, 5 of 270 (1.85\% [0.79, 4.26]). This estimate is
+conditional on rows admitted in every replicate. The second targets the
+pooled admission-weighted disagreement rate. Its cluster bootstrap resamples
+rows admitted at least once, together with all of their replicate
+observations ($B = 20{,}000$): abstracts [17.24, 30.47], reviews
+[0.74, 4.05]. These intervals are not interchangeable: their outcomes and
+admitted-row populations differ. The bootstrap describes row-resampling
+sensitivity conditional on this selected sample and observed replicates;
+it does not establish population representativeness or sample future hosted runs.
+
+\subsection{Stratification by Declared Category}
+
+The abstracts sample was not drawn to be representative. It was balanced
+using an erroneous grouping of dataset label IDs (\S\ref{sec:design}), and on
+the corrected author-declared categories it contains 115 ML-declared rows,
+334 non-ML-declared rows and 51 rows without a declared category. Because the
+disagreement rate differs sharply between these groups, the blended rate in
+Table~\ref{tab:rq3} partly reflects this composition. We therefore treat the
+stratified rates in Table~\ref{tab:rq3-strat} as the primary description of
+the abstracts result.
+
+\begin{table}[t]
+\centering
+\caption{Abstracts disagreement rate among admitted rows, stratified by the
+  authors' declared arXiv primary category. Admitted rows without a declared
+  category (16 per replicate, of which 3 disagree) are excluded. Wilson 95\%
+  intervals.}
+\label{tab:rq3-strat}
+\smallskip
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+Rep. & ML-declared & Non-ML-declared & Ratio \\
+\midrule
+1 & 13/101 = 12.87\% [7.68, 20.78] & 20/37 = 54.05\% [38.38, 68.96] & 4.20$\times$ \\
+2 & 13/101 = 12.87\% [7.68, 20.78] & 22/39 = 56.41\% [40.98, 70.70] & 4.38$\times$ \\
+3 & 13/101 = 12.87\% [7.68, 20.78] & 20/37 = 54.05\% [38.38, 68.96] & 4.20$\times$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Among admitted rows whose authors declared an ML category, about one in eight
+disagrees; among admitted rows whose authors did not, more than half do. The
+intervals are disjoint in every replicate. A sample with a different mix of
+categories would produce a different blended rate, so the 23\% figure
+describes this selected sample and should not be read as a population
+estimate. The declared category is a proxy: a primary-category declaration
+answers a different question from ``is this paper about machine learning?'',
+and this association does not adjudicate either operator's output.
+
+The category appears in the arXiv stamp inside the text the operators read.
+A control committed before it was run removed the stamp and re-ran the
+pipeline once; no reported measure changed detectably (Appendix~\ref{app:stamp}).
+
+\subsection{Comparing the Two Setups}
+
+Under the strict rules, the abstracts rate is about ten times the reviews
+rate. That ratio is not a domain effect. The two setups differ in corpus,
+filter predicate, map instruction and label set, and, as
+Table~\ref{tab:rq3-rule} shows, in what their rules count. If the reviews
+rule counted every non-target label, as the abstracts rule does, the reviews
+rate would be 10.33\% [7.25, 14.53], 10.66\% [7.53, 14.89] and 9.96\%
+[6.94, 14.11] in the three replicates (28/271, 29/272, 27/271), and the gap
+would shrink to about 2.3$\times$. The observed gap is therefore sensitive to the operational definitions;
+this comparison does not apportion it between definitions and corpora. Isolating a domain effect
+would require matched tasks that hold the predicate structure, label set and
+rule fixed while varying only the corpus; we did not run that design.
+
+\subsection{Row-Level Persistence}
+
+Disagreements recur on the same rows. Among the 154 abstracts rows admitted
+in every replicate, every row that disagrees in any replicate disagrees in
+all three (36 of 36). Among the 270 reviews rows admitted in every replicate,
+7 rows disagree at least once and 5 disagree in every replicate. Persistence
+is computed over rows admitted in every replicate, which is why the 36
+persistent abstracts rows coexist with 110 pooled events: $36 \times 3 = 108$,
+plus two events on rows 75 and 215, which only replicate~2 admitted.
+The set of rows disagreeing in every run can only shrink as runs are added.
+The conditional rate need not decrease because the always-admitted denominator
+can also shrink. We report the set and denominator with the replicate count
+($n=3$), rather than comparing rates at different replicate counts.
+
+Persistence shows that, in this setup, the disagreements are tied to specific
+inputs rather than scattered across runs. It does not by itself establish
+why those inputs disagree; \S\ref{sec:interpretation} examines that question
+with the author-category proxy and a filter-criterion intervention.
+
+
+\section{Auxiliary Historical Controls}
+\label{app:controls}
+
+\subsection{Category-Stamp Removal}
+\label{app:stamp}
+The declared category appears in the arXiv stamp near the top of each paper,
+inside the 4{,}000-character window the operators read (all 449 categorised
+rows; median position: character 80). The model could therefore see the
+label we compare it against. Before running a control, we committed its
+decision rules: overwrite each stamp with an equal number of spaces, rerun
+the frozen pipeline once, and compare with replicate~1. The deterministic
+input check confirms that all 449 category stamps were blanked. No stamp
+appeared in the 648 parseable request records; four malformed log lines
+prevent complete request reconstruction. Three categorised rows changed admission, in
+both directions, below the pre-specified threshold of more than four (twice
+the largest difference between any two of eight earlier runs). Agreement with the proxy moved from 88.64\% to 88.86\% (exact McNemar
+$p = 1.0$), precision from 73.19\% to 73.38\%, and the disagreement rate from
+23.38\% to 23.23\%. The stamp was visible, but removing it did not detectably
+change any reported measure in this replicate.
+
+\subsection{Historical Operator-Framing Control}
+\label{sec:f14}
+
+The intervention above leaves LOTUS's wrappers in place, so it cannot show
+whether they contribute. We held the question fixed while changing operator
+access and its associated prompt construction: we asked the filter's question, ``Is this paper about
+machine learning?'', through \texttt{sem\_map}'s instruction-following
+wrapper with a one-word True/False answer, on all 500 rows, and compared it
+with the baseline filter. Decision rules were committed before the run.
+
+The two configurations disagreed on 7 of 500 rows, all in one direction: the
+claim-verification wrapper answered yes where the instruction-following
+wrapper answered no, and never the reverse (exact McNemar $p = 0.016$). This
+just exceeds our pre-specified threshold of more than six rows, twice the
+largest run-to-run difference we observed within any configuration. All 7
+rows were admitted in every one of the eight baseline filter runs, so they
+did not flip in those eight runs, and 6 of the 7 are baseline disagreements.
+In this historical comparison, the filter returns more positives than the
+map for the same question. This direction is specific to the tested protocol;
+it does not carry over to the subsequent matched control.
+
+This aboutness contrast differs on fewer rows than the criterion contrast. Changing the criterion
+alters 60 decisions under the filter's wrapper and 36 under the map's;
+changing the wrapper alters 7. When both operators share the
+instruction-following wrapper, 30 of 147 rows the filter question admits are
+mapped to a non-ML label (20.41\% [14.69, 27.64]), against 35 of 154
+(22.73\% [16.82, 29.96]) when they use different wrappers, measured with the
+same map run. Most of the disagreement survives wrapper alignment. This is
+one run of the new configuration with one model, so we report a small,
+one-directional operator-framing contrast in this setup. It does not
+isolate a system-message-only intervention or estimate a general causal
+share. The reused primary-topic cells also change answer format, and their
+37 differing rows are not a clean wrapper-only estimate. All 500 new operator
+outputs match the CSV, but the request log has six malformed lines and lacks
+complete per-request reconstruction.
+
+\subsection{RQ4: Sensitivity to a Redundant Structured Date Cue}
+\label{sec:rq4}
+
+RQ4 asks whether adding a structured date cue changes filter admissions or
+map labels in the abstracts pipeline. The submission month is parsed from
+the arXiv stamp already present in the paper text. We prepend
+\texttt{[submitted: YYYY-MM]} to both operator prompts while retaining the
+original text and its prose date. This is a redundant-cue intervention, not
+a test of new information, adversarial prompt injection, or schema position
+in isolation. The experiment includes the 449 rows with available submission
+metadata; the other 51 rows are excluded. Reviews are not included because
+the selected IMDB split lacks comparable production metadata.
+
+Each of two injected runs is compared with its corresponding frozen RQ3
+baseline on the same eligible rows. We report admission changes separately
+from map behavior. For map comparison, we restrict attention to rows admitted
+under both conditions: 138 rows in replicate~1 and 140 in replicate~2.
+This fixes the comparison denominator but conditions on admission under both
+conditions; it does not describe the map behavior of newly admitted or
+rejected rows. The exact paired McNemar test was added in a post-hoc
+reanalysis. A null outcome had been considered before execution, but no
+equivalence margin or equivalence test was specified.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{RQ4 on 449 eligible abstracts, reported separately by replicate.
+Disagreement is evaluated on the common admitted set; admission changes use
+the full eligible set.}
+\begin{tabularx}{\linewidth}{@{}Xrr@{}}
+\toprule
+Measurement & Replicate 1 & Replicate 2 \\
+\midrule
+Admissions: baseline / injected & 138 / 141 & 140 / 141 \\
+Admissions added / dropped & 3 / 0 & 1 / 0 \\
+Common admitted rows & 138 & 140 \\
+Baseline disagreements on common set & 33 (23.91\%) & 35 (25.00\%) \\
+Injected disagreements on common set & 34 (24.64\%) & 34 (24.29\%) \\
+Paired rate change & $+0.72$ pp & $-0.71$ pp \\
+Disagreement: baseline-only / injected-only & 1 / 2 & 2 / 1 \\
+Exact McNemar $p$ & 1.0 & 1.0 \\
+Map-label flips on common set & 3 / 138 & 3 / 140 \\
+Flip rate [Wilson 95\% interval] & 2.17\% [0.74, 6.20] & 2.14\% [0.73, 6.11] \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Admission changes are small and positive in both replicates, while the
+paired disagreement-rate changes have opposite signs. Each comparison has
+only three discordant pairs, with exact McNemar $p=1.0$. These results provide
+no detected directional change in disagreement on the common admitted set.
+They do not demonstrate unchanged outputs: three map labels change in each
+replicate. Nor do they establish equivalence or rule out context sensitivity
+under another field, format, domain, or stronger perturbation. Because
+conditions were executed in separate hosted runs, observed differences also
+include end-to-end run variation. We interpret RQ4 as a limited control for
+this redundant date cue, rather than a general robustness result.
+
+\section{Historical Residual Disagreements and Exploratory Coding}
+\label{app:coding}
+
+In the historical four-label pipeline, four rows disagree under the revised
+criterion in both intervention replicates: 164
+(\texttt{cs.NE}), 204 (\texttt{cs.AI}), 228 (\texttt{stat.ML}) and 240
+(\texttt{math.ST}). All four are mapped to \texttt{theory}. Three carry an
+ML category and present formal contributions: a regret bound for a bandit
+algorithm, query-complexity bounds, and a network derived from arithmetic
+circuits. For these papers, the subject area (machine learning) and the
+contribution type (theory) can plausibly both be correct answers to
+differently framed questions. Row 240 is a statistics paper without an ML
+category.
+
+To characterise the baseline disagreements more broadly, one author coded
+the 36 rows that disagree in all three replicates with a fixed codebook,
+crossing the declared category (ML or not) with the contribution type
+(empirical, formal or artefact). Of 35 coded rows (one was missing from the
+coding sheet), 19 were coded as the filter admitting a paper outside ML, 15
+as ambiguous between the two criteria, and 1 as a disagreement that holds on
+its own terms. All four rows above were coded as not holding on their own
+terms. A threshold stated in advance (more than half coded as disagreements
+on their own terms) was not met.
+
+We offer this coding as limited exploratory evidence, for four reasons. It
+had a single coder, so no agreement statistic exists. The coder had seen an
+earlier, discarded model-assisted pass, so the coding is not blind. The
+codebook's validity as a measure of contradiction was not established.
+Finally, its category signal is the same declared category used as the proxy
+above, so the coding does not independently confirm the proxy results. The
+main analysis rests on the measured interventions rather than this coding.
+
+\section{Reproducibility and Evidence Status}
+\label{sec:reproducibility}
+\subsection{Public availability}
+The initial public snapshot at
+\url{https://github.com/vansikasonthalia/operatorbench} contains the manuscript
+source, original software, frozen experiment specifications, aggregate results
+and selected audit reports. The full local archive additionally contains
+third-party document text, per-row CSVs and raw request logs. Those files are
+excluded from this public snapshot while redistribution terms are resolved;
+the repository's \path{NOTICE.md} identifies the input sources and licensing
+boundary. Consequently, the public snapshot alone cannot execute the complete
+saved-output reproduction described below. The original software is released
+under the MIT license; that grant does not cover the manuscript or third-party
+inputs. This version is an author preprint and has not been peer reviewed.
+
+\subsection{Historical artifacts and numerical reproduction}
+We retain the frozen datasets, per-run CSVs, available metadata, operator logs,
+and intercepted request records. An offline audit inspected all 30 saved map
+runs and 53 JSONL files, including archived pre-deduplication backups. No
+structural CSV failures were found. Fourteen headline count checks agreed with
+the stored summaries; eight offline analyses reproduced their common numerical
+and boolean fields. The analyses cover RQ1 agreement, RQ3 uncertainty, proxy
+stratification and tradeoff, RQ4 pairing, exploratory coding, and the stamp and
+wrapper controls. Recomputed outputs were saved separately. These checks
+establish consistency of the archived calculations, not independent validation
+of the criteria or reference labels.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Historical evidence layers and their limits, as audited on 7 October 2026.
+The subsequent matched-control archive is described separately.}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.19\linewidth}XX@{}}
+\toprule
+Layer & Available evidence & Limit \\
+\midrule
+Result CSVs & 30 structurally consistent map runs; 14 headline counts match & No adjudicated correctness or population representativeness \\
+Operator logs & All 20 headline runs match saved decisions and map outputs & Parsed filter decisions do not replace raw provider responses \\
+Request archive & Surviving prompts, responses and hashes & 178 malformed lines across seven files; incomplete reconstruction and row/run joins \\
+Run provenance & Two runs have execution-time provenance blocks & 28 lack them; sparse/post-hoc metadata cannot verify historical settings \\
+Checksums & Archive manifest matches; audit-time source hashes recorded & Current identity is not execution-time artifact binding or parse validity \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Historical Reproduction Environment}
+\label{app:environment}
+
+The historical study used \texttt{gpt-4o-mini} via LiteLLM on the hosted OpenAI API.
+The pinned reproduction environment is \texttt{lotus-ai==1.2.4}; the global
+environment snapshot was captured on 28 September 2026. The original RQ1 and
+RQ3 run manifests are post-hoc or sparse and do not establish the package
+versions used for those historical calls, so that snapshot documents the
+reproduction environment rather than verifying each run's environment. In the
+pinned harness, no temperature is explicitly set.
+LOTUS~1.2.4's \texttt{LM} constructor declares a default of
+\texttt{temperature=0.0} (\texttt{lotus/models/lm.py}), but the frozen run
+records do not establish the historical LOTUS version or provide per-call
+observations; the value applied by the provider is therefore not measured.
+The historical harness never configured a seed. Runs are therefore \emph{replicates},
+not seeded repetitions.
+
+Operator-level isolation is verified in the pinned LOTUS source, not assumed. In LOTUS~1.2.4,
+\texttt{sem\_filter} and \texttt{sem\_map} default to no
+chain-of-thought (\texttt{strategy=None}), no proxy cascade
+(\texttt{cascade\_args=None}), and no few-shot examples
+(\texttt{examples=None}); the harness passes no overrides.
+For reproduction, the current runner defaults to batches of 10 with a
+12-second inter-batch delay to respect rate limits. The post-hoc or sparse
+historical RQ1/RQ3 manifests do not establish the batch size or actual delay
+used for each run.
+Delay was not an experimental factor, and we do not assume that changing it
+could never affect hosted-service outputs.
+The subsequent matched control explicitly records its model snapshot and
+requested settings (\S\ref{sec:matched-methods}); the historical provenance
+caveats do not describe that new archive.
+
+\subsection{Historical execution and archive limits}
+The reproduction environment above does not verify sparse or post-hoc
+historical manifests. Observed hosted variation is end-to-end variation;
+its model, serving, and transport contributions are not isolated.
+
+The operator and request logs record different layers. Operator logs retain
+parsed filter decisions and raw map outputs; intercepted request logs retain
+provider-facing prompts and responses where parseable. Seven request files
+contain 178 malformed lines: RQ1 hosted, 92; RQ3, 38; preliminary RQ3, 20;
+RQ4, 11; filter-criterion intervention, 7; wrapper control, 6; stamp control,
+4. The archive matches its manifest, so matching checksums identify these bytes
+without establishing JSONL validity or complete request coverage. Missing
+historical request evidence is not reconstructed from result CSVs. None of the
+frozen runs has the later execution-time CSV checksum binding. Atomic saves and
+expanded provenance in the release harness apply to future runs.
+
+\subsection{Measurement and controls}
+Historical schema validity is measured after label normalization. The audit
+also checks raw exact-label membership after whitespace trimming and ignoring
+case. Those failure counts agree in every saved run, and all stored normalized
+labels match the current normalizer. This agreement does not guarantee that
+normalization preserves format compliance on other responses.
+
+Persistent disagreement among rows admitted in every replicate and the pooled
+admission-weighted disagreement rate are distinct outcomes. Their intervals are
+not interchangeable. The cluster bootstrap resamples rows admitted at least
+once while retaining each row's observed replicates. Its interval describes
+conditional row-resampling sensitivity, not uncertainty over the arXiv
+population or future hosted executions.
+
+The stamp control deterministically blanks category stamps on all 449
+categorized rows. None of its 648 parseable request records contains a stamp,
+but four malformed lines prevent complete request reconstruction. Three
+categorized filter decisions change, below the stated decision threshold of
+more than four but above the largest earlier pairwise difference of two. The
+single control did not detect reliance under its rules; it does not establish
+that the model ignores the cue.
+
+The historical wrapper control holds the aboutness question fixed while changing
+operator access and associated prompt construction. Seven of 500 answers
+differ, all in one direction (exact McNemar $p=0.015625$). All 500 operator map
+outputs match the CSV, although six request-log lines are malformed. Reused
+primary-topic cells additionally change answer format. These comparisons do not
+isolate a system-message-only effect or partition the baseline disagreement
+into causal shares.
+
+\subsection{Matched-control archive and audit}
+\label{sec:matched-evidence}
+The full-study directory
+\path{results/matched_control/n500_r4_s20261007} contains the pre-execution
+plan, 800 operator-block checkpoints, 800 JSONL request archives, and the
+summary. The plan binds the frozen dataset, actual input windows, experiment
+source, and five framework source files with SHA-256 hashes, and records
+package versions and the schedule. Each checkpoint binds its plan, row
+records, and request archive and stores requested model settings, usage, and
+UTC timestamps. All checkpoints are first recorded block attempts; no
+additional attempt archives were found. These observations do not establish
+whether the provider performed internal retries or applied every requested
+parameter exactly.
+
+The 8 October audit checked all 8,000 recorded requests against the planned
+row coverage, model, question, answer instruction, and prompt hashes.
+Within each block, the exact input window identified its row, and each
+archived response matched that row's raw operator output. All checkpoint,
+request, dataset, input-window, experiment-source, and framework-source
+hashes matched. Recomputing the summary reproduced every stored field.
+This establishes archive consistency and complete recorded coverage for the
+planned calls, not correctness of their answers. The plan hash begins
+\texttt{68993b02eb0f3a35}; the audit is saved at
+\path{audits/2026-10-08/matched_control_full_check.json}.
+
+The archive records 8,223,120 prompt tokens and 24,089 completion tokens.
+Wall-clock duration was 10.51 hours, including a 450.54-minute gap between
+operator jobs 788 and 789 in replicate~4's 48th row block. The conditions
+immediately before and after that gap were primary-topic map and aboutness
+map. Summed operator-block durations were 19.49 minutes; configured delays
+alone account for about 160 minutes. We disclose this timing as execution
+context, not an engine-latency or throughput benchmark. The new archive is
+separate from the historical evidence and the ten-row pilot; neither was
+rewritten or pooled into the matched-control analysis.
+
+\subsection{Revision-evaluation archive and audit}
+\label{sec:revision-evidence}
+The separate directory
+\path{results/revision_evaluation/n100_r4_s20261008} contains the copied
+scientific plan, execution manifest, native prompts, 280 completed
+operator-block checkpoints, 280 attempt records, 280 JSONL request archives,
+and summary. The locally frozen preparation records remain under
+\path{artifacts/revision-evaluation-20261008}. Their exact plan-file SHA-256
+begins \texttt{824dd3206e2aa7b1}; the canonical parsed-plan hash used by the
+runner begins \texttt{75df0d25857637ad}. These are different byte
+representations of the same plan. The preparation document
+\path{docs/REVISION-EVALUATION.md} retains its pre-execution status and
+source binding; later runner instructions are in
+\path{docs/REVISION-RUNNER.md}. No scientific requirement was changed.
+
+The plan was locally recorded at 08:38:25 UTC on 8 October; the execution
+archive runs from 11:14:00 to 12:22:35 UTC that day (68.59 minutes). The
+manifest binds the runner, interceptor, five installed framework source
+files, package versions, requested model settings, and all 700 native
+row--cell prompts. Checkpoints bind raw row responses and their JSONL
+archives. Exact native-message hashes identify requests independently of
+response arrival order. Each complete block has one request per planned
+row, with the requested model identifier and raw response matching the
+saved record. The installed framework sources match the bound hashes.
+
+The 8 October audit verifies all 2,800 request-to-row joins, checkpoint and
+request hashes, protocol and source bindings, and exact reproduction of
+the saved summary. All 280 attempt records are completed first attempts;
+no failed attempts are recorded. The archived successful-call usage is
+2,895,012 prompt tokens and 8,404 completion tokens. These records do not
+independently certify billing, hidden provider retries, or application of
+every requested setting. The audit is retained at
+\path{audits/2026-10-08/revision_evaluation_check.json}. It establishes
+recorded coverage and consistency, not semantic correctness.
+
+For this archive, run
+\texttt{python -m scripts.run\_revision\_evaluation --aggregate-only}
+from the repository root. This command uses the frozen protocol and bound
+runner to verify all checkpoints and native request joins and regenerate
+the descriptive summary without model calls. It compares core evidence with
+direct assertions, attaches the shared supplemental checks described in
+\S\ref{sec:revision-evaluation}, and refuses incomplete or changed bindings.
+It is separate from the historical and matched-control
+reproduction command below; that command does not aggregate this new study.
+
+\subsection{Offline robustness artifacts}
+The reviewer entry point is
+\texttt{python -m scripts.reproduce\_artifact}, run from the repository root
+after installing \path{requirements-artifact.txt}. It needs no API key and
+blocks network connections during reanalysis. It recomputes eight historical
+analyses, the admission ledger, the matched-control summary, and both
+exploratory alternatives into \path{audits/reproduction}, compares them with
+the saved results, and checks that the inventoried scientific files remain
+unchanged. A readable table report, a SHA-256 manifest, analysis-environment
+information, and historical evidence gaps accompany the outputs.
+\path{docs/ARTIFACT-README.md} maps outputs to the manuscript and distinguishes
+these numerical checks from correctness assessment and PDF verification.
+
+The same command also recomputes the reporting views and revision-requirement
+illustrations from \S\ref{sec:reporting-comparison} and
+\S\ref{sec:revision-contracts}. Their JSON and readable reports are
+\path{admission_reporting_comparison.json}, \path{REPORTING-COMPARISON.md},
+\path{revision_contracts.json}, and \path{REVISION-CONTRACTS.md}, under
+\path{audits/reproduction}. The requirement report retains each supplied
+contract, per-requirement verdict, exception IDs, and unassessed row IDs.
+These post-hoc demonstrations are not compared with a prospectively frozen
+diagnostic reference and do not modify the original experimental archive.
+
+The exploratory alternatives in \S\ref{sec:matched-sensitivity} are generated
+by \path{scripts/matched_control_sensitivity.py}, run offline as
+\texttt{python -m scripts.matched\_control\_sensitivity}. It validates the
+checkpoint and request hashes and reproduces all original paired contrasts
+before calculating either alternative. Its output,
+\path{audits/2026-10-08/matched_control_sensitivity.json}, records both full
+16-comparison families, changed parser answers, excluded row IDs, the gap,
+and analysis source hashes. It writes outside the experiment directory and
+does not change the original plan, checkpoints, request logs, or summary.
+The historical ledger's common-row raw and saved label checks are retained
+in \path{audits/2026-10-08/admission_ledger_check.json}. These are audit-time
+analyses, not additional model executions or externally registered tests.
+
+The expanded \path{audits/reproduction/admission_ledger.json} retains those
+original fields and additionally records the complete accounting, all row
+partitions, indicator-change directions, raw and saved transition tables,
+and invalid-output row IDs. In both frozen comparisons the identity holds:
+$D_1-D_0=-32$ and $-34$, respectively, entirely from exclusion. All raw and
+saved map labels are valid under the declared four-label schema.
+
+\paragraph{Synthetic procedure example.}
+\path{audits/reproduction/admission_ledger_example.json} is generated from
+seven explicitly constructed rows by \path{scripts/admission_ledger_example.py}.
+Both configurations admit five rows and have three disagreements. One
+excluded disagreement and one newly admitted disagreement cancel; among four
+common rows, one disagreement appears and another resolves. The net
+common-row term is zero despite two saved-label changes. Raw transition and
+validity counts are retained separately. This example demonstrates the
+procedure's accounting and cancellation checks; it contains no model
+observations and is not an empirical robustness result.
+
+
+\clearpage
+\section{Detailed Comparison Tables and Post-Hoc Illustrations}
+\label{app:comparison-details}
+
+\subsection{Matched-Control Comparisons}
+\label{app:matched-comparisons}
+Table~\ref{tab:matched-contrasts} gives the complete planned comparison family
+for \S\ref{sec:matched-results}. The strict parser and pairwise validity
+policy define the primary analysis; the Holm correction covers all sixteen
+comparisons together. The main text reports the directional counts, effect
+sizes and interpretation of these results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{All 16 planned matched-control comparisons. $n$ is the number of
+valid pairs. $b$ counts left-positive/right-negative answers; $c$ counts
+left-negative/right-positive answers. Changed is $(b+c)/n$ in percent with
+Wilson 95\% intervals. $p_H$ is the exact McNemar $p$-value after Holm
+correction across the full family. Comparisons involving $P,M$ exclude its
+21, 21, 21, and 26 invalid answers. Rows recur across replicates and are not pooled.}
+\label{tab:matched-contrasts}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrrll}
+\toprule
+Left / right & Rep. & $n$ & $b$ & $c$ & Changed (\%) [95\% CI] & $p_H$ \\
+\midrule
+$A,F$ / $A,M$ & 1 & 500 & 2 & 5 & 1.40 [0.68, 2.86] & 0.875 \\
+ & 2 & 500 & 1 & 5 & 1.20 [0.55, 2.59] & 0.875 \\
+ & 3 & 500 & 1 & 5 & 1.20 [0.55, 2.59] & 0.875 \\
+ & 4 & 500 & 1 & 4 & 1.00 [0.43, 2.32] & 0.875 \\
+\midrule
+$P,F$ / $P,M$ & 1 & 479 & 2 & 16 & 3.76 [2.39, 5.86] & 0.0105 \\
+ & 2 & 479 & 2 & 15 & 3.55 [2.23, 5.61] & 0.0164 \\
+ & 3 & 479 & 1 & 12 & 2.71 [1.59, 4.59] & 0.0205 \\
+ & 4 & 474 & 2 & 14 & 3.38 [2.09, 5.41] & 0.0209 \\
+\midrule
+$A,F$ / $P,F$ & 1 & 500 & 55 & 0 & 11.00 [8.55, 14.05] & $<10^{-11}$ \\
+ & 2 & 500 & 54 & 0 & 10.80 [8.37, 13.83] & $<10^{-11}$ \\
+ & 3 & 500 & 52 & 0 & 10.40 [8.02, 13.38] & $<10^{-11}$ \\
+ & 4 & 500 & 55 & 0 & 11.00 [8.55, 14.05] & $<10^{-11}$ \\
+\midrule
+$A,M$ / $P,M$ & 1 & 479 & 43 & 0 & 8.98 [6.73, 11.87] & $<10^{-11}$ \\
+ & 2 & 479 & 44 & 0 & 9.19 [6.91, 12.11] & $<10^{-11}$ \\
+ & 3 & 479 & 44 & 0 & 9.19 [6.91, 12.11] & $<10^{-11}$ \\
+ & 4 & 474 & 45 & 0 & 9.49 [7.17, 12.47] & $<10^{-11}$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Complete Accounting from Saved Outputs}
+\label{app:reporting-details}
+Table~\ref{tab:reporting-comparison} expands the reporting-view comparison in
+\S\ref{sec:reporting-comparison}. It contains two historical executed
+revisions and twelve masks derived from the matched control. These are
+separate from the later 100-document revision evaluation. Paired common-row
+counts and admission totals reconstruct every aggregate ledger term.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Descriptive accounting from saved outputs. Historical rows are
+executed pipeline revisions; binary rows are derived masks on the common
+format-valid cohort. $D/n$ is disagreement among admissions, $E_D$ counts
+disagreement removed by exclusions, and $C_+$/$C_-$ are added/resolved
+common-row disagreements. No case introduces disagreement through new
+admissions. Paired common-row counts plus totals reconstruct every ledger
+term in every row.}
+\label{tab:reporting-comparison}
+\begin{tabular}{llrrrrr}
+\toprule
+Evidence / change & Rep. & Eligible & Before $D/n$ & After $D/n$ & $E_D$ & $C_+/C_-$ \\
+\midrule
+Historical filter & 1 & 500 & 36/154 & 4/94 & 32 & 0/0 \\
+ & 2 & 500 & 38/156 & 4/94 & 34 & 0/0 \\
+\midrule
+Binary filter only & 1 & 479 & 2/154 & 0/100 & 2 & 0/0 \\
+ & 2 & 479 & 1/153 & 0/100 & 1 & 0/0 \\
+ & 3 & 479 & 1/153 & 0/102 & 1 & 0/0 \\
+ & 4 & 474 & 1/154 & 0/100 & 1 & 0/0 \\
+Binary map only & 1 & 479 & 2/154 & 40/154 & 0 & 38/0 \\
+ & 2 & 479 & 1/153 & 40/153 & 0 & 39/0 \\
+ & 3 & 479 & 1/153 & 40/153 & 0 & 39/0 \\
+ & 4 & 474 & 1/154 & 42/154 & 0 & 41/0 \\
+Binary both & 1 & 479 & 2/154 & 2/100 & 2 & 2/0 \\
+ & 2 & 479 & 1/153 & 2/100 & 1 & 2/0 \\
+ & 3 & 479 & 1/153 & 1/102 & 1 & 1/0 \\
+ & 4 & 474 & 1/154 & 2/100 & 1 & 2/0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Post-Hoc Requirement Illustrations}
+\label{app:requirement-illustrations}
+The following illustrations apply the checker described in
+\S\ref{sec:revision-contracts} to the views above. Their requirements were
+chosen after inspecting those views, unlike the separately fixed requirements
+in \S\ref{sec:revision-evaluation}.
+
+We illustrate these checks on the fourteen views in
+Table~\ref{tab:reporting-comparison} using requirements chosen after
+inspection. Strict result preservation requires equal admitted sets and
+unchanged common saved labels. A declared filter revision permits narrowing
+but preserves common labels; a declared map revision preserves admissions
+while permitting label changes; a declared joint revision permits both.
+All illustrations require valid observed raw and saved outputs. These
+declarations encode the changes being illustrated, so their satisfaction
+is not evidence of detection accuracy or a prospective evaluation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Post-hoc requirement illustrations, grouped by revision type.
+Every view in a row has the displayed verdict. Binary cases remain the
+derived masks from Table~\ref{tab:reporting-comparison}. The declared-change
+requirements are described in the text. These are prototype outputs, not
+a diagnostic success rate.}
+\label{tab:revision-contracts}
+\begin{tabular}{lrlll}
+\toprule
+Revision & Views & Preserve results & Declared, full input & Declared, cohort \\
+\midrule
+Historical filter & 2 & Violated & Satisfied & Satisfied \\
+Binary filter & 4 & Violated & Not evaluable & Satisfied \\
+Binary map & 4 & Violated & Not evaluable & Satisfied \\
+Binary joint & 4 & Violated & Not evaluable & Satisfied \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both historical revisions violate strict result preservation through
+exclusion, while satisfying the narrower requirement of subset admission
+and unchanged common labels. The binary cases omit 21, 21, 21, and 26
+format-invalid rows before masking. Their observed cohorts satisfy the
+declared-change requirements, but the full 500-row requirement remains
+not evaluable. Those omitted rows are not treated as semantic filter
+rejections. Known admission or common-label changes still violate strict
+preservation on the observed rows. The tests separately check cancellation,
+both admission-change directions, raw invalidity despite valid saved labels,
+empty common cohorts, and partial evidence. These are implementation checks,
+not independently adjudicated pipeline errors.
+
+For filter-only comparisons, the shared four-cell validity policy omits
+rows even though the required filter and map answers are valid. The
+full-input verdict refers to the supplied common-cohort view, not the
+absence of all original responses. A separately derived filter-only view
+could evaluate all 500 rows; we retain the shared cohort here to match
+Table~\ref{tab:reporting-comparison}.
+
+\end{document}

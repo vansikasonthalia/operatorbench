@@ -1,0 +1,5279 @@
+{
+  "protocol": "revision_evaluation_v1",
+  "status": "prepared_not_executed",
+  "prepared_utc": "2026-10-08T08:38:25.138835+00:00",
+  "scope": "Locally fixed before new outputs; previously analysed documents and informed prompt choices. Not an external preregistration, document holdout, correctness study, or proof of novelty.",
+  "model": "gpt-4o-mini-2024-07-18",
+  "model_availability": "Not checked; failure must be reported, not silently substituted.",
+  "temperature_requested": 0.0,
+  "max_output_tokens": 16,
+  "provider_seed": null,
+  "cache_enabled": false,
+  "replicates": 4,
+  "block_size": 10,
+  "batch_delay_seconds": 12,
+  "max_text_chars": 4000,
+  "row_ids": [
+    2,
+    4,
+    8,
+    13,
+    14,
+    21,
+    23,
+    26,
+    29,
+    30,
+    32,
+    34,
+    36,
+    37,
+    39,
+    41,
+    42,
+    43,
+    44,
+    47,
+    50,
+    54,
+    61,
+    62,
+    66,
+    72,
+    78,
+    87,
+    93,
+    98,
+    102,
+    109,
+    111,
+    114,
+    121,
+    122,
+    128,
+    139,
+    143,
+    146,
+    148,
+    149,
+    150,
+    153,
+    158,
+    162,
+    164,
+    168,
+    179,
+    180,
+    186,
+    204,
+    207,
+    209,
+    219,
+    220,
+    221,
+    223,
+    224,
+    230,
+    236,
+    237,
+    239,
+    251,
+    252,
+    266,
+    270,
+    283,
+    290,
+    296,
+    311,
+    336,
+    340,
+    342,
+    345,
+    356,
+    359,
+    363,
+    366,
+    376,
+    382,
+    383,
+    387,
+    391,
+    392,
+    398,
+    400,
+    405,
+    408,
+    409,
+    410,
+    412,
+    420,
+    425,
+    433,
+    441,
+    450,
+    459,
+    467,
+    472
+  ],
+  "selection_seed": 20261008,
+  "schedule_seed": 20261009,
+  "dataset_sha256": "4e273eae5ac4ec16c2f353ddc6bd90730a0c2a9d022b050df4e95d11c0b76cc4",
+  "input_reader": "audit_frozen_evidence.read_csv(source=True); preserve embedded NULs and original newlines, then take the first 4000 characters.",
+  "input_sha256": "a269cb63abc1c44b8cb8248c129b35e3010654a1e6b4ac4de3b0492327a17510",
+  "source_sha256": {
+    "scripts/prepare_revision_evaluation.py": "c15b126dbb9a0ee42fb3c2b56127709220541399a2b9615ffcf7b61419afdce2",
+    "harness/admission.py": "9a93b5b6089aec651b2498bf122a1e640f3a559e4ada4054f0f439707d810431",
+    "harness/revision.py": "8f0f5e038daaee89111390a7b6a521cc8cb047cb6d8580c8200233bd853b4ffd",
+    "harness/revision_assertions.py": "5b033eba855edab92a84be117a591e2ce7ad4016b857e350a4b3cb76ec6632a3",
+    "scripts/run_matched_control.py": "2e770339e3eac1059330b57d8d2da1c8bb43b6f3ecbf658c545deb45daff4e45",
+    "docs/REVISION-EVALUATION.md": "6f785f052ff16daed31e6a1f54c3d3579cf343796dc4dd0bb7d382d1f820171b"
+  },
+  "questions": {
+    "reference_filter": "Is this paper about machine learning?",
+    "reference_map": "Is this paper about machine learning?",
+    "repeat_filter": "Is this paper about machine learning?",
+    "repeat_map": "Is this paper about machine learning?",
+    "paraphrase_filter": "Does this paper concern machine learning?",
+    "narrow_filter": "Is machine learning a substantive research topic of this paper, rather than only background or a passing mention?",
+    "paraphrase_map": "Does this paper concern machine learning?"
+  },
+  "instructions": {
+    "reference_filter": "Is this paper about machine learning? Respond exactly as Answer: True or Answer: False. {abstract_text}",
+    "reference_map": "Is this paper about machine learning? Respond exactly as Answer: True or Answer: False. {abstract_text}",
+    "repeat_filter": "Is this paper about machine learning? Respond exactly as Answer: True or Answer: False. {abstract_text}",
+    "repeat_map": "Is this paper about machine learning? Respond exactly as Answer: True or Answer: False. {abstract_text}",
+    "paraphrase_filter": "Does this paper concern machine learning? Respond exactly as Answer: True or Answer: False. {abstract_text}",
+    "narrow_filter": "Is machine learning a substantive research topic of this paper, rather than only background or a passing mention? Respond exactly as Answer: True or Answer: False. {abstract_text}",
+    "paraphrase_map": "Does this paper concern machine learning? Respond exactly as Answer: True or Answer: False. {abstract_text}"
+  },
+  "revisions": {
+    "identical_prompt_repeat": {
+      "before": [
+        "reference_filter",
+        "reference_map"
+      ],
+      "after": [
+        "repeat_filter",
+        "repeat_map"
+      ],
+      "admission_relation": "equal",
+      "preserve_common_labels": true,
+      "require_valid_outputs": true,
+      "require_complete_input": true
+    },
+    "filter_paraphrase": {
+      "before": [
+        "reference_filter",
+        "reference_map"
+      ],
+      "after": [
+        "paraphrase_filter",
+        "reference_map"
+      ],
+      "admission_relation": "equal",
+      "preserve_common_labels": true,
+      "require_valid_outputs": true,
+      "require_complete_input": true
+    },
+    "filter_narrowing": {
+      "before": [
+        "reference_filter",
+        "reference_map"
+      ],
+      "after": [
+        "narrow_filter",
+        "reference_map"
+      ],
+      "admission_relation": "subset",
+      "preserve_common_labels": true,
+      "require_valid_outputs": true,
+      "require_complete_input": true
+    },
+    "map_paraphrase": {
+      "before": [
+        "reference_filter",
+        "reference_map"
+      ],
+      "after": [
+        "reference_filter",
+        "paraphrase_map"
+      ],
+      "admission_relation": "equal",
+      "preserve_common_labels": true,
+      "require_valid_outputs": true,
+      "require_complete_input": true
+    }
+  },
+  "jobs": [
+    {
+      "job": 0,
+      "replicate": 1,
+      "block": 0,
+      "cell": "repeat_filter",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 1,
+      "replicate": 1,
+      "block": 0,
+      "cell": "reference_filter",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 2,
+      "replicate": 1,
+      "block": 0,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 3,
+      "replicate": 1,
+      "block": 0,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 4,
+      "replicate": 1,
+      "block": 0,
+      "cell": "repeat_map",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 5,
+      "replicate": 1,
+      "block": 0,
+      "cell": "reference_map",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 6,
+      "replicate": 1,
+      "block": 0,
+      "cell": "narrow_filter",
+      "row_ids": [
+        41,
+        237,
+        109,
+        29,
+        179,
+        433,
+        93,
+        39,
+        412,
+        410
+      ]
+    },
+    {
+      "job": 7,
+      "replicate": 1,
+      "block": 1,
+      "cell": "reference_filter",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 8,
+      "replicate": 1,
+      "block": 1,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 9,
+      "replicate": 1,
+      "block": 1,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 10,
+      "replicate": 1,
+      "block": 1,
+      "cell": "repeat_map",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 11,
+      "replicate": 1,
+      "block": 1,
+      "cell": "reference_map",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 12,
+      "replicate": 1,
+      "block": 1,
+      "cell": "narrow_filter",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 13,
+      "replicate": 1,
+      "block": 1,
+      "cell": "repeat_filter",
+      "row_ids": [
+        408,
+        387,
+        50,
+        47,
+        363,
+        383,
+        128,
+        8,
+        122,
+        30
+      ]
+    },
+    {
+      "job": 14,
+      "replicate": 1,
+      "block": 2,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 15,
+      "replicate": 1,
+      "block": 2,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 16,
+      "replicate": 1,
+      "block": 2,
+      "cell": "repeat_map",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 17,
+      "replicate": 1,
+      "block": 2,
+      "cell": "reference_map",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 18,
+      "replicate": 1,
+      "block": 2,
+      "cell": "narrow_filter",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 19,
+      "replicate": 1,
+      "block": 2,
+      "cell": "repeat_filter",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 20,
+      "replicate": 1,
+      "block": 2,
+      "cell": "reference_filter",
+      "row_ids": [
+        266,
+        13,
+        54,
+        42,
+        296,
+        162,
+        221,
+        158,
+        340,
+        43
+      ]
+    },
+    {
+      "job": 21,
+      "replicate": 1,
+      "block": 3,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 22,
+      "replicate": 1,
+      "block": 3,
+      "cell": "repeat_map",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 23,
+      "replicate": 1,
+      "block": 3,
+      "cell": "reference_map",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 24,
+      "replicate": 1,
+      "block": 3,
+      "cell": "narrow_filter",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 25,
+      "replicate": 1,
+      "block": 3,
+      "cell": "repeat_filter",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 26,
+      "replicate": 1,
+      "block": 3,
+      "cell": "reference_filter",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 27,
+      "replicate": 1,
+      "block": 3,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        32,
+        251,
+        44,
+        21,
+        62,
+        209,
+        356,
+        366,
+        4,
+        425
+      ]
+    },
+    {
+      "job": 28,
+      "replicate": 1,
+      "block": 4,
+      "cell": "repeat_map",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 29,
+      "replicate": 1,
+      "block": 4,
+      "cell": "reference_map",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 30,
+      "replicate": 1,
+      "block": 4,
+      "cell": "narrow_filter",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 31,
+      "replicate": 1,
+      "block": 4,
+      "cell": "repeat_filter",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 32,
+      "replicate": 1,
+      "block": 4,
+      "cell": "reference_filter",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 33,
+      "replicate": 1,
+      "block": 4,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 34,
+      "replicate": 1,
+      "block": 4,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        149,
+        111,
+        219,
+        252,
+        2,
+        146,
+        459,
+        186,
+        26,
+        78
+      ]
+    },
+    {
+      "job": 35,
+      "replicate": 1,
+      "block": 5,
+      "cell": "reference_map",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 36,
+      "replicate": 1,
+      "block": 5,
+      "cell": "narrow_filter",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 37,
+      "replicate": 1,
+      "block": 5,
+      "cell": "repeat_filter",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 38,
+      "replicate": 1,
+      "block": 5,
+      "cell": "reference_filter",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 39,
+      "replicate": 1,
+      "block": 5,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 40,
+      "replicate": 1,
+      "block": 5,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 41,
+      "replicate": 1,
+      "block": 5,
+      "cell": "repeat_map",
+      "row_ids": [
+        23,
+        148,
+        270,
+        224,
+        87,
+        61,
+        150,
+        139,
+        336,
+        102
+      ]
+    },
+    {
+      "job": 42,
+      "replicate": 1,
+      "block": 6,
+      "cell": "narrow_filter",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 43,
+      "replicate": 1,
+      "block": 6,
+      "cell": "repeat_filter",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 44,
+      "replicate": 1,
+      "block": 6,
+      "cell": "reference_filter",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 45,
+      "replicate": 1,
+      "block": 6,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 46,
+      "replicate": 1,
+      "block": 6,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 47,
+      "replicate": 1,
+      "block": 6,
+      "cell": "repeat_map",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 48,
+      "replicate": 1,
+      "block": 6,
+      "cell": "reference_map",
+      "row_ids": [
+        359,
+        37,
+        168,
+        34,
+        207,
+        239,
+        345,
+        311,
+        164,
+        376
+      ]
+    },
+    {
+      "job": 49,
+      "replicate": 1,
+      "block": 7,
+      "cell": "repeat_filter",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 50,
+      "replicate": 1,
+      "block": 7,
+      "cell": "reference_filter",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 51,
+      "replicate": 1,
+      "block": 7,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 52,
+      "replicate": 1,
+      "block": 7,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 53,
+      "replicate": 1,
+      "block": 7,
+      "cell": "repeat_map",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 54,
+      "replicate": 1,
+      "block": 7,
+      "cell": "reference_map",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 55,
+      "replicate": 1,
+      "block": 7,
+      "cell": "narrow_filter",
+      "row_ids": [
+        405,
+        121,
+        382,
+        342,
+        472,
+        220,
+        223,
+        72,
+        204,
+        420
+      ]
+    },
+    {
+      "job": 56,
+      "replicate": 1,
+      "block": 8,
+      "cell": "reference_filter",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 57,
+      "replicate": 1,
+      "block": 8,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 58,
+      "replicate": 1,
+      "block": 8,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 59,
+      "replicate": 1,
+      "block": 8,
+      "cell": "repeat_map",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 60,
+      "replicate": 1,
+      "block": 8,
+      "cell": "reference_map",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 61,
+      "replicate": 1,
+      "block": 8,
+      "cell": "narrow_filter",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 62,
+      "replicate": 1,
+      "block": 8,
+      "cell": "repeat_filter",
+      "row_ids": [
+        283,
+        14,
+        236,
+        392,
+        180,
+        450,
+        143,
+        153,
+        409,
+        114
+      ]
+    },
+    {
+      "job": 63,
+      "replicate": 1,
+      "block": 9,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 64,
+      "replicate": 1,
+      "block": 9,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 65,
+      "replicate": 1,
+      "block": 9,
+      "cell": "repeat_map",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 66,
+      "replicate": 1,
+      "block": 9,
+      "cell": "reference_map",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 67,
+      "replicate": 1,
+      "block": 9,
+      "cell": "narrow_filter",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 68,
+      "replicate": 1,
+      "block": 9,
+      "cell": "repeat_filter",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 69,
+      "replicate": 1,
+      "block": 9,
+      "cell": "reference_filter",
+      "row_ids": [
+        467,
+        400,
+        441,
+        36,
+        98,
+        230,
+        290,
+        391,
+        398,
+        66
+      ]
+    },
+    {
+      "job": 70,
+      "replicate": 2,
+      "block": 0,
+      "cell": "reference_filter",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 71,
+      "replicate": 2,
+      "block": 0,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 72,
+      "replicate": 2,
+      "block": 0,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 73,
+      "replicate": 2,
+      "block": 0,
+      "cell": "repeat_map",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 74,
+      "replicate": 2,
+      "block": 0,
+      "cell": "reference_map",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 75,
+      "replicate": 2,
+      "block": 0,
+      "cell": "narrow_filter",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 76,
+      "replicate": 2,
+      "block": 0,
+      "cell": "repeat_filter",
+      "row_ids": [
+        207,
+        391,
+        128,
+        387,
+        412,
+        179,
+        209,
+        153,
+        78,
+        37
+      ]
+    },
+    {
+      "job": 77,
+      "replicate": 2,
+      "block": 1,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 78,
+      "replicate": 2,
+      "block": 1,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 79,
+      "replicate": 2,
+      "block": 1,
+      "cell": "repeat_map",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 80,
+      "replicate": 2,
+      "block": 1,
+      "cell": "reference_map",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 81,
+      "replicate": 2,
+      "block": 1,
+      "cell": "narrow_filter",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 82,
+      "replicate": 2,
+      "block": 1,
+      "cell": "repeat_filter",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 83,
+      "replicate": 2,
+      "block": 1,
+      "cell": "reference_filter",
+      "row_ids": [
+        359,
+        62,
+        139,
+        30,
+        50,
+        34,
+        251,
+        441,
+        236,
+        363
+      ]
+    },
+    {
+      "job": 84,
+      "replicate": 2,
+      "block": 2,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 85,
+      "replicate": 2,
+      "block": 2,
+      "cell": "repeat_map",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 86,
+      "replicate": 2,
+      "block": 2,
+      "cell": "reference_map",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 87,
+      "replicate": 2,
+      "block": 2,
+      "cell": "narrow_filter",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 88,
+      "replicate": 2,
+      "block": 2,
+      "cell": "repeat_filter",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 89,
+      "replicate": 2,
+      "block": 2,
+      "cell": "reference_filter",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 90,
+      "replicate": 2,
+      "block": 2,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        405,
+        87,
+        459,
+        296,
+        223,
+        219,
+        433,
+        42,
+        467,
+        408
+      ]
+    },
+    {
+      "job": 91,
+      "replicate": 2,
+      "block": 3,
+      "cell": "repeat_map",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 92,
+      "replicate": 2,
+      "block": 3,
+      "cell": "reference_map",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 93,
+      "replicate": 2,
+      "block": 3,
+      "cell": "narrow_filter",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 94,
+      "replicate": 2,
+      "block": 3,
+      "cell": "repeat_filter",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 95,
+      "replicate": 2,
+      "block": 3,
+      "cell": "reference_filter",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 96,
+      "replicate": 2,
+      "block": 3,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 97,
+      "replicate": 2,
+      "block": 3,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        382,
+        237,
+        32,
+        111,
+        54,
+        36,
+        44,
+        450,
+        14,
+        122
+      ]
+    },
+    {
+      "job": 98,
+      "replicate": 2,
+      "block": 4,
+      "cell": "reference_map",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 99,
+      "replicate": 2,
+      "block": 4,
+      "cell": "narrow_filter",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 100,
+      "replicate": 2,
+      "block": 4,
+      "cell": "repeat_filter",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 101,
+      "replicate": 2,
+      "block": 4,
+      "cell": "reference_filter",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 102,
+      "replicate": 2,
+      "block": 4,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 103,
+      "replicate": 2,
+      "block": 4,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 104,
+      "replicate": 2,
+      "block": 4,
+      "cell": "repeat_map",
+      "row_ids": [
+        220,
+        392,
+        224,
+        23,
+        8,
+        121,
+        230,
+        186,
+        168,
+        162
+      ]
+    },
+    {
+      "job": 105,
+      "replicate": 2,
+      "block": 5,
+      "cell": "narrow_filter",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 106,
+      "replicate": 2,
+      "block": 5,
+      "cell": "repeat_filter",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 107,
+      "replicate": 2,
+      "block": 5,
+      "cell": "reference_filter",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 108,
+      "replicate": 2,
+      "block": 5,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 109,
+      "replicate": 2,
+      "block": 5,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 110,
+      "replicate": 2,
+      "block": 5,
+      "cell": "repeat_map",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 111,
+      "replicate": 2,
+      "block": 5,
+      "cell": "reference_map",
+      "row_ids": [
+        472,
+        13,
+        72,
+        4,
+        109,
+        146,
+        425,
+        340,
+        102,
+        311
+      ]
+    },
+    {
+      "job": 112,
+      "replicate": 2,
+      "block": 6,
+      "cell": "repeat_filter",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 113,
+      "replicate": 2,
+      "block": 6,
+      "cell": "reference_filter",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 114,
+      "replicate": 2,
+      "block": 6,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 115,
+      "replicate": 2,
+      "block": 6,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 116,
+      "replicate": 2,
+      "block": 6,
+      "cell": "repeat_map",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 117,
+      "replicate": 2,
+      "block": 6,
+      "cell": "reference_map",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 118,
+      "replicate": 2,
+      "block": 6,
+      "cell": "narrow_filter",
+      "row_ids": [
+        158,
+        29,
+        150,
+        143,
+        39,
+        383,
+        2,
+        410,
+        270,
+        114
+      ]
+    },
+    {
+      "job": 119,
+      "replicate": 2,
+      "block": 7,
+      "cell": "reference_filter",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 120,
+      "replicate": 2,
+      "block": 7,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 121,
+      "replicate": 2,
+      "block": 7,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 122,
+      "replicate": 2,
+      "block": 7,
+      "cell": "repeat_map",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 123,
+      "replicate": 2,
+      "block": 7,
+      "cell": "reference_map",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 124,
+      "replicate": 2,
+      "block": 7,
+      "cell": "narrow_filter",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 125,
+      "replicate": 2,
+      "block": 7,
+      "cell": "repeat_filter",
+      "row_ids": [
+        283,
+        252,
+        66,
+        356,
+        366,
+        221,
+        400,
+        376,
+        345,
+        47
+      ]
+    },
+    {
+      "job": 126,
+      "replicate": 2,
+      "block": 8,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 127,
+      "replicate": 2,
+      "block": 8,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 128,
+      "replicate": 2,
+      "block": 8,
+      "cell": "repeat_map",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 129,
+      "replicate": 2,
+      "block": 8,
+      "cell": "reference_map",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 130,
+      "replicate": 2,
+      "block": 8,
+      "cell": "narrow_filter",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 131,
+      "replicate": 2,
+      "block": 8,
+      "cell": "repeat_filter",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 132,
+      "replicate": 2,
+      "block": 8,
+      "cell": "reference_filter",
+      "row_ids": [
+        26,
+        266,
+        149,
+        61,
+        420,
+        342,
+        164,
+        21,
+        43,
+        41
+      ]
+    },
+    {
+      "job": 133,
+      "replicate": 2,
+      "block": 9,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 134,
+      "replicate": 2,
+      "block": 9,
+      "cell": "repeat_map",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 135,
+      "replicate": 2,
+      "block": 9,
+      "cell": "reference_map",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 136,
+      "replicate": 2,
+      "block": 9,
+      "cell": "narrow_filter",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 137,
+      "replicate": 2,
+      "block": 9,
+      "cell": "repeat_filter",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 138,
+      "replicate": 2,
+      "block": 9,
+      "cell": "reference_filter",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 139,
+      "replicate": 2,
+      "block": 9,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        409,
+        204,
+        239,
+        93,
+        336,
+        290,
+        398,
+        180,
+        148,
+        98
+      ]
+    },
+    {
+      "job": 140,
+      "replicate": 3,
+      "block": 0,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 141,
+      "replicate": 3,
+      "block": 0,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 142,
+      "replicate": 3,
+      "block": 0,
+      "cell": "repeat_map",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 143,
+      "replicate": 3,
+      "block": 0,
+      "cell": "reference_map",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 144,
+      "replicate": 3,
+      "block": 0,
+      "cell": "narrow_filter",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 145,
+      "replicate": 3,
+      "block": 0,
+      "cell": "repeat_filter",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 146,
+      "replicate": 3,
+      "block": 0,
+      "cell": "reference_filter",
+      "row_ids": [
+        239,
+        219,
+        50,
+        121,
+        359,
+        296,
+        34,
+        26,
+        387,
+        251
+      ]
+    },
+    {
+      "job": 147,
+      "replicate": 3,
+      "block": 1,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 148,
+      "replicate": 3,
+      "block": 1,
+      "cell": "repeat_map",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 149,
+      "replicate": 3,
+      "block": 1,
+      "cell": "reference_map",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 150,
+      "replicate": 3,
+      "block": 1,
+      "cell": "narrow_filter",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 151,
+      "replicate": 3,
+      "block": 1,
+      "cell": "repeat_filter",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 152,
+      "replicate": 3,
+      "block": 1,
+      "cell": "reference_filter",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 153,
+      "replicate": 3,
+      "block": 1,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        8,
+        43,
+        21,
+        450,
+        149,
+        150,
+        62,
+        168,
+        410,
+        148
+      ]
+    },
+    {
+      "job": 154,
+      "replicate": 3,
+      "block": 2,
+      "cell": "repeat_map",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 155,
+      "replicate": 3,
+      "block": 2,
+      "cell": "reference_map",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 156,
+      "replicate": 3,
+      "block": 2,
+      "cell": "narrow_filter",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 157,
+      "replicate": 3,
+      "block": 2,
+      "cell": "repeat_filter",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 158,
+      "replicate": 3,
+      "block": 2,
+      "cell": "reference_filter",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 159,
+      "replicate": 3,
+      "block": 2,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 160,
+      "replicate": 3,
+      "block": 2,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        54,
+        204,
+        356,
+        412,
+        467,
+        221,
+        345,
+        14,
+        102,
+        128
+      ]
+    },
+    {
+      "job": 161,
+      "replicate": 3,
+      "block": 3,
+      "cell": "reference_map",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 162,
+      "replicate": 3,
+      "block": 3,
+      "cell": "narrow_filter",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 163,
+      "replicate": 3,
+      "block": 3,
+      "cell": "repeat_filter",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 164,
+      "replicate": 3,
+      "block": 3,
+      "cell": "reference_filter",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 165,
+      "replicate": 3,
+      "block": 3,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 166,
+      "replicate": 3,
+      "block": 3,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 167,
+      "replicate": 3,
+      "block": 3,
+      "cell": "repeat_map",
+      "row_ids": [
+        162,
+        36,
+        376,
+        283,
+        209,
+        30,
+        72,
+        433,
+        405,
+        266
+      ]
+    },
+    {
+      "job": 168,
+      "replicate": 3,
+      "block": 4,
+      "cell": "narrow_filter",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 169,
+      "replicate": 3,
+      "block": 4,
+      "cell": "repeat_filter",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 170,
+      "replicate": 3,
+      "block": 4,
+      "cell": "reference_filter",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 171,
+      "replicate": 3,
+      "block": 4,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 172,
+      "replicate": 3,
+      "block": 4,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 173,
+      "replicate": 3,
+      "block": 4,
+      "cell": "repeat_map",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 174,
+      "replicate": 3,
+      "block": 4,
+      "cell": "reference_map",
+      "row_ids": [
+        363,
+        391,
+        398,
+        366,
+        236,
+        237,
+        290,
+        340,
+        61,
+        29
+      ]
+    },
+    {
+      "job": 175,
+      "replicate": 3,
+      "block": 5,
+      "cell": "repeat_filter",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 176,
+      "replicate": 3,
+      "block": 5,
+      "cell": "reference_filter",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 177,
+      "replicate": 3,
+      "block": 5,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 178,
+      "replicate": 3,
+      "block": 5,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 179,
+      "replicate": 3,
+      "block": 5,
+      "cell": "repeat_map",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 180,
+      "replicate": 3,
+      "block": 5,
+      "cell": "reference_map",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 181,
+      "replicate": 3,
+      "block": 5,
+      "cell": "narrow_filter",
+      "row_ids": [
+        4,
+        111,
+        230,
+        179,
+        459,
+        408,
+        383,
+        342,
+        270,
+        23
+      ]
+    },
+    {
+      "job": 182,
+      "replicate": 3,
+      "block": 6,
+      "cell": "reference_filter",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 183,
+      "replicate": 3,
+      "block": 6,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 184,
+      "replicate": 3,
+      "block": 6,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 185,
+      "replicate": 3,
+      "block": 6,
+      "cell": "repeat_map",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 186,
+      "replicate": 3,
+      "block": 6,
+      "cell": "reference_map",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 187,
+      "replicate": 3,
+      "block": 6,
+      "cell": "narrow_filter",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 188,
+      "replicate": 3,
+      "block": 6,
+      "cell": "repeat_filter",
+      "row_ids": [
+        98,
+        164,
+        220,
+        42,
+        392,
+        207,
+        146,
+        78,
+        44,
+        66
+      ]
+    },
+    {
+      "job": 189,
+      "replicate": 3,
+      "block": 7,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 190,
+      "replicate": 3,
+      "block": 7,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 191,
+      "replicate": 3,
+      "block": 7,
+      "cell": "repeat_map",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 192,
+      "replicate": 3,
+      "block": 7,
+      "cell": "reference_map",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 193,
+      "replicate": 3,
+      "block": 7,
+      "cell": "narrow_filter",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 194,
+      "replicate": 3,
+      "block": 7,
+      "cell": "repeat_filter",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 195,
+      "replicate": 3,
+      "block": 7,
+      "cell": "reference_filter",
+      "row_ids": [
+        252,
+        41,
+        153,
+        37,
+        180,
+        472,
+        139,
+        224,
+        122,
+        47
+      ]
+    },
+    {
+      "job": 196,
+      "replicate": 3,
+      "block": 8,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 197,
+      "replicate": 3,
+      "block": 8,
+      "cell": "repeat_map",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 198,
+      "replicate": 3,
+      "block": 8,
+      "cell": "reference_map",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 199,
+      "replicate": 3,
+      "block": 8,
+      "cell": "narrow_filter",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 200,
+      "replicate": 3,
+      "block": 8,
+      "cell": "repeat_filter",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 201,
+      "replicate": 3,
+      "block": 8,
+      "cell": "reference_filter",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 202,
+      "replicate": 3,
+      "block": 8,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        158,
+        39,
+        87,
+        382,
+        425,
+        409,
+        311,
+        400,
+        223,
+        32
+      ]
+    },
+    {
+      "job": 203,
+      "replicate": 3,
+      "block": 9,
+      "cell": "repeat_map",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 204,
+      "replicate": 3,
+      "block": 9,
+      "cell": "reference_map",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 205,
+      "replicate": 3,
+      "block": 9,
+      "cell": "narrow_filter",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 206,
+      "replicate": 3,
+      "block": 9,
+      "cell": "repeat_filter",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 207,
+      "replicate": 3,
+      "block": 9,
+      "cell": "reference_filter",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 208,
+      "replicate": 3,
+      "block": 9,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 209,
+      "replicate": 3,
+      "block": 9,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        420,
+        441,
+        2,
+        109,
+        13,
+        93,
+        114,
+        143,
+        186,
+        336
+      ]
+    },
+    {
+      "job": 210,
+      "replicate": 4,
+      "block": 0,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 211,
+      "replicate": 4,
+      "block": 0,
+      "cell": "repeat_map",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 212,
+      "replicate": 4,
+      "block": 0,
+      "cell": "reference_map",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 213,
+      "replicate": 4,
+      "block": 0,
+      "cell": "narrow_filter",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 214,
+      "replicate": 4,
+      "block": 0,
+      "cell": "repeat_filter",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 215,
+      "replicate": 4,
+      "block": 0,
+      "cell": "reference_filter",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 216,
+      "replicate": 4,
+      "block": 0,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        342,
+        30,
+        50,
+        34,
+        72,
+        43,
+        409,
+        98,
+        36,
+        21
+      ]
+    },
+    {
+      "job": 217,
+      "replicate": 4,
+      "block": 1,
+      "cell": "repeat_map",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 218,
+      "replicate": 4,
+      "block": 1,
+      "cell": "reference_map",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 219,
+      "replicate": 4,
+      "block": 1,
+      "cell": "narrow_filter",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 220,
+      "replicate": 4,
+      "block": 1,
+      "cell": "repeat_filter",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 221,
+      "replicate": 4,
+      "block": 1,
+      "cell": "reference_filter",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 222,
+      "replicate": 4,
+      "block": 1,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 223,
+      "replicate": 4,
+      "block": 1,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        441,
+        223,
+        146,
+        149,
+        128,
+        148,
+        400,
+        237,
+        4,
+        32
+      ]
+    },
+    {
+      "job": 224,
+      "replicate": 4,
+      "block": 2,
+      "cell": "reference_map",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 225,
+      "replicate": 4,
+      "block": 2,
+      "cell": "narrow_filter",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 226,
+      "replicate": 4,
+      "block": 2,
+      "cell": "repeat_filter",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 227,
+      "replicate": 4,
+      "block": 2,
+      "cell": "reference_filter",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 228,
+      "replicate": 4,
+      "block": 2,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 229,
+      "replicate": 4,
+      "block": 2,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 230,
+      "replicate": 4,
+      "block": 2,
+      "cell": "repeat_map",
+      "row_ids": [
+        66,
+        109,
+        266,
+        209,
+        472,
+        450,
+        150,
+        363,
+        39,
+        221
+      ]
+    },
+    {
+      "job": 231,
+      "replicate": 4,
+      "block": 3,
+      "cell": "narrow_filter",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 232,
+      "replicate": 4,
+      "block": 3,
+      "cell": "repeat_filter",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 233,
+      "replicate": 4,
+      "block": 3,
+      "cell": "reference_filter",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 234,
+      "replicate": 4,
+      "block": 3,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 235,
+      "replicate": 4,
+      "block": 3,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 236,
+      "replicate": 4,
+      "block": 3,
+      "cell": "repeat_map",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 237,
+      "replicate": 4,
+      "block": 3,
+      "cell": "reference_map",
+      "row_ids": [
+        311,
+        412,
+        78,
+        179,
+        420,
+        467,
+        433,
+        61,
+        62,
+        14
+      ]
+    },
+    {
+      "job": 238,
+      "replicate": 4,
+      "block": 4,
+      "cell": "repeat_filter",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 239,
+      "replicate": 4,
+      "block": 4,
+      "cell": "reference_filter",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 240,
+      "replicate": 4,
+      "block": 4,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 241,
+      "replicate": 4,
+      "block": 4,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 242,
+      "replicate": 4,
+      "block": 4,
+      "cell": "repeat_map",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 243,
+      "replicate": 4,
+      "block": 4,
+      "cell": "reference_map",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 244,
+      "replicate": 4,
+      "block": 4,
+      "cell": "narrow_filter",
+      "row_ids": [
+        207,
+        143,
+        359,
+        239,
+        356,
+        122,
+        366,
+        251,
+        391,
+        408
+      ]
+    },
+    {
+      "job": 245,
+      "replicate": 4,
+      "block": 5,
+      "cell": "reference_filter",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 246,
+      "replicate": 4,
+      "block": 5,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 247,
+      "replicate": 4,
+      "block": 5,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 248,
+      "replicate": 4,
+      "block": 5,
+      "cell": "repeat_map",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 249,
+      "replicate": 4,
+      "block": 5,
+      "cell": "reference_map",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 250,
+      "replicate": 4,
+      "block": 5,
+      "cell": "narrow_filter",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 251,
+      "replicate": 4,
+      "block": 5,
+      "cell": "repeat_filter",
+      "row_ids": [
+        54,
+        26,
+        336,
+        8,
+        340,
+        398,
+        41,
+        162,
+        405,
+        87
+      ]
+    },
+    {
+      "job": 252,
+      "replicate": 4,
+      "block": 6,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 253,
+      "replicate": 4,
+      "block": 6,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 254,
+      "replicate": 4,
+      "block": 6,
+      "cell": "repeat_map",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 255,
+      "replicate": 4,
+      "block": 6,
+      "cell": "reference_map",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 256,
+      "replicate": 4,
+      "block": 6,
+      "cell": "narrow_filter",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 257,
+      "replicate": 4,
+      "block": 6,
+      "cell": "repeat_filter",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 258,
+      "replicate": 4,
+      "block": 6,
+      "cell": "reference_filter",
+      "row_ids": [
+        29,
+        410,
+        459,
+        153,
+        219,
+        204,
+        252,
+        180,
+        220,
+        23
+      ]
+    },
+    {
+      "job": 259,
+      "replicate": 4,
+      "block": 7,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 260,
+      "replicate": 4,
+      "block": 7,
+      "cell": "repeat_map",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 261,
+      "replicate": 4,
+      "block": 7,
+      "cell": "reference_map",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 262,
+      "replicate": 4,
+      "block": 7,
+      "cell": "narrow_filter",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 263,
+      "replicate": 4,
+      "block": 7,
+      "cell": "repeat_filter",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 264,
+      "replicate": 4,
+      "block": 7,
+      "cell": "reference_filter",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 265,
+      "replicate": 4,
+      "block": 7,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        224,
+        121,
+        44,
+        93,
+        296,
+        164,
+        283,
+        230,
+        392,
+        139
+      ]
+    },
+    {
+      "job": 266,
+      "replicate": 4,
+      "block": 8,
+      "cell": "repeat_map",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 267,
+      "replicate": 4,
+      "block": 8,
+      "cell": "reference_map",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 268,
+      "replicate": 4,
+      "block": 8,
+      "cell": "narrow_filter",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 269,
+      "replicate": 4,
+      "block": 8,
+      "cell": "repeat_filter",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 270,
+      "replicate": 4,
+      "block": 8,
+      "cell": "reference_filter",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 271,
+      "replicate": 4,
+      "block": 8,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 272,
+      "replicate": 4,
+      "block": 8,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        186,
+        290,
+        37,
+        383,
+        2,
+        425,
+        158,
+        387,
+        114,
+        236
+      ]
+    },
+    {
+      "job": 273,
+      "replicate": 4,
+      "block": 9,
+      "cell": "reference_map",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    },
+    {
+      "job": 274,
+      "replicate": 4,
+      "block": 9,
+      "cell": "narrow_filter",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    },
+    {
+      "job": 275,
+      "replicate": 4,
+      "block": 9,
+      "cell": "repeat_filter",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    },
+    {
+      "job": 276,
+      "replicate": 4,
+      "block": 9,
+      "cell": "reference_filter",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    },
+    {
+      "job": 277,
+      "replicate": 4,
+      "block": 9,
+      "cell": "paraphrase_filter",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    },
+    {
+      "job": 278,
+      "replicate": 4,
+      "block": 9,
+      "cell": "paraphrase_map",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    },
+    {
+      "job": 279,
+      "replicate": 4,
+      "block": 9,
+      "cell": "repeat_map",
+      "row_ids": [
+        111,
+        345,
+        168,
+        382,
+        42,
+        47,
+        376,
+        13,
+        270,
+        102
+      ]
+    }
+  ],
+  "analysis": {
+    "baselines": [
+      "conditional_rate",
+      "counts_and_coverage",
+      "common_row_paired_counts",
+      "direct_record_assertions"
+    ],
+    "primary_outcomes": [
+      "per-requirement status and exception IDs",
+      "agreement with direct assertions",
+      "admission and common-label changes per replicate",
+      "invalid and unassessed rows"
+    ],
+    "validity": "Use the original strict Answer: True/False parser. Determine assessability separately for each revision, using its required cells; unrelated cells cannot exclude rows. Report format-invalid responses, unassessed rows and observed-cohort versus full-input verdicts separately. Never recode an invalid answer as False.",
+    "inference": "Descriptive per-replicate results for all four revisions. No pooled independence assumption, significance tests, equivalence claim, or detection-accuracy score. Identical-prompt repeats contextualize variation; they do not establish a causal noise correction.",
+    "interpretation": "Contracts state intended relationships, not proven semantic equivalence. Direct assertions have the same information and requirements, so better detection is not assumed. Filter-only revisions share reference map answers; map-only revisions share reference filter answers. Preservation of those shared components is by construction. All-row masks are derived views, not composed-pipeline executions.",
+    "change_policy": "No tuning after new outputs are inspected. Changed prompts, requirements, rows, parser, settings or analysis create a separately identified amended protocol. Any pilot must use a separate plan and remain excluded from this evaluation."
+  },
+  "execution": {
+    "implemented": false,
+    "note": "This tool prepares and verifies the protocol only. A runner must bind native prompts, installed framework sources, checkpoints, request logs and this plan before any execution. No paid execution command is supplied."
+  },
+  "estimate": {
+    "row_calls": 2800,
+    "operator_blocks": 280,
+    "approx_input_tokens": 3158400,
+    "output_token_allowance": 44800,
+    "minimum_delay_minutes": 55.8,
+    "note": "Characters/4 plus 128 prompt tokens per row; heuristic, not a spending cap or runtime prediction. Retries and latency are additional. No dollar prices assumed."
+  }
+}

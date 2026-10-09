@@ -1,0 +1,1004 @@
+{
+  "folder": "C:\\Users\\vans\\OneDrive\\OperatorBench\\results\\matched_control\\n500_r4_s20261007",
+  "complete_blocks": 800,
+  "recorded_requests": 8000,
+  "valid_answers": 7911,
+  "invalid_answer_count": 89,
+  "invalid_response_counts": {
+    "Answer: False.": 89
+  },
+  "invalid_answers": [
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 168,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 198,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 188,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 94,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 117,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 446,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 365,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 285,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 272,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 413,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 344,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 206,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 492,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 152,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 310,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 196,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 107,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 418,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 55,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 275,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 1,
+      "cell": "primary_map",
+      "row_id": 421,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 421,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 198,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 188,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 206,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 94,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 446,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 418,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 457,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 55,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 413,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 152,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 365,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 205,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 378,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 275,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 168,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 492,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 437,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 196,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 310,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 2,
+      "cell": "primary_map",
+      "row_id": 117,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 206,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 437,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 446,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 310,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 418,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 150,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 255,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 263,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 55,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 196,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 188,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 107,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 168,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 275,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 344,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 117,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 272,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 152,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 205,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 94,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 3,
+      "cell": "primary_map",
+      "row_id": 492,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 365,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 188,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 117,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 446,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 310,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 94,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 378,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 275,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 205,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 449,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 492,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 152,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 105,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 107,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 206,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 222,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 55,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 421,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 413,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 168,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 437,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 353,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 272,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 457,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 196,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    },
+    {
+      "replicate": 4,
+      "cell": "primary_map",
+      "row_id": 146,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False."
+    }
+  ],
+  "integrity_issues": [],
+  "summary_recomputed_identically": true,
+  "prompt_tokens": 8223120,
+  "completion_tokens": 24089,
+  "estimated_token_charge_usd_at_oct7_prices": 1.24792,
+  "elapsed_hours": 10.511,
+  "attempts": {
+    "1": 800
+  },
+  "extra_attempt_archives": [],
+  "plan_sha256": "68993b02eb0f3a3577c931412f6fefc349dc7442fa72606961e460cc8032ff8e",
+  "replicates": [
+    {
+      "replicate": 1,
+      "cells": {
+        "about_filter": {
+          "true": 155,
+          "invalid": 0
+        },
+        "about_map": {
+          "true": 158,
+          "invalid": 0
+        },
+        "primary_filter": {
+          "true": 100,
+          "invalid": 0
+        },
+        "primary_map": {
+          "true": 114,
+          "invalid": 21
+        }
+      },
+      "contrasts": {
+        "operator_about": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 2,
+          "right_true_only": 5,
+          "difference_rate": 0.014,
+          "right_minus_left_pp": 0.6,
+          "holm_p": 0.875
+        },
+        "operator_primary": {
+          "n_valid_pairs": 479,
+          "n_excluded_invalid": 21,
+          "left_true_only": 2,
+          "right_true_only": 16,
+          "difference_rate": 0.037578288100208766,
+          "right_minus_left_pp": 2.922755741127349,
+          "holm_p": 0.010498046875
+        },
+        "criterion_filter": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 55,
+          "right_true_only": 0,
+          "difference_rate": 0.11,
+          "right_minus_left_pp": -11.0,
+          "holm_p": 8.881784197001252e-16
+        },
+        "criterion_map": {
+          "n_valid_pairs": 479,
+          "n_excluded_invalid": 21,
+          "left_true_only": 43,
+          "right_true_only": 0,
+          "difference_rate": 0.08977035490605428,
+          "right_minus_left_pp": -8.977035490605427,
+          "holm_p": 2.0463630789890885e-12
+        }
+      }
+    },
+    {
+      "replicate": 2,
+      "cells": {
+        "about_filter": {
+          "true": 154,
+          "invalid": 0
+        },
+        "about_map": {
+          "true": 158,
+          "invalid": 0
+        },
+        "primary_filter": {
+          "true": 100,
+          "invalid": 0
+        },
+        "primary_map": {
+          "true": 113,
+          "invalid": 21
+        }
+      },
+      "contrasts": {
+        "operator_about": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 1,
+          "right_true_only": 5,
+          "difference_rate": 0.012,
+          "right_minus_left_pp": 0.8,
+          "holm_p": 0.875
+        },
+        "operator_primary": {
+          "n_valid_pairs": 479,
+          "n_excluded_invalid": 21,
+          "left_true_only": 2,
+          "right_true_only": 15,
+          "difference_rate": 0.03549060542797495,
+          "right_minus_left_pp": 2.7139874739039667,
+          "holm_p": 0.016448974609375
+        },
+        "criterion_filter": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 54,
+          "right_true_only": 0,
+          "difference_rate": 0.108,
+          "right_minus_left_pp": -10.8,
+          "holm_p": 1.5543122344752192e-15
+        },
+        "criterion_map": {
+          "n_valid_pairs": 479,
+          "n_excluded_invalid": 21,
+          "left_true_only": 44,
+          "right_true_only": 0,
+          "difference_rate": 0.0918580375782881,
+          "right_minus_left_pp": -9.18580375782881,
+          "holm_p": 1.2505552149377763e-12
+        }
+      }
+    },
+    {
+      "replicate": 3,
+      "cells": {
+        "about_filter": {
+          "true": 154,
+          "invalid": 0
+        },
+        "about_map": {
+          "true": 158,
+          "invalid": 0
+        },
+        "primary_filter": {
+          "true": 102,
+          "invalid": 0
+        },
+        "primary_map": {
+          "true": 113,
+          "invalid": 21
+        }
+      },
+      "contrasts": {
+        "operator_about": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 1,
+          "right_true_only": 5,
+          "difference_rate": 0.012,
+          "right_minus_left_pp": 0.8,
+          "holm_p": 0.875
+        },
+        "operator_primary": {
+          "n_valid_pairs": 479,
+          "n_excluded_invalid": 21,
+          "left_true_only": 1,
+          "right_true_only": 12,
+          "difference_rate": 0.027139874739039668,
+          "right_minus_left_pp": 2.2964509394572024,
+          "holm_p": 0.0205078125
+        },
+        "criterion_filter": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 52,
+          "right_true_only": 0,
+          "difference_rate": 0.104,
+          "right_minus_left_pp": -10.4,
+          "holm_p": 5.773159728050814e-15
+        },
+        "criterion_map": {
+          "n_valid_pairs": 479,
+          "n_excluded_invalid": 21,
+          "left_true_only": 44,
+          "right_true_only": 0,
+          "difference_rate": 0.0918580375782881,
+          "right_minus_left_pp": -9.18580375782881,
+          "holm_p": 1.2505552149377763e-12
+        }
+      }
+    },
+    {
+      "replicate": 4,
+      "cells": {
+        "about_filter": {
+          "true": 155,
+          "invalid": 0
+        },
+        "about_map": {
+          "true": 158,
+          "invalid": 0
+        },
+        "primary_filter": {
+          "true": 100,
+          "invalid": 0
+        },
+        "primary_map": {
+          "true": 112,
+          "invalid": 26
+        }
+      },
+      "contrasts": {
+        "operator_about": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 1,
+          "right_true_only": 4,
+          "difference_rate": 0.01,
+          "right_minus_left_pp": 0.6,
+          "holm_p": 0.875
+        },
+        "operator_primary": {
+          "n_valid_pairs": 474,
+          "n_excluded_invalid": 26,
+          "left_true_only": 2,
+          "right_true_only": 14,
+          "difference_rate": 0.03375527426160337,
+          "right_minus_left_pp": 2.5316455696202533,
+          "holm_p": 0.020904541015625
+        },
+        "criterion_filter": {
+          "n_valid_pairs": 500,
+          "n_excluded_invalid": 0,
+          "left_true_only": 55,
+          "right_true_only": 0,
+          "difference_rate": 0.11,
+          "right_minus_left_pp": -11.0,
+          "holm_p": 8.881784197001252e-16
+        },
+        "criterion_map": {
+          "n_valid_pairs": 474,
+          "n_excluded_invalid": 26,
+          "left_true_only": 45,
+          "right_true_only": 0,
+          "difference_rate": 0.0949367088607595,
+          "right_minus_left_pp": -9.49367088607595,
+          "holm_p": 6.821210263296962e-13
+        }
+      }
+    }
+  ],
+  "repeatability": {
+    "about_filter": {
+      "valid_all_replicates": 500,
+      "flipping_count": 2,
+      "flip_rate": 0.004
+    },
+    "about_map": {
+      "valid_all_replicates": 500,
+      "flipping_count": 0,
+      "flip_rate": 0.0
+    },
+    "primary_filter": {
+      "valid_all_replicates": 500,
+      "flipping_count": 5,
+      "flip_rate": 0.01
+    },
+    "primary_map": {
+      "valid_all_replicates": 467,
+      "flipping_count": 5,
+      "flip_rate": 0.010706638115631691
+    }
+  },
+  "interpretation_scope": "operator access and native prompt construction; not a system-message-only effect",
+  "lm_kwargs_observed": {
+    "temperature": 0.0,
+    "max_completion_tokens": 16
+  },
+  "lm_kwargs_identical_all_blocks": true,
+  "total_block_execution_minutes": 19.49,
+  "largest_gap_between_blocks_minutes": 450.54,
+  "audit_note": "LOTUS 1.2.4 stores max_tokens under max_completion_tokens in lm.kwargs; checked against its archived source hash."
+}

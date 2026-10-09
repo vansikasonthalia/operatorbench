@@ -1,0 +1,47 @@
+{
+  "canonical_row_set": "contradicts in every frozen replicate (persistence set)",
+  "n_canonical": 36,
+  "coincides_with_replicates": [
+    1,
+    3
+  ],
+  "coded_in_set": 35,
+  "coverage": 0.9722,
+  "uncoded_in_set": [
+    117
+  ],
+  "excluded_on_sheet_not_in_any_replicate": [
+    86
+  ],
+  "excluded_not_persistent": [
+    75,
+    215
+  ],
+  "union_ever_contradicts": 38,
+  "tally": {
+    "GENUINE": 1,
+    "AMBIGUOUS": 15,
+    "FILTER-WRONG": 19
+  },
+  "cross_tab": {
+    "A1xB1": 1,
+    "A1xB2": 9,
+    "A1xB3": 2,
+    "A2xB1": 4,
+    "A2xB2": 16,
+    "A2xB3": 3
+  },
+  "cross_tab_n": 35,
+  "codebook_disagreements": 0,
+  "gate": {
+    "threshold": 18,
+    "observed_genuine": 1,
+    "ceiling": 2,
+    "determinate": true,
+    "outcome": "FAILS"
+  },
+  "genuine_rows": [
+    305
+  ],
+  "consistent": true
+}

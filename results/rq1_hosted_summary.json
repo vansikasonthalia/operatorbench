@@ -1,0 +1,550 @@
+{
+  "reviews": {
+    "domain": "reviews",
+    "backend": "hosted",
+    "model": "gpt-4o-mini",
+    "n_replicates": 5,
+    "n_rows": 500,
+    "filter_consistency": {
+      "n_runs": 5,
+      "n_rows": 500,
+      "n_stable": 496,
+      "n_flipped": 4,
+      "stability_rate": 0.992,
+      "flip_rate": 0.008,
+      "ci_lower": 0.0031,
+      "ci_upper": 0.0204,
+      "flip_details": [
+        {
+          "row_id": 72,
+          "labels": [
+            "True",
+            "True",
+            "False",
+            "True",
+            "False"
+          ]
+        },
+        {
+          "row_id": 93,
+          "labels": [
+            "False",
+            "False",
+            "True",
+            "True",
+            "True"
+          ]
+        },
+        {
+          "row_id": 150,
+          "labels": [
+            "True",
+            "True",
+            "False",
+            "False",
+            "True"
+          ]
+        },
+        {
+          "row_id": 353,
+          "labels": [
+            "True",
+            "False",
+            "True",
+            "True",
+            "True"
+          ]
+        }
+      ]
+    },
+    "map_consistency": {
+      "n_runs": 5,
+      "n_rows": 500,
+      "n_stable": 493,
+      "n_flipped": 7,
+      "stability_rate": 0.986,
+      "flip_rate": 0.014,
+      "ci_lower": 0.0068,
+      "ci_upper": 0.0286,
+      "flip_details": [
+        {
+          "row_id": 72,
+          "labels": [
+            "positive",
+            "positive",
+            "neutral",
+            "positive",
+            "positive"
+          ]
+        },
+        {
+          "row_id": 78,
+          "labels": [
+            "positive",
+            "neutral",
+            "positive",
+            "neutral",
+            "neutral"
+          ]
+        },
+        {
+          "row_id": 259,
+          "labels": [
+            "negative",
+            "mixed",
+            "mixed",
+            "mixed",
+            "mixed"
+          ]
+        },
+        {
+          "row_id": 316,
+          "labels": [
+            "positive",
+            "positive",
+            "positive",
+            "mixed",
+            "positive"
+          ]
+        },
+        {
+          "row_id": 353,
+          "labels": [
+            "neutral",
+            "neutral",
+            "neutral",
+            "mixed",
+            "neutral"
+          ]
+        },
+        {
+          "row_id": 397,
+          "labels": [
+            "mixed",
+            "positive",
+            "mixed",
+            "mixed",
+            "mixed"
+          ]
+        },
+        {
+          "row_id": 494,
+          "labels": [
+            "neutral",
+            "mixed",
+            "neutral",
+            "mixed",
+            "mixed"
+          ]
+        }
+      ]
+    },
+    "pipeline_consistency": {
+      "n_runs": 5,
+      "n_rows": 268,
+      "n_stable": 264,
+      "n_flipped": 4,
+      "stability_rate": 0.9851,
+      "flip_rate": 0.0149,
+      "ci_lower": 0.0058,
+      "ci_upper": 0.0377,
+      "flip_details": [
+        {
+          "row_id": 78,
+          "labels": [
+            "positive",
+            "neutral",
+            "positive",
+            "neutral",
+            "neutral"
+          ]
+        },
+        {
+          "row_id": 259,
+          "labels": [
+            "negative",
+            "mixed",
+            "mixed",
+            "mixed",
+            "mixed"
+          ]
+        },
+        {
+          "row_id": 397,
+          "labels": [
+            "mixed",
+            "positive",
+            "mixed",
+            "mixed",
+            "mixed"
+          ]
+        },
+        {
+          "row_id": 494,
+          "labels": [
+            "neutral",
+            "mixed",
+            "neutral",
+            "mixed",
+            "mixed"
+          ]
+        }
+      ]
+    },
+    "filter_pass_counts_per_replicate": [
+      271,
+      270,
+      270,
+      271,
+      271
+    ],
+    "filter_pass_count_range": [
+      270,
+      271
+    ],
+    "n_always_passed": 268,
+    "map_label_distributions": [
+      {
+        "negative": 245,
+        "positive": 227,
+        "neutral": 22,
+        "mixed": 6
+      },
+      {
+        "negative": 244,
+        "positive": 227,
+        "neutral": 22,
+        "mixed": 7
+      },
+      {
+        "negative": 244,
+        "positive": 226,
+        "neutral": 23,
+        "mixed": 7
+      },
+      {
+        "negative": 244,
+        "positive": 225,
+        "neutral": 21,
+        "mixed": 10
+      },
+      {
+        "negative": 244,
+        "positive": 226,
+        "neutral": 22,
+        "mixed": 8
+      }
+    ],
+    "schema_violations_per_replicate": [
+      {
+        "n_violations": 6,
+        "rate": 0.012
+      },
+      {
+        "n_violations": 7,
+        "rate": 0.014
+      },
+      {
+        "n_violations": 7,
+        "rate": 0.014
+      },
+      {
+        "n_violations": 10,
+        "rate": 0.02
+      },
+      {
+        "n_violations": 8,
+        "rate": 0.016
+      }
+    ]
+  },
+  "abstracts": {
+    "domain": "abstracts",
+    "backend": "hosted",
+    "model": "gpt-4o-mini",
+    "n_replicates": 5,
+    "n_rows": 500,
+    "filter_consistency": {
+      "n_runs": 5,
+      "n_rows": 500,
+      "n_stable": 499,
+      "n_flipped": 1,
+      "stability_rate": 0.998,
+      "flip_rate": 0.002,
+      "ci_lower": 0.0004,
+      "ci_upper": 0.0112,
+      "flip_details": [
+        {
+          "row_id": 215,
+          "labels": [
+            "False",
+            "True",
+            "True",
+            "False",
+            "False"
+          ]
+        }
+      ]
+    },
+    "map_consistency": {
+      "n_runs": 5,
+      "n_rows": 500,
+      "n_stable": 485,
+      "n_flipped": 15,
+      "stability_rate": 0.97,
+      "flip_rate": 0.03,
+      "ci_lower": 0.0183,
+      "ci_upper": 0.0489,
+      "flip_details": [
+        {
+          "row_id": 11,
+          "labels": [
+            "theory",
+            "other",
+            "other",
+            "theory",
+            "theory"
+          ]
+        },
+        {
+          "row_id": 15,
+          "labels": [
+            "theory",
+            "theory",
+            "other",
+            "theory",
+            "theory"
+          ]
+        },
+        {
+          "row_id": 16,
+          "labels": [
+            "other",
+            "theory",
+            "other",
+            "other",
+            "other"
+          ]
+        },
+        {
+          "row_id": 140,
+          "labels": [
+            "ML",
+            "ML",
+            "theory",
+            "theory",
+            "theory"
+          ]
+        },
+        {
+          "row_id": 175,
+          "labels": [
+            "systems",
+            "systems",
+            "systems",
+            "systems",
+            "other"
+          ]
+        },
+        {
+          "row_id": 185,
+          "labels": [
+            "other",
+            "other",
+            "other",
+            "theory",
+            "other"
+          ]
+        },
+        {
+          "row_id": 205,
+          "labels": [
+            "systems",
+            "theory",
+            "systems",
+            "systems",
+            "systems"
+          ]
+        },
+        {
+          "row_id": 221,
+          "labels": [
+            "theory",
+            "ML",
+            "ML",
+            "theory",
+            "theory"
+          ]
+        },
+        {
+          "row_id": 223,
+          "labels": [
+            "other",
+            "systems",
+            "systems",
+            "other",
+            "other"
+          ]
+        },
+        {
+          "row_id": 229,
+          "labels": [
+            "theory",
+            "theory",
+            "theory",
+            "theory",
+            "other"
+          ]
+        },
+        {
+          "row_id": 265,
+          "labels": [
+            "other",
+            "other",
+            "other",
+            "other",
+            "theory"
+          ]
+        },
+        {
+          "row_id": 348,
+          "labels": [
+            "other",
+            "other",
+            "theory",
+            "theory",
+            "other"
+          ]
+        },
+        {
+          "row_id": 419,
+          "labels": [
+            "systems",
+            "theory",
+            "theory",
+            "systems",
+            "systems"
+          ]
+        },
+        {
+          "row_id": 451,
+          "labels": [
+            "other",
+            "other",
+            "other",
+            "theory",
+            "other"
+          ]
+        },
+        {
+          "row_id": 465,
+          "labels": [
+            "other",
+            "ML",
+            "other",
+            "other",
+            "other"
+          ]
+        }
+      ]
+    },
+    "pipeline_consistency": {
+      "n_runs": 5,
+      "n_rows": 154,
+      "n_stable": 152,
+      "n_flipped": 2,
+      "stability_rate": 0.987,
+      "flip_rate": 0.013,
+      "ci_lower": 0.0036,
+      "ci_upper": 0.0461,
+      "flip_details": [
+        {
+          "row_id": 140,
+          "labels": [
+            "ML",
+            "ML",
+            "theory",
+            "theory",
+            "theory"
+          ]
+        },
+        {
+          "row_id": 221,
+          "labels": [
+            "theory",
+            "ML",
+            "ML",
+            "theory",
+            "theory"
+          ]
+        }
+      ]
+    },
+    "filter_pass_counts_per_replicate": [
+      154,
+      155,
+      155,
+      154,
+      154
+    ],
+    "filter_pass_count_range": [
+      154,
+      155
+    ],
+    "n_always_passed": 154,
+    "map_label_distributions": [
+      {
+        "theory": 222,
+        "ML": 123,
+        "systems": 84,
+        "other": 71
+      },
+      {
+        "theory": 223,
+        "ML": 125,
+        "systems": 83,
+        "other": 69
+      },
+      {
+        "theory": 222,
+        "ML": 123,
+        "systems": 84,
+        "other": 71
+      },
+      {
+        "theory": 226,
+        "ML": 122,
+        "systems": 84,
+        "other": 68
+      },
+      {
+        "theory": 223,
+        "ML": 122,
+        "systems": 83,
+        "other": 72
+      }
+    ],
+    "schema_violations_per_replicate": [
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      },
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      },
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      },
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      },
+      {
+        "n_violations": 0,
+        "rate": 0.0
+      }
+    ]
+  }
+}

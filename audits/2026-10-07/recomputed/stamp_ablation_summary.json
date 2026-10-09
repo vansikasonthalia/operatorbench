@@ -1,0 +1,152 @@
+{
+  "verdict": "P2 -- no detectable reliance on the stamp at this sample size",
+  "leak_audit": {
+    "labelled_rows": 449,
+    "labelled_rows_blanked": 449,
+    "unknown_rows_changed": 0,
+    "rows_with_category_code_still_in_window": []
+  },
+  "noise_ceiling_labelled_flips": 2,
+  "flip_threshold": 4,
+  "filter": {
+    "admitted_baseline": 154,
+    "admitted_no_stamp": 155,
+    "labelled_flips": 3,
+    "labelled_flip_rows": [
+      75,
+      76,
+      177
+    ],
+    "labelled_flips_detail": [
+      {
+        "row_id": 75,
+        "declared": "other",
+        "category": "cs.PL",
+        "with_stamp": false,
+        "without_stamp": true
+      },
+      {
+        "row_id": 76,
+        "declared": "other",
+        "category": "math.ST",
+        "with_stamp": true,
+        "without_stamp": false
+      },
+      {
+        "row_id": 177,
+        "declared": "machine_learning",
+        "category": "cs.CV",
+        "with_stamp": false,
+        "without_stamp": true
+      }
+    ],
+    "unknown_row_flips_noise_check": []
+  },
+  "proxy_agreement_paired": {
+    "test": "McNemar exact, per-row filter decision vs topic_label_v2",
+    "agreement_with_stamp": 0.8864,
+    "agreement_without_stamp": 0.8886,
+    "with_stamp_only": 1,
+    "without_stamp_only": 2,
+    "p_two_sided": 1.0
+  },
+  "F10_with_stamp": {
+    "tp": 101,
+    "fp": 37,
+    "fn": 14,
+    "precision": 0.7318840579710145,
+    "precision_ci": [
+      0.6524322132312959,
+      0.798775330958843
+    ],
+    "recall": 0.8782608695652174,
+    "recall_ci": [
+      0.8059859770289615,
+      0.9260809086407031
+    ]
+  },
+  "F10_without_stamp": {
+    "tp": 102,
+    "fp": 37,
+    "fn": 13,
+    "precision": 0.7338129496402878,
+    "precision_ci": [
+      0.6547730433219984,
+      0.8002764660646228
+    ],
+    "recall": 0.8869565217391304,
+    "recall_ci": [
+      0.8161594465142679,
+      0.9327365629638946
+    ]
+  },
+  "F11_with_stamp": {
+    "all_admitted": {
+      "k": 36,
+      "n": 154,
+      "rate": 0.23376623376623376,
+      "ci": [
+        0.1739024421385531,
+        0.3065893927136024
+      ]
+    },
+    "ml_declared": {
+      "k": 13,
+      "n": 101,
+      "rate": 0.12871287128712872,
+      "ci": [
+        0.07678641606600466,
+        0.2078486906092082
+      ]
+    },
+    "non_ml_declared": {
+      "k": 20,
+      "n": 37,
+      "rate": 0.5405405405405406,
+      "ci": [
+        0.38383779524767364,
+        0.6896167217154228
+      ]
+    }
+  },
+  "F11_without_stamp": {
+    "all_admitted": {
+      "k": 36,
+      "n": 155,
+      "rate": 0.23225806451612904,
+      "ci": [
+        0.1727449576065253,
+        0.3047219024603589
+      ]
+    },
+    "ml_declared": {
+      "k": 12,
+      "n": 102,
+      "rate": 0.11764705882352941,
+      "ci": [
+        0.068593790294468,
+        0.19445589905263183
+      ]
+    },
+    "non_ml_declared": {
+      "k": 21,
+      "n": 37,
+      "rate": 0.5675675675675675,
+      "ci": [
+        0.4091390633420072,
+        0.7132851315964869
+      ]
+    }
+  },
+  "F2_paired_on_rows_admitted_in_both": {
+    "n": 153,
+    "disagree_with_stamp_only": 2,
+    "disagree_without_stamp_only": 1,
+    "mcnemar_p": 1.0
+  },
+  "map_label_changes_on_rows_admitted_in_both": [
+    140,
+    330,
+    347
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "replicate": 1,
+    "common_rows": 94,
+    "excluded_rows": 60,
+    "new_rows": 0,
+    "saved_label_changes": 0,
+    "raw_label_changes": 0,
+    "excluded_disagreements": 32
+  },
+  {
+    "replicate": 2,
+    "common_rows": 94,
+    "excluded_rows": 62,
+    "new_rows": 0,
+    "saved_label_changes": 0,
+    "raw_label_changes": 0,
+    "excluded_disagreements": 34
+  }
+]

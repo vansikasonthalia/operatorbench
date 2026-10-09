@@ -1,0 +1,124 @@
+{
+  "purpose": "paired tests behind F12's proxy-agreement and selectivity claims",
+  "classification_target": "author-declared arXiv primary-category proxy",
+  "headline": "criterion alignment removes proxy-negative admits at ~2x the rate of proxy-positive admits (Fisher p<0.001), but overall agreement with the proxy does not improve (McNemar p~0.5). It is a precision/recall tradeoff.",
+  "proxy_caveat": "topic_label_v2 is the authors' arXiv primary-category declaration, not a definitive judgement of aboutness",
+  "replicates": [
+    {
+      "replicate": 1,
+      "n_labelled_rows": 449,
+      "baseline": {
+        "tp": 101,
+        "fp": 37,
+        "fn": 14,
+        "precision": 0.7319,
+        "precision_ci": [
+          0.6524,
+          0.7988
+        ],
+        "recall": 0.8783,
+        "recall_ci": [
+          0.806,
+          0.9261
+        ]
+      },
+      "ablated": {
+        "tp": 71,
+        "fp": 13,
+        "fn": 44,
+        "precision": 0.8452,
+        "precision_ci": [
+          0.753,
+          0.9073
+        ],
+        "recall": 0.6174,
+        "recall_ci": [
+          0.5261,
+          0.7011
+        ]
+      },
+      "precision_cis_overlap": true,
+      "A_proxy_agreement_paired": {
+        "test": "McNemar exact, per-row decision vs proxy label",
+        "proxy_agreement_baseline": 0.8864,
+        "proxy_agreement_ablated": 0.8731,
+        "baseline_only_agreement": 30,
+        "ablated_only_agreement": 24,
+        "p_two_sided": 0.49662,
+        "verdict": "no significant change in overall agreement with the proxy"
+      },
+      "B_selectivity_of_removal": {
+        "test": "Fisher exact, [removed,kept] x [was FP, was TP]",
+        "proxy_negative_removal_rate": 0.6486,
+        "proxy_positive_removal_rate": 0.297,
+        "rate_ratio": 2.18,
+        "p_two_sided": 0.000317,
+        "verdict": "proxy-negative admits are removed at a higher rate"
+      },
+      "C_proxy_relative_ledger": {
+        "rows_dropped_labelled": 54,
+        "proxy_positive_rows_removed": 30,
+        "proxy_negative_rows_removed": 24,
+        "note": "More proxy-positive rows were removed than proxy-negative rows; proxy precision rose because the rate of proxy-negative removal was higher, not because these rows were adjudicated errors."
+      }
+    },
+    {
+      "replicate": 2,
+      "n_labelled_rows": 449,
+      "baseline": {
+        "tp": 101,
+        "fp": 39,
+        "fn": 14,
+        "precision": 0.7214,
+        "precision_ci": [
+          0.642,
+          0.789
+        ],
+        "recall": 0.8783,
+        "recall_ci": [
+          0.806,
+          0.9261
+        ]
+      },
+      "ablated": {
+        "tp": 71,
+        "fp": 13,
+        "fn": 44,
+        "precision": 0.8452,
+        "precision_ci": [
+          0.753,
+          0.9073
+        ],
+        "recall": 0.6174,
+        "recall_ci": [
+          0.5261,
+          0.7011
+        ]
+      },
+      "precision_cis_overlap": true,
+      "A_proxy_agreement_paired": {
+        "test": "McNemar exact, per-row decision vs proxy label",
+        "proxy_agreement_baseline": 0.882,
+        "proxy_agreement_ablated": 0.8731,
+        "baseline_only_agreement": 30,
+        "ablated_only_agreement": 26,
+        "p_two_sided": 0.68888,
+        "verdict": "no significant change in overall agreement with the proxy"
+      },
+      "B_selectivity_of_removal": {
+        "test": "Fisher exact, [removed,kept] x [was FP, was TP]",
+        "proxy_negative_removal_rate": 0.6667,
+        "proxy_positive_removal_rate": 0.297,
+        "rate_ratio": 2.24,
+        "p_two_sided": 9.7e-05,
+        "verdict": "proxy-negative admits are removed at a higher rate"
+      },
+      "C_proxy_relative_ledger": {
+        "rows_dropped_labelled": 56,
+        "proxy_positive_rows_removed": 30,
+        "proxy_negative_rows_removed": 26,
+        "note": "More proxy-positive rows were removed than proxy-negative rows; proxy precision rose because the rate of proxy-negative removal was higher, not because these rows were adjudicated errors."
+      }
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "purpose": "F10/F11 on the frozen replicates, per replicate, never pooled",
+  "metric_name": "operational criterion disagreement under the frozen rule",
+  "legacy_field_names_note": "contradictions_among_* keys retain the historical artifact name for the operational criterion-disagreement counts",
+  "supersedes": "figures computed on rq3_preliminary_abstracts_filter.csv, including the 4.7x concentration ratio",
+  "proxy_caveat": "Author-declared arXiv PRIMARY CATEGORY. This answers a different question from an 'is this about X?' filter predicate, so agreement with it is a proxy measurement, not filter accuracy.",
+  "rows_without_declared_category_excluded": 51,
+  "label_provenance": {
+    "label_version": "v2",
+    "label_column": "topic_label_v2",
+    "label_file": "data/abstracts/abstracts_v1_labels_v2.csv",
+    "label_file_sha256": "63726e3f19fcd63fda984edf9f6b37cf20910c183aac2d6988cc0c1605546ef9",
+    "retired_column_not_used": "topic_label",
+    "caveat": "Author-declared arXiv PRIMARY CATEGORY. This answers a different question from an 'is this about X?' filter predicate, so agreement with it is a proxy measurement, not filter accuracy.",
+    "label_manifest": {
+      "generated": "2026-09-14",
+      "method": "authors' declared arXiv primary category, parsed from the arXiv stamp within the first 4000 chars (the same window the operators saw)",
+      "coverage": {
+        "tagged": 449,
+        "untagged": 51
+      },
+      "label_counts": {
+        "other": 334,
+        "machine_learning": 115,
+        "unknown": 51
+      },
+      "sha256_prefix": "63726e3f19fcd63f"
+    }
+  },
+  "per_replicate": [
+    {
+      "replicate": 1,
+      "admitted": 154,
+      "admitted_with_declared_category": 138,
+      "F10_precision": 73.19,
+      "F10_precision_wilson": [
+        65.24,
+        79.88
+      ],
+      "F10_recall": 87.83,
+      "F10_recall_wilson": [
+        80.6,
+        92.61
+      ],
+      "ml_declared_admits": 101,
+      "contradictions_among_ml_declared": 13,
+      "rate_ml_declared": 12.87,
+      "wilson_ml_declared": [
+        7.68,
+        20.78
+      ],
+      "non_ml_declared_admits": 37,
+      "contradictions_among_non_ml_declared": 20,
+      "rate_non_ml_declared": 54.05,
+      "wilson_non_ml_declared": [
+        38.38,
+        68.96
+      ],
+      "F11_concentration_ratio": 4.2,
+      "intervals_disjoint": true
+    },
+    {
+      "replicate": 2,
+      "admitted": 156,
+      "admitted_with_declared_category": 140,
+      "F10_precision": 72.14,
+      "F10_precision_wilson": [
+        64.2,
+        78.9
+      ],
+      "F10_recall": 87.83,
+      "F10_recall_wilson": [
+        80.6,
+        92.61
+      ],
+      "ml_declared_admits": 101,
+      "contradictions_among_ml_declared": 13,
+      "rate_ml_declared": 12.87,
+      "wilson_ml_declared": [
+        7.68,
+        20.78
+      ],
+      "non_ml_declared_admits": 39,
+      "contradictions_among_non_ml_declared": 22,
+      "rate_non_ml_declared": 56.41,
+      "wilson_non_ml_declared": [
+        40.98,
+        70.7
+      ],
+      "F11_concentration_ratio": 4.38,
+      "intervals_disjoint": true
+    },
+    {
+      "replicate": 3,
+      "admitted": 154,
+      "admitted_with_declared_category": 138,
+      "F10_precision": 73.19,
+      "F10_precision_wilson": [
+        65.24,
+        79.88
+      ],
+      "F10_recall": 87.83,
+      "F10_recall_wilson": [
+        80.6,
+        92.61
+      ],
+      "ml_declared_admits": 101,
+      "contradictions_among_ml_declared": 13,
+      "rate_ml_declared": 12.87,
+      "wilson_ml_declared": [
+        7.68,
+        20.78
+      ],
+      "non_ml_declared_admits": 37,
+      "contradictions_among_non_ml_declared": 20,
+      "rate_non_ml_declared": 54.05,
+      "wilson_non_ml_declared": [
+        38.38,
+        68.96
+      ],
+      "F11_concentration_ratio": 4.2,
+      "intervals_disjoint": true
+    }
+  ],
+  "F10_precision_spread_pp": 1.05,
+  "F11_ratio_range": [
+    4.2,
+    4.38
+  ],
+  "F11_holds_in_every_replicate": true
+}

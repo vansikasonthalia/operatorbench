@@ -1,0 +1,75 @@
+{
+  "purpose": "Fleiss' kappa across the five hosted RQ1 replicates (spec \u00a76; closes G2)",
+  "raters": "replicates; subjects: the 500 frozen rows per domain",
+  "caveat": "Replicates are unseeded hosted executions, not independent human raters. Kappa here measures run-to-run agreement corrected for label skew; report it beside the F1 flip rate, not instead of it.",
+  "results": {
+    "reviews_filter": {
+      "n_rows": 500,
+      "n_replicates": 5,
+      "categories": [
+        "False",
+        "True"
+      ],
+      "category_proportions": {
+        "False": 0.4588,
+        "True": 0.5412
+      },
+      "observed_agreement_P_bar": 0.9956,
+      "chance_agreement_P_e": 0.5034,
+      "fleiss_kappa": 0.9911
+    },
+    "reviews_map": {
+      "n_rows": 500,
+      "n_replicates": 5,
+      "categories": [
+        "mixed",
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "category_proportions": {
+        "mixed": 0.0152,
+        "negative": 0.4884,
+        "neutral": 0.044,
+        "positive": 0.4524
+      },
+      "observed_agreement_P_bar": 0.9936,
+      "chance_agreement_P_e": 0.4454,
+      "fleiss_kappa": 0.9885
+    },
+    "abstracts_filter": {
+      "n_rows": 500,
+      "n_replicates": 5,
+      "categories": [
+        "False",
+        "True"
+      ],
+      "category_proportions": {
+        "False": 0.6912,
+        "True": 0.3088
+      },
+      "observed_agreement_P_bar": 0.9988,
+      "chance_agreement_P_e": 0.5731,
+      "fleiss_kappa": 0.9972
+    },
+    "abstracts_map": {
+      "n_rows": 500,
+      "n_replicates": 5,
+      "categories": [
+        "ML",
+        "other",
+        "systems",
+        "theory"
+      ],
+      "category_proportions": {
+        "ML": 0.246,
+        "other": 0.1404,
+        "systems": 0.1672,
+        "theory": 0.4464
+      },
+      "observed_agreement_P_bar": 0.9856,
+      "chance_agreement_P_e": 0.3075,
+      "fleiss_kappa": 0.9792
+    }
+  }
+}

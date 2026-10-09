@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite the research preprint when discussing the study, and this repository when using its software."
+type: software
+title: "OperatorBench: Lower Disagreement Through Exclusion"
+authors:
+  - family-names: Sonthalia
+    given-names: Vansika
+version: "0.1.0"
+date-released: "2026-10-09"
+url: "https://github.com/vansikasonthalia/operatorbench"
+license: MIT
+preferred-citation:
+  type: unpublished
+  title: "Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines"
+  authors:
+    - family-names: Sonthalia
+      given-names: Vansika
+  year: 2026
+  url: "https://github.com/vansikasonthalia/operatorbench/blob/main/paper/reproducibility.tex"
+  notes: "Author preprint; not peer reviewed. arXiv submission pending."

@@ -1,0 +1,13 @@
+{
+  "file": "C:\\Users\\vans\\OneDrive\\OperatorBench\\paper\\reproducibility.tex",
+  "source_sha256": "79510468651d817703d0b180ff9964c294b8943bb1e676dafd95c9786c8f2359",
+  "original_cell_rows_verified": 4,
+  "original_contrast_rows_verified": 16,
+  "exploratory_sensitivity_rows_verified": 8,
+  "independent_exact_test_checks": 32,
+  "labels_checked": 32,
+  "issues": [],
+  "native_compilation": "unverified: compiler returned Unable to find standard directories for platform",
+  "scope": "Static structure, ledger checks, matched-control and sensitivity table values; no rendered layout verification.",
+  "structure_check": "paper_structure_check.json"
+}

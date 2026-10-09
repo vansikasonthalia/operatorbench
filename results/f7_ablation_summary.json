@@ -1,0 +1,268 @@
+{
+  "purpose": "F7 scoped criterion intervention: inclusive aboutness to exclusive primary topic",
+  "result_field_names_note": "contradiction_* keys are retained for artifact compatibility; they store the operational criterion-disagreement metric",
+  "baseline_filter_langex": "Is this paper about machine learning? {abstract_text}",
+  "ablated_filter_langex": "Is machine learning the primary topic of this paper? {abstract_text}",
+  "map_langex": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. Abstract: {abstract_text}",
+  "map_changed": false,
+  "contradiction_predicate_changed": false,
+  "limitation": "changes only this filter criterion; does NOT alter LOTUS's claim-verification vs instruction-following wrappers, and does not estimate a general causal share",
+  "interpretation_scope": "two hosted replicates on abstracts, one model, one predicate pair; criterion-disagreement counts and proxy tradeoff are setup-specific",
+  "pre_registered": [
+    "H1 collapse below ~10%",
+    "H2 no change",
+    "H3 mixed -- precision rises, residual rate stays high"
+  ],
+  "n_replicates_on_disk": 2,
+  "ablated_rate_spread_pp": 0.0,
+  "replicates": [
+    {
+      "replicate": 1,
+      "baseline_admitted": 154,
+      "ablated_admitted": 94,
+      "admitted_delta": -60,
+      "contradiction_baseline": {
+        "k": 36,
+        "n": 154,
+        "rate": 0.23376623376623376,
+        "ci": [
+          0.1739024421385531,
+          0.3065893927136024
+        ]
+      },
+      "contradiction_ablated": {
+        "k": 4,
+        "n": 94,
+        "rate": 0.0425531914893617,
+        "ci": [
+          0.016670278401570267,
+          0.10435799587031408
+        ]
+      },
+      "contradiction_delta_pp": -19.121304227687205,
+      "rows_dropped_by_rewording": [
+        18,
+        21,
+        23,
+        37,
+        43,
+        45,
+        50,
+        63,
+        65,
+        76,
+        77,
+        91,
+        96,
+        106,
+        113,
+        117,
+        127,
+        131,
+        169,
+        178,
+        181,
+        187,
+        200,
+        202,
+        213,
+        218,
+        220,
+        221,
+        224,
+        227,
+        277,
+        284,
+        288,
+        291,
+        297,
+        301,
+        305,
+        311,
+        318,
+        326,
+        330,
+        335,
+        347,
+        357,
+        367,
+        372,
+        389,
+        395,
+        414,
+        417,
+        425,
+        430,
+        434,
+        438,
+        452,
+        453,
+        459,
+        487,
+        491,
+        499
+      ],
+      "rows_added_by_rewording": [],
+      "n_labelled": 449,
+      "n_unknown_excluded": 51,
+      "precision_baseline": {
+        "tp": 101,
+        "fp": 37,
+        "fn": 14,
+        "precision": 0.7318840579710145,
+        "precision_ci": [
+          0.6524322132312959,
+          0.798775330958843
+        ],
+        "recall": 0.8782608695652174,
+        "recall_ci": [
+          0.8059859770289615,
+          0.9260809086407031
+        ],
+        "f1": 0.7984189723320159
+      },
+      "precision_ablated": {
+        "tp": 71,
+        "fp": 13,
+        "fn": 44,
+        "precision": 0.8452380952380952,
+        "precision_ci": [
+          0.753011640086769,
+          0.9072677719457987
+        ],
+        "recall": 0.6173913043478261,
+        "recall_ci": [
+          0.5261307170981498,
+          0.7010624543165737
+        ],
+        "f1": 0.7135678391959798
+      },
+      "verdict": "H1 pattern observed: disagreement fell below 10% with fewer admissions for this predicate pair and setup; no general causal share is estimated"
+    },
+    {
+      "replicate": 2,
+      "baseline_admitted": 156,
+      "ablated_admitted": 94,
+      "admitted_delta": -62,
+      "contradiction_baseline": {
+        "k": 38,
+        "n": 156,
+        "rate": 0.24358974358974358,
+        "ci": [
+          0.18292191846715827,
+          0.3165825909972114
+        ]
+      },
+      "contradiction_ablated": {
+        "k": 4,
+        "n": 94,
+        "rate": 0.0425531914893617,
+        "ci": [
+          0.016670278401570267,
+          0.10435799587031408
+        ]
+      },
+      "contradiction_delta_pp": -20.103655210038188,
+      "rows_dropped_by_rewording": [
+        18,
+        21,
+        23,
+        37,
+        43,
+        45,
+        50,
+        63,
+        65,
+        75,
+        76,
+        77,
+        91,
+        96,
+        106,
+        113,
+        117,
+        127,
+        131,
+        169,
+        178,
+        181,
+        187,
+        200,
+        202,
+        213,
+        215,
+        218,
+        220,
+        221,
+        224,
+        227,
+        277,
+        284,
+        288,
+        291,
+        297,
+        301,
+        305,
+        311,
+        318,
+        326,
+        330,
+        335,
+        347,
+        357,
+        367,
+        372,
+        389,
+        395,
+        414,
+        417,
+        425,
+        430,
+        434,
+        438,
+        452,
+        453,
+        459,
+        487,
+        491,
+        499
+      ],
+      "rows_added_by_rewording": [],
+      "n_labelled": 449,
+      "n_unknown_excluded": 51,
+      "precision_baseline": {
+        "tp": 101,
+        "fp": 39,
+        "fn": 14,
+        "precision": 0.7214285714285714,
+        "precision_ci": [
+          0.6420145523361234,
+          0.7890151358764661
+        ],
+        "recall": 0.8782608695652174,
+        "recall_ci": [
+          0.8059859770289615,
+          0.9260809086407031
+        ],
+        "f1": 0.7921568627450981
+      },
+      "precision_ablated": {
+        "tp": 71,
+        "fp": 13,
+        "fn": 44,
+        "precision": 0.8452380952380952,
+        "precision_ci": [
+          0.753011640086769,
+          0.9072677719457987
+        ],
+        "recall": 0.6173913043478261,
+        "recall_ci": [
+          0.5261307170981498,
+          0.7010624543165737
+        ],
+        "f1": 0.7135678391959798
+      },
+      "verdict": "H1 pattern observed: disagreement fell below 10% with fewer admissions for this predicate pair and setup; no general causal share is estimated"
+    }
+  ]
+}

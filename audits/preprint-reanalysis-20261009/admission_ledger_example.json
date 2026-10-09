@@ -1,0 +1,217 @@
+{
+  "scope": "Synthetic procedure example, not an experiment or robustness analysis.",
+  "rule": "Every saved label other than ML counts as disagreement, including invalid labels. Raw/saved validity is reported separately; exact membership ignores case and outer whitespace.",
+  "input_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "before_records": {
+    "0": {
+      "label": "ML",
+      "raw": "ML"
+    },
+    "1": {
+      "label": "theory",
+      "raw": "theory"
+    },
+    "2": {
+      "label": "ML",
+      "raw": "The label is ML"
+    },
+    "3": {
+      "label": "mixed",
+      "raw": "mixed"
+    },
+    "4": {
+      "label": "theory",
+      "raw": "theory"
+    }
+  },
+  "after_records": {
+    "0": {
+      "label": "theory",
+      "raw": "theory"
+    },
+    "1": {
+      "label": "ML",
+      "raw": "ML"
+    },
+    "2": {
+      "label": "ML",
+      "raw": "ML"
+    },
+    "3": {
+      "label": "mixed",
+      "raw": ""
+    },
+    "5": {
+      "label": "systems",
+      "raw": "systems"
+    }
+  },
+  "ledger": {
+    "measurement": {
+      "label_column": "label",
+      "raw_column": "raw",
+      "valid_labels": [
+        "ML",
+        "other",
+        "systems",
+        "theory"
+      ],
+      "validity_rule": "Exact label membership, ignoring case and outer whitespace; validity does not change the supplied disagreement rule."
+    },
+    "n_input": 7,
+    "before": {
+      "admitted": 5,
+      "disagreements": 3,
+      "disagreement_rate": 0.6,
+      "invalid_outputs": {
+        "raw": {
+          "count": 2,
+          "row_ids": [
+            2,
+            3
+          ]
+        },
+        "saved": {
+          "count": 1,
+          "row_ids": [
+            3
+          ]
+        }
+      }
+    },
+    "after": {
+      "admitted": 5,
+      "disagreements": 3,
+      "disagreement_rate": 0.6,
+      "invalid_outputs": {
+        "raw": {
+          "count": 1,
+          "row_ids": [
+            3
+          ]
+        },
+        "saved": {
+          "count": 1,
+          "row_ids": [
+            3
+          ]
+        }
+      }
+    },
+    "sets": {
+      "common": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "excluded": [
+        4
+      ],
+      "newly_admitted": [
+        5
+      ],
+      "never_admitted": [
+        6
+      ]
+    },
+    "terms": {
+      "introduced_by_new_admissions": 1,
+      "removed_by_exclusions": 1,
+      "common_rows_new_disagreements": 1,
+      "common_rows_resolved_disagreements": 1,
+      "common_rows_net": 0
+    },
+    "common_indicator_changes": {
+      "new_disagreements": [
+        0
+      ],
+      "resolved_disagreements": [
+        1
+      ]
+    },
+    "label_transitions": {
+      "saved": [
+        {
+          "before": "ML",
+          "after": "theory",
+          "count": 1,
+          "row_ids": [
+            0
+          ]
+        },
+        {
+          "before": "theory",
+          "after": "ML",
+          "count": 1,
+          "row_ids": [
+            1
+          ]
+        },
+        {
+          "before": "ML",
+          "after": "ML",
+          "count": 1,
+          "row_ids": [
+            2
+          ]
+        },
+        {
+          "before": "mixed",
+          "after": "mixed",
+          "count": 1,
+          "row_ids": [
+            3
+          ]
+        }
+      ],
+      "raw": [
+        {
+          "before": "ML",
+          "after": "theory",
+          "count": 1,
+          "row_ids": [
+            0
+          ]
+        },
+        {
+          "before": "theory",
+          "after": "ML",
+          "count": 1,
+          "row_ids": [
+            1
+          ]
+        },
+        {
+          "before": "The label is ML",
+          "after": "ML",
+          "count": 1,
+          "row_ids": [
+            2
+          ]
+        },
+        {
+          "before": "mixed",
+          "after": "",
+          "count": 1,
+          "row_ids": [
+            3
+          ]
+        }
+      ]
+    },
+    "identity": {
+      "observed_count_change": 0,
+      "accounted_count_change": 0,
+      "holds": true
+    }
+  }
+}

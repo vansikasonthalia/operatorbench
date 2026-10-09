@@ -1,0 +1,24 @@
+{
+  "run_id": "rq1_hosted_reviews_rep3",
+  "experiment": "RQ1 individual operator stability",
+  "domain": "reviews",
+  "replicate": 3,
+  "backend": "hosted",
+  "model": "gpt-4o-mini",
+  "filter_predicate": "Is this review negative? {review_text}",
+  "map_instruction": "Respond with exactly one word. Classify the sentiment of this review as: positive, negative, or neutral. Review: {review_text}",
+  "valid_labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "n_rows": 500,
+  "filter_passed": 270,
+  "map_rows": 500,
+  "artifacts": {
+    "filter_csv": "results/rq1/hosted_reviews_rep3_filter.csv",
+    "map_csv": "results/rq1/hosted_reviews_rep3_map.csv"
+  },
+  "capture_status": "posthoc_artifact_manifest",
+  "provenance_status": "Execution-time package versions, call parameters, and provider-applied temperature were not recorded for these existing artifacts. Config fields above come from the current frozen pipeline config and are not proof of the historical request payload."
+}

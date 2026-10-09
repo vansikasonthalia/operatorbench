@@ -1,0 +1,90 @@
+[
+  {
+    "analysis": "rq1_fleiss_kappa",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/rq1_fleiss_kappa.json",
+        "recomputed": "audits/2026-10-07/recomputed/rq1_fleiss_kappa.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "f10_f11_frozen",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/f10_f11_frozen.json",
+        "recomputed": "audits/2026-10-07/recomputed/f10_f11_frozen.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "f7_precision_paired",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/f7_precision_paired.json",
+        "recomputed": "audits/2026-10-07/recomputed/f7_precision_paired.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "rq4_paired",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/rq4_paired.json",
+        "recomputed": "audits/2026-10-07/recomputed/rq4_paired.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "rq3_uncertainty",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/rq3_uncertainty.json",
+        "recomputed": "audits/2026-10-07/recomputed/rq3_uncertainty.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "check_handcheck_consistency",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/handcheck_reconciliation.json",
+        "recomputed": "audits/2026-10-07/recomputed/handcheck_reconciliation.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "run_stamp_ablation",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/stamp_ablation_summary.json",
+        "recomputed": "audits/2026-10-07/recomputed/stamp_ablation_summary.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  },
+  {
+    "analysis": "run_wrapper_test",
+    "exit_status": 0,
+    "comparisons": [
+      {
+        "frozen": "results/wrapper_test_summary.json",
+        "recomputed": "audits/2026-10-07/recomputed/wrapper_test_summary.json",
+        "numeric_or_boolean_changes": []
+      }
+    ]
+  }
+]

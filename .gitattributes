@@ -1,0 +1,60 @@
+# OperatorBench — line-ending and diff policy
+#
+# THE RULE THAT MATTERS MOST: frozen artifacts are stored BYTE-EXACT.
+#
+# data/ and results/ files were written by Windows Python and contain CRLF. Their
+# sha256 hashes are recorded in data/**/manifest*.json, results/environment.json
+# and results/f10_f11_frozen.json, and are re-checked by
+# scripts/capture_environment.py. If git normalised their line endings, every one
+# of those hashes would mismatch after a fresh clone — D-09's frozen-dataset
+# guarantee would be broken silently, and the paper's reproducibility claim with
+# it. Verified: abstracts_v1.csv is 4e273eae5ac4ec16 as CRLF and d616788a93471c64
+# as LF.
+#
+# So: -text on everything frozen. No conversion, in or out, ever.
+data/**    -text
+results/** -text
+logs_manifest.json -text
+
+# Normalize ordinary source and prose. Frozen protocol sources are excepted below.
+# This repo is worked on
+# from a Windows venv and a Linux shell against the same directory; without a
+# policy, core.autocrlf rewrites files on checkout and every one looks modified
+# from the other side, burying real diffs.
+*.py   text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.toml text eol=lf
+*.cfg  text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.tex  text eol=lf
+*.bib  text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf
+
+# These exact source bytes are bound by completed experiment manifests.
+scripts/prepare_revision_evaluation.py -text
+scripts/run_revision_evaluation.py -text
+scripts/run_matched_control.py -text
+harness/admission.py -text
+harness/revision.py -text
+harness/revision_assertions.py -text
+harness/intercept.py -text
+docs/REVISION-EVALUATION.md -text
+artifacts/revision-evaluation-20261008/** -text
+audits/** -text
+
+# Binary — never diff or merge.
+*.png  binary
+*.pdf  binary
+*.xlsx binary
+*.pptx binary
+*.docx binary
+*.zip  binary
+*.db   binary
+
+# Large frozen inputs: keep them out of `git diff` noise. They are verified by
+# sha256 in their manifests, not by reading diffs.
+data/abstracts/abstracts_v1.csv -diff
+data/reviews/reviews_v1.csv     -diff

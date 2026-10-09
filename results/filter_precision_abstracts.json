@@ -1,0 +1,30 @@
+{
+  "filter_csv": "results/rq3_abstracts_rep1_filter.csv",
+  "estimand": "agreement between sem_filter admission and author-declared arXiv primary-category proxy",
+  "selection_caveat": "The frozen 500-row sample was selected using an erroneous legacy label grouping; these figures describe this selected sample, not the arXiv population.",
+  "interpretation": "precision, recall, false-admission rate, and F1 are relative to the author-category proxy, not adjudicated semantic accuracy.",
+  "n_frame": 500,
+  "n_admitted": 154,
+  "n_tagged": 449,
+  "coverage": 0.898,
+  "n_admitted_untagged_excluded": 16,
+  "confusion": {
+    "tp": 101,
+    "fp": 37,
+    "fn": 14,
+    "tn": 297
+  },
+  "precision": 0.7318840579710145,
+  "precision_ci": [
+    0.6524322132312959,
+    0.798775330958843
+  ],
+  "false_admission_rate": 0.26811594202898553,
+  "recall": 0.8782608695652174,
+  "recall_ci": [
+    0.8059859770289615,
+    0.9260809086407031
+  ],
+  "f1": 0.7984189723320159,
+  "caveat": "aboutness question vs primary-category declaration; agreement with a stated proxy, not filter error"
+}

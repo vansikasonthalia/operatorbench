@@ -1,0 +1,168 @@
+{
+  "abstracts": {
+    "filter_positive": 155,
+    "total_rows": 500,
+    "filter_rate": 0.31,
+    "contradiction": {
+      "n_filter_positive": 155,
+      "n_contradictions": 36,
+      "rate": 0.2323,
+      "ci_lower": 0.1727,
+      "ci_upper": 0.3047
+    },
+    "schema_violations": {
+      "n_total": 155,
+      "n_violations": 0,
+      "rate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0242
+    },
+    "contradiction_details": [
+      [
+        18,
+        "theory"
+      ],
+      [
+        21,
+        "other"
+      ],
+      [
+        23,
+        "systems"
+      ],
+      [
+        37,
+        "theory"
+      ],
+      [
+        76,
+        "theory"
+      ],
+      [
+        86,
+        "systems"
+      ],
+      [
+        91,
+        "theory"
+      ],
+      [
+        106,
+        "theory"
+      ],
+      [
+        113,
+        "systems"
+      ],
+      [
+        127,
+        "systems"
+      ],
+      [
+        164,
+        "theory"
+      ],
+      [
+        178,
+        "theory"
+      ],
+      [
+        200,
+        "theory"
+      ],
+      [
+        202,
+        "other"
+      ],
+      [
+        204,
+        "theory"
+      ],
+      [
+        220,
+        "theory"
+      ],
+      [
+        221,
+        "theory"
+      ],
+      [
+        227,
+        "theory"
+      ],
+      [
+        228,
+        "theory"
+      ],
+      [
+        240,
+        "theory"
+      ],
+      [
+        277,
+        "theory"
+      ],
+      [
+        284,
+        "systems"
+      ],
+      [
+        301,
+        "systems"
+      ],
+      [
+        305,
+        "theory"
+      ],
+      [
+        330,
+        "other"
+      ],
+      [
+        347,
+        "theory"
+      ],
+      [
+        357,
+        "theory"
+      ],
+      [
+        367,
+        "theory"
+      ],
+      [
+        372,
+        "theory"
+      ],
+      [
+        389,
+        "theory"
+      ],
+      [
+        395,
+        "theory"
+      ],
+      [
+        414,
+        "theory"
+      ],
+      [
+        430,
+        "theory"
+      ],
+      [
+        438,
+        "systems"
+      ],
+      [
+        487,
+        "theory"
+      ],
+      [
+        491,
+        "systems"
+      ]
+    ],
+    "violation_details": []
+  }
+}

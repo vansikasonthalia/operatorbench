@@ -1,0 +1,49 @@
+{
+  "source_before_sha256": "84d6404097eb06420eb19b99aacffd05fd0f64bfea0622ff233f523c8ca21ead",
+  "source_after_move_sha256": "308ae8cd486e041b613dd2383c85e9e31ee2fce2570604db7a3517a646008f6e",
+  "tables_before": 11,
+  "tables_after": 11,
+  "all_result_tables_preserved_exactly": true,
+  "all_original_labels_preserved": true,
+  "main_sections": [
+    "Introduction",
+    "Background: Semantic Operators",
+    "Evaluation Design and Admission Ledger",
+    "Admission Ledger and Coverage Tradeoff",
+    "Matched Criterion-by-Operator Control",
+    "Exploratory Offline Robustness Analyses",
+    "Discussion",
+    "Limitations",
+    "Related Work",
+    "Conclusion"
+  ],
+  "appendix_sections": [
+    "Historical Evaluation Questions",
+    "RQ1: Individual Operator Repeatability",
+    "RQ2: Schema Conformance",
+    "Additional Historical Pipeline Analyses",
+    "Auxiliary Historical Controls",
+    "Historical Residual Disagreements and Exploratory Coding",
+    "Reproducibility and Evidence Status"
+  ],
+  "final_source_sha256": "79510468651d817703d0b180ff9964c294b8943bb1e676dafd95c9786c8f2359",
+  "labels_checked": 32,
+  "citation_keys_checked": 10,
+  "primary_comparison_rows_verified": 16,
+  "exploratory_rows_verified": 8,
+  "table_sha256": [
+    "29ae432a184888b2f4f44786b074cd396bc1a591bfa4129e183c0ccc85f0db74",
+    "8c87741fa48d889d11f108306736aee35285a7996b7c36a1cd7f7fcf6cfcb5cb",
+    "df02fd597dbc4723e10b23c6a52dc1e50d5bbd060d7d78d9cecb7a1a42b6baa7",
+    "a0dd4ff3d3922e70cb231e5c2305c90ea8f56d7205fa0d0bbab5845258f7fba9",
+    "6db31f832158d34c29c8e1cd8f72c353e2adb40020aa21261a99549a499ad19f",
+    "9da5ec509e50b63827578aef2bbb1fc57443c1391d53ba91ec6373865d469784",
+    "7cbe3950a3d7e8e309f3900c3e02d8dd1a905dcdce640f39e209ff3807a6e926",
+    "4efcfe4f4953ede6c457e54179bd12b664f7ec143305e11253437d46d60edb53",
+    "91232ef51d2848098292c5e7fcdde4821550d459770914f4e0521a174aad2208",
+    "107b5c45151482f259197a68487357e3a108a73c994d2cf0ab36f65b8861f3a2",
+    "497484141143cea2070490bbc80f7d8f063fa210c8e382f38e9eea4612081cc1"
+  ],
+  "source_check_issues": [],
+  "native_compilation": "unverified: Unable to find standard directories for platform"
+}

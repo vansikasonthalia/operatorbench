@@ -1,0 +1,353 @@
+{
+  "definition": "ml_any = any listed category in ML_CATS (primary or cross-list)",
+  "ml_cats": [
+    "cs.AI",
+    "cs.CL",
+    "cs.CV",
+    "cs.LG",
+    "cs.NE",
+    "stat.ML"
+  ],
+  "coverage": {
+    "labelled_rows": 449,
+    "api_missing": [],
+    "api_primary_differs_from_stamp": [
+      7,
+      41,
+      51,
+      64,
+      85,
+      107,
+      113,
+      116,
+      127,
+      134,
+      147,
+      157,
+      171,
+      175,
+      197,
+      198,
+      211,
+      237,
+      245,
+      247,
+      264,
+      284,
+      301,
+      303,
+      304,
+      307,
+      328,
+      335,
+      339,
+      356,
+      358,
+      363,
+      364,
+      378,
+      387,
+      409,
+      411,
+      426,
+      431,
+      440,
+      457,
+      460,
+      462
+    ]
+  },
+  "label_counts": {
+    "ml_primary": 115,
+    "ml_any": 152,
+    "reclassified_to_ml_by_crosslist": 37,
+    "primary_ml_without_ml_listing": 0
+  },
+  "replicates": [
+    {
+      "replicate": 1,
+      "F10_primary": {
+        "tp": 101,
+        "fp": 37,
+        "fn": 14,
+        "precision": 0.7319,
+        "precision_ci": [
+          0.6524,
+          0.7988
+        ],
+        "recall": 0.8783,
+        "recall_ci": [
+          0.806,
+          0.9261
+        ]
+      },
+      "F10_any": {
+        "tp": 120,
+        "fp": 18,
+        "fn": 32,
+        "precision": 0.8696,
+        "precision_ci": [
+          0.8032,
+          0.9159
+        ],
+        "recall": 0.7895,
+        "recall_ci": [
+          0.7179,
+          0.8467
+        ]
+      },
+      "F11_primary": {
+        "ml": {
+          "k": 13,
+          "n": 101,
+          "rate": 0.1287,
+          "ci": [
+            0.0768,
+            0.2078
+          ]
+        },
+        "non_ml": {
+          "k": 20,
+          "n": 37,
+          "rate": 0.5405,
+          "ci": [
+            0.3838,
+            0.6896
+          ]
+        },
+        "ratio": 4.2
+      },
+      "F11_any": {
+        "ml": {
+          "k": 21,
+          "n": 120,
+          "rate": 0.175,
+          "ci": [
+            0.1174,
+            0.2528
+          ]
+        },
+        "non_ml": {
+          "k": 12,
+          "n": 18,
+          "rate": 0.6667,
+          "ci": [
+            0.4375,
+            0.8372
+          ]
+        },
+        "ratio": 3.81
+      },
+      "F12_revised_filter_primary": {
+        "tp": 71,
+        "fp": 13,
+        "fn": 44,
+        "precision": 0.8452,
+        "precision_ci": [
+          0.753,
+          0.9073
+        ],
+        "recall": 0.6174,
+        "recall_ci": [
+          0.5261,
+          0.7011
+        ]
+      },
+      "F12_revised_filter_any": {
+        "tp": 81,
+        "fp": 3,
+        "fn": 71,
+        "precision": 0.9643,
+        "precision_ci": [
+          0.9002,
+          0.9878
+        ],
+        "recall": 0.5329,
+        "recall_ci": [
+          0.4537,
+          0.6104
+        ]
+      }
+    },
+    {
+      "replicate": 2,
+      "F10_primary": {
+        "tp": 101,
+        "fp": 39,
+        "fn": 14,
+        "precision": 0.7214,
+        "precision_ci": [
+          0.642,
+          0.789
+        ],
+        "recall": 0.8783,
+        "recall_ci": [
+          0.806,
+          0.9261
+        ]
+      },
+      "F10_any": {
+        "tp": 120,
+        "fp": 20,
+        "fn": 32,
+        "precision": 0.8571,
+        "precision_ci": [
+          0.7896,
+          0.9056
+        ],
+        "recall": 0.7895,
+        "recall_ci": [
+          0.7179,
+          0.8467
+        ]
+      },
+      "F11_primary": {
+        "ml": {
+          "k": 13,
+          "n": 101,
+          "rate": 0.1287,
+          "ci": [
+            0.0768,
+            0.2078
+          ]
+        },
+        "non_ml": {
+          "k": 22,
+          "n": 39,
+          "rate": 0.5641,
+          "ci": [
+            0.4098,
+            0.707
+          ]
+        },
+        "ratio": 4.38
+      },
+      "F11_any": {
+        "ml": {
+          "k": 21,
+          "n": 120,
+          "rate": 0.175,
+          "ci": [
+            0.1174,
+            0.2528
+          ]
+        },
+        "non_ml": {
+          "k": 14,
+          "n": 20,
+          "rate": 0.7,
+          "ci": [
+            0.481,
+            0.8545
+          ]
+        },
+        "ratio": 4.0
+      },
+      "F12_revised_filter_primary": {
+        "tp": 71,
+        "fp": 13,
+        "fn": 44,
+        "precision": 0.8452,
+        "precision_ci": [
+          0.753,
+          0.9073
+        ],
+        "recall": 0.6174,
+        "recall_ci": [
+          0.5261,
+          0.7011
+        ]
+      },
+      "F12_revised_filter_any": {
+        "tp": 81,
+        "fp": 3,
+        "fn": 71,
+        "precision": 0.9643,
+        "precision_ci": [
+          0.9002,
+          0.9878
+        ],
+        "recall": 0.5329,
+        "recall_ci": [
+          0.4537,
+          0.6104
+        ]
+      }
+    },
+    {
+      "replicate": 3,
+      "F10_primary": {
+        "tp": 101,
+        "fp": 37,
+        "fn": 14,
+        "precision": 0.7319,
+        "precision_ci": [
+          0.6524,
+          0.7988
+        ],
+        "recall": 0.8783,
+        "recall_ci": [
+          0.806,
+          0.9261
+        ]
+      },
+      "F10_any": {
+        "tp": 120,
+        "fp": 18,
+        "fn": 32,
+        "precision": 0.8696,
+        "precision_ci": [
+          0.8032,
+          0.9159
+        ],
+        "recall": 0.7895,
+        "recall_ci": [
+          0.7179,
+          0.8467
+        ]
+      },
+      "F11_primary": {
+        "ml": {
+          "k": 13,
+          "n": 101,
+          "rate": 0.1287,
+          "ci": [
+            0.0768,
+            0.2078
+          ]
+        },
+        "non_ml": {
+          "k": 20,
+          "n": 37,
+          "rate": 0.5405,
+          "ci": [
+            0.3838,
+            0.6896
+          ]
+        },
+        "ratio": 4.2
+      },
+      "F11_any": {
+        "ml": {
+          "k": 21,
+          "n": 120,
+          "rate": 0.175,
+          "ci": [
+            0.1174,
+            0.2528
+          ]
+        },
+        "non_ml": {
+          "k": 12,
+          "n": 18,
+          "rate": 0.6667,
+          "ci": [
+            0.4375,
+            0.8372
+          ]
+        },
+        "ratio": 3.81
+      }
+    }
+  ]
+}

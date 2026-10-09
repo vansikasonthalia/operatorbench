@@ -1,0 +1,11 @@
+{
+  "run_id": "rq3_abstracts_rep3",
+  "domain": "abstracts",
+  "model": "gpt-4o-mini",
+  "backend": "hosted",
+  "seed": null,
+  "filter_predicate": "Is this paper about machine learning? {abstract_text}",
+  "map_instruction": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. Abstract: {abstract_text}",
+  "total_rows": 500,
+  "filter_positive_count": 154
+}

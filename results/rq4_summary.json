@@ -1,0 +1,154 @@
+{
+  "domain": "abstracts",
+  "injected_filter_langex": "Is this paper about machine learning? [submitted: {submission_month}] {abstract_text}",
+  "injected_map_langex": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. [submitted: {submission_month}] Abstract: {abstract_text}",
+  "n_eligible": 449,
+  "primary_metric": "paired criterion-disagreement status; see results/rq4_paired.json and scripts/rq4_paired.py",
+  "legacy_unpaired_rate_note": "per-condition rates below use different admitted row sets and are descriptive only",
+  "result_field_names_note": "contradiction_* keys are retained for artifact compatibility; they store the operational criterion-disagreement metric",
+  "reviews": "excluded -- no production metadata in the frozen source",
+  "replicates": [
+    {
+      "replicate": 1,
+      "n_eligible": 449,
+      "baseline_admitted": 138,
+      "injected_admitted": 141,
+      "filter_flip_rate": 0.0066815144766146995,
+      "filter_flip_ci": [
+        0.0022748254439586574,
+        0.01945816021813599
+      ],
+      "filter_flipped_in": [
+        75,
+        86,
+        215
+      ],
+      "filter_flipped_out": [],
+      "map_flip_rate": 0.021739130434782608,
+      "map_flip_ci": [
+        0.007420259437195154,
+        0.06196418067064344
+      ],
+      "map_flipped_rows": [
+        21,
+        140,
+        311
+      ],
+      "contradiction_baseline": {
+        "k": 33,
+        "n": 138,
+        "rate": 0.2391304347826087,
+        "ci": [
+          0.17564276494104578,
+          0.31674874784504803
+        ]
+      },
+      "contradiction_injected": {
+        "k": 37,
+        "n": 141,
+        "rate": 0.2624113475177305,
+        "ci": [
+          0.1967876598278167,
+          0.3406380521223413
+        ]
+      },
+      "contradiction_delta_pp": 2.3280912735121784,
+      "by_declared_label": {
+        "machine_learning": {
+          "baseline": {
+            "k": 13,
+            "n": 101,
+            "rate": 0.12871287128712872
+          },
+          "injected": {
+            "k": 14,
+            "n": 101,
+            "rate": 0.13861386138613863
+          }
+        },
+        "other": {
+          "baseline": {
+            "k": 20,
+            "n": 37,
+            "rate": 0.5405405405405406
+          },
+          "injected": {
+            "k": 23,
+            "n": 40,
+            "rate": 0.575
+          }
+        }
+      }
+    },
+    {
+      "replicate": 2,
+      "n_eligible": 449,
+      "baseline_admitted": 140,
+      "injected_admitted": 141,
+      "filter_flip_rate": 0.0022271714922048997,
+      "filter_flip_ci": [
+        0.00039324858464613935,
+        0.012506626338505796
+      ],
+      "filter_flipped_in": [
+        86
+      ],
+      "filter_flipped_out": [],
+      "map_flip_rate": 0.02142857142857143,
+      "map_flip_ci": [
+        0.007313870780766552,
+        0.06110583534041121
+      ],
+      "map_flipped_rows": [
+        21,
+        140,
+        221
+      ],
+      "contradiction_baseline": {
+        "k": 35,
+        "n": 140,
+        "rate": 0.25,
+        "ci": [
+          0.18559816206588395,
+          0.3277554157586119
+        ]
+      },
+      "contradiction_injected": {
+        "k": 35,
+        "n": 141,
+        "rate": 0.24822695035460993,
+        "ci": [
+          0.1842363284953717,
+          0.32557300804882555
+        ]
+      },
+      "contradiction_delta_pp": -0.17730496453900735,
+      "by_declared_label": {
+        "machine_learning": {
+          "baseline": {
+            "k": 13,
+            "n": 101,
+            "rate": 0.12871287128712872
+          },
+          "injected": {
+            "k": 12,
+            "n": 101,
+            "rate": 0.1188118811881188
+          }
+        },
+        "other": {
+          "baseline": {
+            "k": 22,
+            "n": 39,
+            "rate": 0.5641025641025641
+          },
+          "injected": {
+            "k": 23,
+            "n": 40,
+            "rate": 0.575
+          }
+        }
+      }
+    }
+  ]
+}

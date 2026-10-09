@@ -1,0 +1,3070 @@
+{
+  "audited_utc": "2026-10-08T12:37:28.237084+00:00",
+  "passed": true,
+  "checks": {
+    "frozen_protocol_verified": true,
+    "summary_reproduced_exactly": true,
+    "python_matches": true,
+    "packages_match": true,
+    "framework_sources_match": true,
+    "interceptor_matches": true,
+    "checkpoint_and_native_request_joins_verified": true,
+    "direct_assertions_agree": true,
+    "paired_counts_reconstruct_ledger": true
+  },
+  "run_directory": "results/revision_evaluation/n100_r4_s20261008",
+  "protocol_file_sha256": "824dd3206e2aa7b189f538fd1bb0160cde2417d0c71e32a1b2c186511a98877f",
+  "canonical_protocol_sha256": "75df0d25857637ad1196014d292339a105d18ab99e1a2ca6a67482ac949c33a1",
+  "run_manifest_sha256": "9bb24a4facf59981d010f83c240606ce98134a22f8ec487f616854564e67c1b1",
+  "runner_source_sha256": "762980ee0abdee31189147afd314c556311175c57541ea96410efd4ea8677874",
+  "summary_sha256": "ccc1b8533f10848f7a94c6b3c00a0002cc3ff56d64af0d63640e17289e16561f",
+  "completed_blocks": 280,
+  "verified_requests": 2800,
+  "attempt_status_counts": {
+    "completed": 280
+  },
+  "started_utc": "2026-10-08T11:14:00.128940+00:00",
+  "finished_utc": "2026-10-08T12:22:35.435896+00:00",
+  "successful_checkpoint_usage": {
+    "total_calls": 2800,
+    "total_prompt_tokens": 2895012,
+    "total_completion_tokens": 8404
+  },
+  "invalid_responses": [
+    {
+      "replicate": 2,
+      "cell": "reference_map",
+      "row_id": 382,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False.",
+      "request_join": {
+        "request_line": 2,
+        "native_prompt_sha256": "c91c80fc710224e9fadb8830dd9ca48f7f297682989d1d03e3abaaa374c0da09"
+      }
+    },
+    {
+      "replicate": 3,
+      "cell": "paraphrase_map",
+      "row_id": 336,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False.",
+      "request_join": {
+        "request_line": 5,
+        "native_prompt_sha256": "8eea18305a78dbe5b5f8b6069cdd5dbbacef129055d6b7a26c6637d913e4e389"
+      }
+    },
+    {
+      "replicate": 4,
+      "cell": "reference_map",
+      "row_id": 150,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False.",
+      "request_join": {
+        "request_line": 9,
+        "native_prompt_sha256": "ec5e361d1b99dfb65022108006e0e314afcef8ef23b4f73dbbc5aeaf9010ad63"
+      }
+    },
+    {
+      "replicate": 4,
+      "cell": "repeat_map",
+      "row_id": 382,
+      "raw_output": "Answer: False.",
+      "answer": null,
+      "operator_output": "Answer: False.",
+      "request_join": {
+        "request_line": 6,
+        "native_prompt_sha256": "c91c80fc710224e9fadb8830dd9ca48f7f297682989d1d03e3abaaa374c0da09"
+      }
+    }
+  ],
+  "replicate_revision_results": [
+    {
+      "replicate": 1,
+      "revision": "identical_prompt_repeat",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 1,
+      "revision": "filter_paraphrase",
+      "verdict": "violated",
+      "checks": {
+        "admissions": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 36,
+        "disagreements": 1,
+        "disagreement_rate": 0.027777777777777776,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [
+          236
+        ],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 1,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 1,
+      "revision": "filter_narrowing",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 33,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [
+          37,
+          220
+        ],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 33,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 1,
+      "revision": "map_paraphrase",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 2,
+      "revision": "identical_prompt_repeat",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 2,
+      "revision": "filter_paraphrase",
+      "verdict": "violated",
+      "checks": {
+        "admissions": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 36,
+        "disagreements": 1,
+        "disagreement_rate": 0.027777777777777776,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [
+          236
+        ],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 1,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 2,
+      "revision": "filter_narrowing",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 33,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [
+          37,
+          220
+        ],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 33,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 2,
+      "revision": "map_paraphrase",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 3,
+      "revision": "identical_prompt_repeat",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 3,
+      "revision": "filter_paraphrase",
+      "verdict": "violated",
+      "checks": {
+        "admissions": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 36,
+        "disagreements": 1,
+        "disagreement_rate": 0.027777777777777776,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [
+          236
+        ],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 1,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 3,
+      "revision": "filter_narrowing",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 33,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [
+          37,
+          220
+        ],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 33,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 3,
+      "revision": "map_paraphrase",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 4,
+      "revision": "identical_prompt_repeat",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 4,
+      "revision": "filter_paraphrase",
+      "verdict": "violated",
+      "checks": {
+        "admissions": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "violated",
+          "row_ids": [
+            236
+          ]
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 36,
+        "disagreements": 1,
+        "disagreement_rate": 0.027777777777777776,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [
+          236
+        ],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 1,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 4,
+      "revision": "filter_narrowing",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 33,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [
+          37,
+          220
+        ],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 33,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    },
+    {
+      "replicate": 4,
+      "revision": "map_paraphrase",
+      "verdict": "satisfied",
+      "checks": {
+        "admissions": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "complete_input": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "common_labels": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "output_validity": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "required_response_format": {
+          "status": "satisfied",
+          "row_ids": []
+        },
+        "known_filter_membership": {
+          "status": "satisfied",
+          "row_ids": []
+        }
+      },
+      "before": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "after": {
+        "admitted": 35,
+        "disagreements": 0,
+        "disagreement_rate": 0.0,
+        "invalid_outputs": {
+          "raw": {
+            "count": 0,
+            "row_ids": []
+          },
+          "saved": {
+            "count": 0,
+            "row_ids": []
+          }
+        }
+      },
+      "sets": {
+        "common": [
+          4,
+          14,
+          21,
+          23,
+          26,
+          30,
+          34,
+          37,
+          43,
+          50,
+          61,
+          66,
+          109,
+          128,
+          153,
+          164,
+          180,
+          204,
+          207,
+          209,
+          219,
+          220,
+          221,
+          224,
+          239,
+          251,
+          270,
+          283,
+          311,
+          345,
+          405,
+          410,
+          425,
+          450,
+          459
+        ],
+        "excluded": [],
+        "newly_admitted": [],
+        "never_admitted": [
+          2,
+          8,
+          13,
+          29,
+          32,
+          36,
+          39,
+          41,
+          42,
+          44,
+          47,
+          54,
+          62,
+          72,
+          78,
+          87,
+          93,
+          98,
+          102,
+          111,
+          114,
+          121,
+          122,
+          139,
+          143,
+          146,
+          148,
+          149,
+          150,
+          158,
+          162,
+          168,
+          179,
+          186,
+          223,
+          230,
+          236,
+          237,
+          252,
+          266,
+          290,
+          296,
+          336,
+          340,
+          342,
+          356,
+          359,
+          363,
+          366,
+          376,
+          382,
+          383,
+          387,
+          391,
+          392,
+          398,
+          400,
+          408,
+          409,
+          412,
+          420,
+          433,
+          441,
+          467,
+          472
+        ]
+      },
+      "terms": {
+        "introduced_by_new_admissions": 0,
+        "removed_by_exclusions": 0,
+        "common_rows_new_disagreements": 0,
+        "common_rows_resolved_disagreements": 0,
+        "common_rows_net": 0
+      },
+      "common": {
+        "n_common": 35,
+        "before_disagreements": 0,
+        "after_disagreements": 0,
+        "new_disagreements": 0,
+        "resolved_disagreements": 0,
+        "saved_label_changes": 0
+      },
+      "unassessed_rows": []
+    }
+  ],
+  "scope": "Archive consistency, reproduction and baseline agreement on recorded answers; no model rerun, semantic correctness adjudication, independent detection reference or provider billing certification."
+}

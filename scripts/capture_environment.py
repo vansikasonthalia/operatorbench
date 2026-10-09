@@ -1,0 +1,136 @@
+"""
+OperatorBench -- capture the real environment, from the venv that can actually run it.
+
+WHY A SCRIPT RATHER THAN A CHECKED-IN LOCK FILE
+-----------------------------------------------
+`requirements.txt` records the four versions the findings were produced under, by
+hand, from CONTEXT.md. That is the *intent*. It is not proof, and it does not
+cover the transitive tree -- and a transitive dependency of litellm or datasets
+can change behaviour just as effectively as a direct one.
+
+Only the environment that actually has LOTUS installed can report the truth, so
+this must be run in that venv. Anywhere else it will report `lotus-ai: None` and
+say so loudly rather than writing a lock file that quietly omits the one package
+the findings depend on.
+
+WHAT IT WRITES
+--------------
+  requirements.lock.txt      full `pip freeze`, the reproducible artifact for §14
+  results/environment.json   the tracked versions, python, platform, dataset and
+                             predicate hashes -- the same provenance block every
+                             run now embeds, captured once for the repo
+
+It also CHECKS the installed versions against requirements.txt and exits non-zero
+on a mismatch, because "the pins say 1.2.4" and "1.2.4 is installed" are
+different claims and only the second one matters.
+
+Usage (in the venv, from the repo root):
+    python scripts/capture_environment.py
+    python scripts/capture_environment.py --check    # verify only, write nothing
+"""
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+REQUIREMENTS = ROOT / "requirements.txt"
+LOCK = ROOT / "requirements.lock.txt"
+ENV_JSON = ROOT / "results" / "environment.json"
+
+#: Packages whose absence makes the capture worthless rather than merely partial.
+CRITICAL = ("lotus-ai", "litellm")
+
+
+def declared_pins() -> dict:
+    """Parse `name==version` pins out of requirements.txt, ignoring comments."""
+    pins = {}
+    if not REQUIREMENTS.exists():
+        return pins
+    for line in REQUIREMENTS.read_text(encoding="utf-8").splitlines():
+        line = line.split("#", 1)[0].strip()
+        m = re.match(r"^([A-Za-z0-9._-]+)==([^\s]+)$", line)
+        if m:
+            pins[m.group(1).lower()] = m.group(2)
+    return pins
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--check", action="store_true",
+                    help="verify installed versions against requirements.txt; write nothing")
+    args = ap.parse_args()
+
+    from harness.provenance import run_provenance, TRACKED_PACKAGES
+
+    prov = run_provenance(temperature=None, max_text_chars=4000,
+                          backend="hosted", seed=None)
+    installed = prov["packages"]
+
+    print("=" * 70)
+    print("ENVIRONMENT CAPTURE")
+    print("=" * 70)
+    print(f"  python   : {prov['python']}")
+    print(f"  platform : {prov['platform']}")
+    print("  packages :")
+    for name in TRACKED_PACKAGES:
+        v = installed.get(name)
+        print(f"     {name:12} {v if v else '-- NOT INSTALLED --'}")
+
+    missing = [n for n in CRITICAL if not installed.get(n)]
+    if missing:
+        print(f"\n  !! {', '.join(missing)} not installed in this interpreter.")
+        print("     This is not the environment that produced the results, so a")
+        print("     lock file written here would omit the packages the findings")
+        print("     depend on. Activate the project venv and re-run.")
+        return 1
+
+    pins = declared_pins()
+    mismatches = [
+        (n, pins[n], installed.get(n))
+        for n in pins if installed.get(n) and installed[n] != pins[n]
+    ]
+    if mismatches:
+        print("\n  !! INSTALLED VERSIONS DISAGREE WITH requirements.txt:")
+        for n, want, got in mismatches:
+            print(f"     {n}: pinned {want}, installed {got}")
+        print("     Either the pin is wrong or the venv drifted. For lotus-ai in")
+        print("     particular this matters: F7/F12 rest on 1.2.4's internal")
+        print("     prompts. Resolve before treating any new run as comparable.")
+    else:
+        print(f"\n  ok: all {len(pins)} pinned versions match what is installed")
+
+    print(f"\n  prompt_config_sha256 : {prov['prompt_config']['prompt_config_sha256']}")
+    print(f"  label version        : {prov['labels'].get('label_version')}")
+    for rel, sha in prov["datasets"].items():
+        print(f"  {rel:46} {sha[:16] if sha else 'MISSING'}")
+
+    if args.check:
+        print("\n  --check: nothing written")
+        return 1 if mismatches else 0
+
+    freeze = subprocess.run([sys.executable, "-m", "pip", "freeze"],
+                            capture_output=True, text=True)
+    if freeze.returncode != 0:
+        print(f"\n  !! pip freeze failed: {freeze.stderr[:200]}")
+        return 1
+    LOCK.write_text(
+        "# OperatorBench -- exact environment, generated by\n"
+        "# scripts/capture_environment.py. Do not hand-edit.\n"
+        f"# python {prov['python']} on {prov['platform']}\n"
+        f"# prompt_config_sha256 {prov['prompt_config']['prompt_config_sha256']}\n"
+        + freeze.stdout, encoding="utf-8")
+    ENV_JSON.parent.mkdir(exist_ok=True)
+    ENV_JSON.write_text(json.dumps(prov, indent=2), encoding="utf-8")
+    print(f"\n  wrote {LOCK.relative_to(ROOT)}  ({len(freeze.stdout.splitlines())} packages)")
+    print(f"  wrote {ENV_JSON.relative_to(ROOT)}")
+    return 1 if mismatches else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

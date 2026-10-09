@@ -1,0 +1,25 @@
+{
+  "run_id": "rq1_hosted_abstracts_rep5",
+  "experiment": "RQ1 individual operator stability",
+  "domain": "abstracts",
+  "replicate": 5,
+  "backend": "hosted",
+  "model": "gpt-4o-mini",
+  "filter_predicate": "Is this paper about machine learning? {abstract_text}",
+  "map_instruction": "Respond with exactly one word. Classify the primary topic of this paper as: ML, systems, theory, or other. Abstract: {abstract_text}",
+  "valid_labels": [
+    "ML",
+    "other",
+    "systems",
+    "theory"
+  ],
+  "n_rows": 500,
+  "filter_passed": 154,
+  "map_rows": 500,
+  "artifacts": {
+    "filter_csv": "results/rq1/hosted_abstracts_rep5_filter.csv",
+    "map_csv": "results/rq1/hosted_abstracts_rep5_map.csv"
+  },
+  "capture_status": "posthoc_artifact_manifest",
+  "provenance_status": "Execution-time package versions, call parameters, and provider-applied temperature were not recorded for these existing artifacts. Config fields above come from the current frozen pipeline config and are not proof of the historical request payload."
+}

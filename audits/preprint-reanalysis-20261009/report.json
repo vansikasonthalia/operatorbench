@@ -1,0 +1,34 @@
+{
+  "completed_utc": "2026-10-09T04:29:06.063192+00:00",
+  "passed": true,
+  "checks": {
+    "historical_analyses_reproduced": true,
+    "historical_headline_counts_reproduced": true,
+    "historical_rows_structurally_consistent": true,
+    "historical_log_manifest_matches": true,
+    "admission_ledger_reproduced": true,
+    "matched_control_reproduced": true,
+    "sensitivities_reproduced": true,
+    "reporting_comparison_reconciled": true,
+    "archive_unchanged": true
+  },
+  "historical_evidence_gaps": {
+    "invalid_historical_log_lines": 178,
+    "runs_with_provenance_gaps": 30,
+    "limitations": [
+      "operator logs record parsed filter decisions, not raw provider filter responses",
+      "interceptor logs lack row/run joins sufficient to certify per-run request coverage",
+      "structural consistency is not independent scientific validation",
+      "audit checks current bytes; absent historical checksums/provenance remain absent"
+    ]
+  },
+  "analysis_environment": {
+    "python": "3.10.11",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "pandas": "2.3.3",
+      "numpy": "1.26.4"
+    }
+  },
+  "scope": "Reanalysis of recorded outputs, not a model rerun, independent correctness assessment, or PDF compilation."
+}

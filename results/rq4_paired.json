@@ -1,0 +1,114 @@
+{
+  "purpose": "RQ4 re-analysed as a paired within-row experiment",
+  "supersedes": "the unpaired baseline-vs-injected rate comparison in rq4_summary.json, which mixes denominator change with behaviour change",
+  "estimand": "contradiction status change on rows admitted under BOTH conditions; McNemar exact on discordant pairs",
+  "admission_change_reported_separately": true,
+  "replicates": [
+    {
+      "replicate": 1,
+      "eligible_rows": 449,
+      "admitted_baseline": 138,
+      "admitted_injected": 141,
+      "PAIRED_set_size": 138,
+      "admission_change": {
+        "added_by_injection": 3,
+        "dropped_by_injection": 0,
+        "net": 3,
+        "added_rows": [
+          75,
+          86,
+          215
+        ],
+        "dropped_rows": []
+      },
+      "paired_contradiction": {
+        "baseline_k": 33,
+        "baseline_rate": 0.2391,
+        "injected_k": 34,
+        "injected_rate": 0.2464,
+        "delta_pp": 0.72
+      },
+      "mcnemar": {
+        "b_baseline_only": 1,
+        "b_rows": [
+          21
+        ],
+        "c_injected_only": 2,
+        "c_rows": [
+          140,
+          311
+        ],
+        "concordant_both": 32,
+        "concordant_neither": 103,
+        "discordant_total": 3,
+        "exact_two_sided_p": 1.0
+      },
+      "paired_label_flips": {
+        "k": 3,
+        "n": 138,
+        "rate": 0.0217,
+        "wilson": [
+          0.0074,
+          0.062
+        ],
+        "rows": [
+          21,
+          140,
+          311
+        ]
+      }
+    },
+    {
+      "replicate": 2,
+      "eligible_rows": 449,
+      "admitted_baseline": 140,
+      "admitted_injected": 141,
+      "PAIRED_set_size": 140,
+      "admission_change": {
+        "added_by_injection": 1,
+        "dropped_by_injection": 0,
+        "net": 1,
+        "added_rows": [
+          86
+        ],
+        "dropped_rows": []
+      },
+      "paired_contradiction": {
+        "baseline_k": 35,
+        "baseline_rate": 0.25,
+        "injected_k": 34,
+        "injected_rate": 0.2429,
+        "delta_pp": -0.71
+      },
+      "mcnemar": {
+        "b_baseline_only": 2,
+        "b_rows": [
+          21,
+          221
+        ],
+        "c_injected_only": 1,
+        "c_rows": [
+          140
+        ],
+        "concordant_both": 33,
+        "concordant_neither": 104,
+        "discordant_total": 3,
+        "exact_two_sided_p": 1.0
+      },
+      "paired_label_flips": {
+        "k": 3,
+        "n": 140,
+        "rate": 0.0214,
+        "wilson": [
+          0.0073,
+          0.0611
+        ],
+        "rows": [
+          21,
+          140,
+          221
+        ]
+      }
+    }
+  ]
+}

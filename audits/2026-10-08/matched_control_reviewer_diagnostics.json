@@ -1,0 +1,123 @@
+{
+  "purpose": "Read-only reviewer diagnostics; exploratory, not part of the predefined analysis or a correctness adjudication.",
+  "replicates": [
+    {
+      "replicate": 1,
+      "invalid_pm_rows": 21,
+      "invalid_context_primary_filter_about_filter_about_map": {
+        "False / False / False": 20,
+        "False / True / True": 1
+      },
+      "joint_valid_rows": 479,
+      "about_operator_net_positives_joint_cohort": 3,
+      "primary_operator_net_positives_joint_cohort": 14,
+      "difference_of_operator_net_changes_joint_cohort": 11,
+      "strict_primary_operator_discordant_counts": [
+        2,
+        16
+      ],
+      "period_tolerant_primary_operator_discordant_counts": [
+        2,
+        16
+      ]
+    },
+    {
+      "replicate": 2,
+      "invalid_pm_rows": 21,
+      "invalid_context_primary_filter_about_filter_about_map": {
+        "False / False / False": 20,
+        "False / True / True": 1
+      },
+      "joint_valid_rows": 479,
+      "about_operator_net_positives_joint_cohort": 4,
+      "primary_operator_net_positives_joint_cohort": 13,
+      "difference_of_operator_net_changes_joint_cohort": 9,
+      "strict_primary_operator_discordant_counts": [
+        2,
+        15
+      ],
+      "period_tolerant_primary_operator_discordant_counts": [
+        2,
+        15
+      ]
+    },
+    {
+      "replicate": 3,
+      "invalid_pm_rows": 21,
+      "invalid_context_primary_filter_about_filter_about_map": {
+        "False / False / False": 20,
+        "False / True / True": 1
+      },
+      "joint_valid_rows": 479,
+      "about_operator_net_positives_joint_cohort": 4,
+      "primary_operator_net_positives_joint_cohort": 11,
+      "difference_of_operator_net_changes_joint_cohort": 7,
+      "strict_primary_operator_discordant_counts": [
+        1,
+        12
+      ],
+      "period_tolerant_primary_operator_discordant_counts": [
+        1,
+        12
+      ]
+    },
+    {
+      "replicate": 4,
+      "invalid_pm_rows": 26,
+      "invalid_context_primary_filter_about_filter_about_map": {
+        "False / False / False": 25,
+        "False / True / True": 1
+      },
+      "joint_valid_rows": 474,
+      "about_operator_net_positives_joint_cohort": 3,
+      "primary_operator_net_positives_joint_cohort": 12,
+      "difference_of_operator_net_changes_joint_cohort": 9,
+      "strict_primary_operator_discordant_counts": [
+        2,
+        14
+      ],
+      "period_tolerant_primary_operator_discordant_counts": [
+        2,
+        14
+      ]
+    }
+  ],
+  "interpretation": "Period-tolerant parsing is a hypothetical sensitivity only. Original protocol, answers, and summary are unchanged. Net differences on a shared valid cohort are descriptive and have no interaction significance test.",
+  "replicate_4_excluding_interrupted_row_block": {
+    "excluded_rows": [
+      298,
+      215,
+      400,
+      99,
+      288,
+      397,
+      146,
+      385,
+      113,
+      109
+    ],
+    "contrasts": {
+      "operator_about": {
+        "valid_pairs": 490,
+        "left_true_only": 1,
+        "right_true_only": 2
+      },
+      "operator_primary": {
+        "valid_pairs": 465,
+        "left_true_only": 2,
+        "right_true_only": 13
+      },
+      "criterion_filter": {
+        "valid_pairs": 490,
+        "left_true_only": 53,
+        "right_true_only": 0
+      },
+      "criterion_map": {
+        "valid_pairs": 465,
+        "left_true_only": 42,
+        "right_true_only": 0
+      }
+    },
+    "scope": "Post-hoc descriptive sensitivity. All four cells exclude the same ten rows. No original analysis rewritten and no formal adjusted p-values computed here."
+  }
+}
