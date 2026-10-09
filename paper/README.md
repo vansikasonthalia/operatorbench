@@ -1,6 +1,6 @@
 # Paper
 
-**Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines**  
+**Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines**
 Vansika Sonthalia · 9 October 2026
 
 Author preprint; not peer reviewed. No arXiv identifier has been assigned.
