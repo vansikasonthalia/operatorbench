@@ -88,6 +88,9 @@ recover the same requirement exceptions (\S\ref{sec:revision-evaluation}).
 The artifact exposes how each result is obtained, with shared preprocessing
 and supplemental checks disclosed separately from independent core checks.
 \end{enumerate}
+We make no claim of a new accuracy metric, a generally superior operator, or
+population-level performance. The contribution is a case study and an
+accounting procedure that makes exclusion-induced changes inspectable.
 Existing work studies semantic-query quality and execution
 tradeoffs, as well as developer-defined evaluation criteria
 \cite{sembench,promptevals,evalgen}; we do not claim that reliability or
@@ -1074,6 +1077,31 @@ The revision evaluation selects 100 of the already studied arXiv rows without
 labels or outcomes, but its prompts and requirements are informed by earlier
 findings. New executions under a locally fixed plan do not provide an
 independent holdout or external preregistration.
+
+\paragraph{Evidence availability.}
+The public repository contains the manuscript source, software, frozen plans,
+aggregate result files, and selected audits. The complete saved-output archive
+also contains document text, per-row CSVs, raw request logs, and native prompts;
+these materials are retained locally because redistribution permissions for the
+collected documents are not established. The evidence tiers are:
+
+\begin{center}
+\small
+\begin{tabular}{p{0.25\linewidth}p{0.29\linewidth}p{0.35\linewidth}}
+\toprule
+Tier & Available material & What it supports \\
+\midrule
+Public clone & Source, tests, plans, aggregate results, selected audits & Code inspection and reported aggregates; not full saved-output reproduction \\
+Local archive & Frozen inputs, per-row outputs, logs, native prompts & Offline reanalysis of recorded outputs and archive checks \\
+New execution & Framework, provider access and credentials & A new run under a separately identified protocol \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The public snapshot permits review of the accounting and reported aggregates,
+but not independent reconstruction of every headline result. The historical
+archive additionally contains 178 malformed log lines and 30 runs with
+provenance gaps; successful reanalysis does not repair those omissions.
 
 \paragraph{Execution and scope.}
 Evidence comes from one hosted model family, one framework, and two
