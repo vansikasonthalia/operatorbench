@@ -123,7 +123,9 @@ def run_replicate(runner, df, domain, replicate, tag="", force=False):
     if map_path.exists() and not force:
         print(f"  [rep {replicate}] already on disk -- loading (use --force to redo)")
         return load_completed_pipeline(ROOT / "results", run_id, df.index,
-                                       cfg["map"]["output_col"])
+                                       cfg["map"]["output_col"], expected_identity=runner.experiment_identity(
+                                           df, domain, cfg["filter"]["predicate"], cfg["map"]["instruction"],
+                                           cfg["map"]["output_col"], cfg["map"]["valid_labels"]))
 
     results = runner.run_filter_map(
         df=df,
@@ -191,8 +193,8 @@ def aggregate_domain(domain, n_reps, total_rows, tag=""):
             "n_schema_violations": schema["n_violations"],
             "schema_rate": schema["rate"],
             "adjusted_n_contradictions": adj,
-            "adjusted_rate": round(adj / len(m), 4) if len(m) else 0.0,
-            "adjusted_ci": [round(adj_lo, 4), round(adj_hi, 4)],
+            "adjusted_rate": round(adj / len(m), 4) if len(m) else None,
+            "adjusted_ci": [round(adj_lo, 4), round(adj_hi, 4)] if len(m) else [None, None],
             "contradicted_rows": contra["contradicted_rows"],
             "violation_examples": schema["violation_examples"],
         })
@@ -205,11 +207,11 @@ def aggregate_domain(domain, n_reps, total_rows, tag=""):
 
     # Event-weighted summaries across replicates are descriptive only: rows
     # recur across runs, so these counts are not independent Bernoulli trials.
-    pooled_rate = pooled_k / pooled_n if pooled_n else 0.0
+    pooled_rate = pooled_k / pooled_n if pooled_n else None
 
-    rates = [p["rate"] for p in per_rep]
-    mean_rate = sum(rates) / len(rates)
-    spread = max(rates) - min(rates)
+    rates = [p["rate"] for p in per_rep if p["rate"] is not None]
+    mean_rate = sum(rates) / len(rates) if rates else None
+    spread = max(rates) - min(rates) if rates else None
 
     # Contradiction persistence over rows admitted by the filter in EVERY replicate
     always_admitted = set(map_runs[0].index)
@@ -241,21 +243,21 @@ def aggregate_domain(domain, n_reps, total_rows, tag=""):
         "pooled": {
             "n_contradictions": pooled_k,
             "n_filter_positive": pooled_n,
-            "rate": round(pooled_rate, 4),
-            "mean_of_replicate_rates": round(mean_rate, 4),
-            "replicate_rate_spread": round(spread, 4),
+            "rate": round(pooled_rate, 4) if pooled_rate is not None else None,
+            "mean_of_replicate_rates": round(mean_rate, 4) if mean_rate is not None else None,
+            "replicate_rate_spread": round(spread, 4) if spread is not None else None,
             "interpretation": "descriptive event-weighted total; repeated rows make a Wilson CI invalid",
         },
         "pooled_schema_violations": {
             "n_violations": sv_k,
             "n_total": sv_n,
-            "rate": round(sv_k / sv_n, 4) if sv_n else 0.0,
+            "rate": round(sv_k / sv_n, 4) if sv_n else None,
             "interpretation": "descriptive event-weighted total; repeated rows make a Wilson CI invalid",
         },
         "pooled_adjusted_contradictions": {
             "note": "counts out-of-schema map labels as disagreements -- sensitivity upper count",
             "n": adj_k,
-            "rate": round(adj_k / pooled_n, 4) if pooled_n else 0.0,
+            "rate": round(adj_k / pooled_n, 4) if pooled_n else None,
             "interpretation": "descriptive event-weighted total; repeated rows make a Wilson CI invalid",
         },
         "shared_row_cohort": {
@@ -263,15 +265,15 @@ def aggregate_domain(domain, n_reps, total_rows, tag=""):
             "n_rows": common_n,
             "ever_contradicted": {
                 "n": n_ever,
-                "rate": round(n_ever / common_n, 4) if common_n else 0.0,
-                "ci_lower": round(common_ever_lo, 4),
-                "ci_upper": round(common_ever_hi, 4),
+                "rate": round(n_ever / common_n, 4) if common_n else None,
+                "ci_lower": round(common_ever_lo, 4) if common_n else None,
+                "ci_upper": round(common_ever_hi, 4) if common_n else None,
             },
             "contradicted_in_every_replicate": {
                 "n": n_always,
-                "rate": round(n_always / common_n, 4) if common_n else 0.0,
-                "ci_lower": round(common_always_lo, 4),
-                "ci_upper": round(common_always_hi, 4),
+                "rate": round(n_always / common_n, 4) if common_n else None,
+                "ci_lower": round(common_always_lo, 4) if common_n else None,
+                "ci_upper": round(common_always_hi, 4) if common_n else None,
             },
             "caveat": "Wilson intervals treat distinct rows as independent draws from a target population; for this fixed benchmark the observed proportions are exact.",
         },
@@ -290,23 +292,25 @@ def print_domain_summary(res):
     if "error" in res:
         print(f"  ERROR: {res['error']}")
         return
+    def pct(value):
+        return "not evaluable" if value is None else f"{value:.2%}"
     p, s, a, per = res["pooled"], res["pooled_schema_violations"], \
         res["pooled_adjusted_contradictions"], res["persistence"]
     print(f"\n  {res['domain'].upper()}  ({res['n_replicates']} replicates)")
     print(f"    Event-weighted disagreement (descriptive): "
-          f"{p['n_contradictions']}/{p['n_filter_positive']} ({p['rate']:.2%}); "
+          f"{p['n_contradictions']}/{p['n_filter_positive']} ({pct(p['rate'])}); "
           "no binomial CI because rows recur across replicates")
     cohort = res["shared_row_cohort"]
     always = cohort["contradicted_in_every_replicate"]
     print(f"    Shared-row cohort: {always['n']}/{cohort['n_rows']} meet the "
-          f"disagreement rule in every replicate ({always['rate']:.2%}; row-level Wilson CI "
-          f"[{always['ci_lower']:.2%}, {always['ci_upper']:.2%}])")
-    rate_strs = ", ".join("{:.2%}".format(r["rate"]) for r in res["per_replicate"])
+          f"disagreement rule in every replicate ({pct(always['rate'])}; row-level Wilson CI "
+          f"[{pct(always['ci_lower'])}, {pct(always['ci_upper'])}])")
+    rate_strs = ", ".join(pct(r["rate"]) for r in res["per_replicate"])
     print(f"    Per-replicate rates:  [{rate_strs}]  "
-          f"(spread {p['replicate_rate_spread']:.2%})")
-    print(f"    Schema violations:    {s['n_violations']}/{s['n_total']} ({s['rate']:.2%})")
+          f"(spread {pct(p['replicate_rate_spread'])})")
+    print(f"    Schema violations:    {s['n_violations']}/{s['n_total']} ({pct(s['rate'])})")
     print(f"    Schema-boundary sensitivity upper count: "
-          f"{a['n']}/{p['n_filter_positive']} ({a['rate']:.2%})")
+          f"{a['n']}/{p['n_filter_positive']} ({pct(a['rate'])})")
     if res["n_replicates"] < 2:
         print("    Persistence: NOT MEANINGFUL with 1 replicate -- every observed "
               "disagreement trivially occurs in 'every' run. Needs >=2.")
@@ -397,7 +401,7 @@ def main():
     if len(all_results) == 2 and all("error" not in r for r in all_results.values()):
         rv = all_results["reviews"]["pooled"]["rate"]
         ab = all_results["abstracts"]["pooled"]["rate"]
-        if rv > 0:
+        if rv is not None and rv > 0 and ab is not None:
             print(f"\nSetup comparison: the abstracts rate is {ab / rv:.1f}x the reviews rate.")
             print("The setups differ in corpus, task, prompts, and label set; this is not a domain effect.")
 

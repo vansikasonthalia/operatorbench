@@ -26,23 +26,25 @@ Usage:
 
 import hashlib
 import json
-import os
 import re
-import tempfile
 import time
 import uuid
+from contextlib import contextmanager
+from threading import RLock
 import pandas as pd
 from pathlib import Path
 from typing import Optional
 
 from .logger import CallLogger
 from .cache import ResponseCache
+from .artifacts import atomic_write, experiment_identity
 
 # Max rows per LOTUS call to stay under TPM rate limits
 # arXiv abstracts are long (~300 tokens each), so keep batches small
 BATCH_SIZE = 10
 BATCH_DELAY_SECONDS = 12  # pause between batches (TPM window is per minute)
 MAX_RETRIES = 3           # retry on rate-limit errors
+_SETTINGS_LOCK = RLock()
 
 # Transient failures worth retrying. Rate limits were the original case, but an
 # overnight run on 10 Aug 2026 died on a bare "Connection error" -- a dropped
@@ -140,7 +142,6 @@ class PipelineRunner:
             if self.seed is not None:
                 lm_kwargs["seed"] = self.seed
             self.lm = LM(model=model, **lm_kwargs)
-            lotus.settings.configure(lm=self.lm)
             # Kept for run metadata. We record what was actually SENT rather than
             # what the project believes the defaults to be -- temperature in
             # particular is never set by us, so it is the pinned LOTUS source's
@@ -178,6 +179,8 @@ class PipelineRunner:
 
         run_id = run_id or f"{domain}_{uuid.uuid4().hex[:8]}"
         _seed = self._effective_seed(seed)
+        identity = self.experiment_identity(df, domain, filter_predicate, map_instruction,
+                                            map_output_col, valid_labels)
 
         print(f"[{run_id}] Starting filter->map pipeline")
         print(f"  Model: {self.model}, Backend: {self.backend}, Seed: {_seed}")
@@ -263,12 +266,25 @@ class PipelineRunner:
             "filter_positive_count": filter_positive_count,
             "filter_results": filtered_df,
             "map_results": mapped_df,
+            "experiment_identity": identity,
         }
 
         # Save intermediate results
         self._save_run_results(results)
 
         return results
+
+    def experiment_identity(self, df, domain, filter_predicate, map_instruction,
+                            map_output_col, valid_labels):
+        return experiment_identity(df, {
+            "domain": domain, "model": self.model, "backend": self.backend,
+            "seed": self.seed, "lm_kwargs": self._lm_kwargs_sent,
+            "temperature": self._observed_temperature(),
+            "cache_enabled": self.cache.enabled, "max_text_chars": self.max_text_chars,
+            "batch_size": self.batch_size, "batch_delay_seconds": self.batch_delay_seconds,
+            "filter_predicate": filter_predicate, "map_instruction": map_instruction,
+            "map_output_col": map_output_col, "valid_labels": sorted(valid_labels) if valid_labels else None,
+        })
 
     def _observed_temperature(self):
         """
@@ -413,7 +429,8 @@ class PipelineRunner:
         attempts = self.retry_attempts
         for attempt in range(1, attempts + 1):
             try:
-                return fn()
+                with self._execution_settings():
+                    return fn()
             except Exception as e:
                 if not _is_transient(e) or attempt == attempts:
                     raise
@@ -428,6 +445,22 @@ class PipelineRunner:
                 print(f"    Transient failure on {label} ({reason}), waiting "
                       f"{pretty} (attempt {attempt}/{attempts})...", flush=True)
                 time.sleep(wait)
+
+    @contextmanager
+    def _execution_settings(self):
+        """Bind this runner's LM and cache policy, restoring settings on failure."""
+        if hasattr(lotus.settings, "context"):
+            with lotus.settings.context(lm=self.lm, enable_cache=self.cache.enabled):
+                yield
+            return
+        # Serialize runner calls for LOTUS versions with process-wide settings.
+        with _SETTINGS_LOCK:
+            previous = {"lm": lotus.settings.lm, "enable_cache": lotus.settings.enable_cache}
+            lotus.settings.configure(lm=self.lm, enable_cache=self.cache.enabled)
+            try:
+                yield
+            finally:
+                lotus.settings.configure(**previous)
 
     def _batched_filter(self, df: pd.DataFrame, predicate: str) -> pd.DataFrame:
         """Run sem_filter in chunks with retry on rate limits."""
@@ -452,6 +485,8 @@ class PipelineRunner:
 
     def _batched_map(self, df: pd.DataFrame, instruction: str, output_col: str) -> pd.DataFrame:
         """Run sem_map in chunks with retry on rate limits."""
+        if df.empty:
+            return df.assign(**{output_col: pd.Series(index=df.index, dtype=object)})
         bs, delay = self.batch_size, self.batch_delay_seconds
         if len(df) <= bs:
             return self._run_with_retry(
@@ -478,18 +513,6 @@ class PipelineRunner:
 
         run_id = results["run_id"]
 
-        def publish(path, content):
-            fd, temporary = tempfile.mkstemp(dir=results_dir, suffix=".tmp")
-            try:
-                with os.fdopen(fd, "w", encoding="utf-8", newline="") as stream:
-                    stream.write(content)
-                    stream.flush()
-                    os.fsync(stream.fileno())
-                os.replace(temporary, path)
-            finally:
-                if os.path.exists(temporary):
-                    os.unlink(temporary)
-
         if not results["filter_results"].index.is_unique or not results["map_results"].index.is_unique:
             raise ValueError("Duplicate row IDs in pipeline results")
         if set(results["filter_results"].index) != set(results["map_results"].index):
@@ -499,7 +522,7 @@ class PipelineRunner:
         for kind in ("filter", "map"):
             content = results[f"{kind}_results"].to_csv(index=True, index_label="row_id")
             path = results_dir / f"{run_id}_{kind}.csv"
-            publish(path, content)
+            atomic_write(path, content)
             csv_hashes[kind] = hashlib.sha256(path.read_bytes()).hexdigest()
 
         # Publish metadata last so its hashes bind the completed CSVs.
@@ -524,5 +547,5 @@ class PipelineRunner:
             )
         except Exception as exc:        # never let bookkeeping kill a paid run
             meta["provenance"] = {"error": f"provenance capture failed: {exc}"}
-        publish(results_dir / f"{run_id}_meta.json", json.dumps(meta, indent=2, default=str))
+        atomic_write(results_dir / f"{run_id}_meta.json", json.dumps(meta, indent=2, default=str))
         print(f"  Results saved to results/{run_id}_*.csv")

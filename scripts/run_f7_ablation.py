@@ -121,7 +121,9 @@ def run_replicate(runner, df, rep, force=False):
     if map_path.exists() and not force:
         print(f"  [rep {rep}] already on disk -- loading (use --force to redo)")
         return load_completed_pipeline(ROOT / "results", run_id, df.index,
-                                       PIPELINES[DOMAIN]["map"]["output_col"])
+                                       PIPELINES[DOMAIN]["map"]["output_col"], expected_identity=runner.experiment_identity(
+                                           df, DOMAIN, ABLATED_FILTER, PIPELINES[DOMAIN]["map"]["instruction"],
+                                           PIPELINES[DOMAIN]["map"]["output_col"], PIPELINES[DOMAIN]["map"]["valid_labels"]))
 
     cfg = PIPELINES[DOMAIN]
     runner.run_filter_map(
@@ -198,8 +200,8 @@ def analyse(rep, df):
 
     b_contra = [r for r in b_adm if is_contra(True, str(bm.loc[r, col]))]
     a_contra = [r for r in a_adm if is_contra(True, str(am.loc[r, col]))]
-    b_rate = len(b_contra) / len(b_adm) if b_adm else 0.0
-    a_rate = len(a_contra) / len(a_adm) if a_adm else 0.0
+    b_rate = len(b_contra) / len(b_adm) if b_adm else None
+    a_rate = len(a_contra) / len(a_adm) if a_adm else None
 
     out = {
         "replicate": rep,
@@ -212,7 +214,7 @@ def analyse(rep, df):
         "contradiction_ablated": {
             "k": len(a_contra), "n": len(a_adm), "rate": a_rate,
             "ci": list(wilson_ci(len(a_contra), len(a_adm))) if a_adm else None},
-        "contradiction_delta_pp": (a_rate - b_rate) * 100,
+        "contradiction_delta_pp": (a_rate - b_rate) * 100 if a_rate is not None and b_rate is not None else None,
         # Legacy JSON keys retained for compatibility; this changes a criterion,
         # not cosmetic wording.
         "rows_dropped_by_rewording": sorted(b_adm - a_adm),
@@ -229,7 +231,9 @@ def analyse(rep, df):
         out["precision_ablated"] = prf(a_adm, declared_ml, labelled.index)
 
     # --- which prediction did we land on? -----------------------------------
-    if a_rate < 0.10 and len(a_adm) < len(b_adm):
+    if a_rate is None or b_rate is None:
+        out["verdict"] = "Disagreement comparison not evaluable: one or both runs admitted no rows"
+    elif a_rate < 0.10 and len(a_adm) < len(b_adm):
         out["verdict"] = (
             "H1 pattern observed: disagreement fell below 10% with fewer admissions "
             "for this predicate pair and setup; no general causal share is estimated"
@@ -259,10 +263,13 @@ def report(results):
         print(f"\nbaseline = rq3 replicate {r['replicate']}")
         print(f"  filter admitted     {cb['n']} -> {ca['n']} "
               f"({r['admitted_delta']:+d})")
-        print(f"  OPERATIONAL DISAGREEMENT {cb['rate']:.2%} [{cb['ci'][0]:.2%}, {cb['ci'][1]:.2%}]"
-              f"  ->  {ca['rate']:.2%} [{ca['ci'][0]:.2%}, {ca['ci'][1]:.2%}]")
-        print(f"                      delta {r['contradiction_delta_pp']:+.2f} pp"
-              f"   <- primary metric")
+        if cb['rate'] is None or ca['rate'] is None:
+            print("  OPERATIONAL DISAGREEMENT comparison: not evaluable (empty admissions)")
+        else:
+            print(f"  OPERATIONAL DISAGREEMENT {cb['rate']:.2%} [{cb['ci'][0]:.2%}, {cb['ci'][1]:.2%}]"
+                  f"  ->  {ca['rate']:.2%} [{ca['ci'][0]:.2%}, {ca['ci'][1]:.2%}]")
+            print(f"                      delta {r['contradiction_delta_pp']:+.2f} pp"
+                  f"   <- primary metric")
         if "precision_baseline" in r:
             pb, pa = r["precision_baseline"], r["precision_ablated"]
             print(f"  filter precision    {pb['precision']:.2%} -> {pa['precision']:.2%}"
@@ -337,7 +344,8 @@ def main():
                if (ROOT / "results" / f"f7_ablation_{DOMAIN}_rep{r}_map.csv").exists()]
     report(results)
 
-    rates = [r["contradiction_ablated"]["rate"] for r in results if "error" not in r]
+    rates = [r["contradiction_ablated"]["rate"] for r in results
+             if "error" not in r and r["contradiction_ablated"]["rate"] is not None]
     spread_pp = (max(rates) - min(rates)) * 100 if len(rates) > 1 else None
     if spread_pp is not None:
         print(f"\nintervention disagreement rate across {len(rates)} replicates: "

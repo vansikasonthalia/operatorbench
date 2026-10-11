@@ -25,8 +25,7 @@ quantity RQ3 actually depends on.
 
 SEED CAVEAT
 -----------
-PipelineRunner accepts `seed` but only records it in the call log -- it is not
-threaded through LOTUS into the LiteLLM request. The harness never configured a
+PipelineRunner forwards its configured seed to LOTUS. The harness never configured a
 seed for the hosted runs (BACKENDS["hosted"]["seed"] is None), so hosted
 replicates are unseeded runs on the same frozen rows -- repeated executions, not
 seed-controlled repeats. Report them as replicates in the paper. The local Ollama
@@ -67,6 +66,8 @@ from harness import (
 )
 from harness.runner import BATCH_SIZE, BATCH_DELAY_SECONDS
 from harness.metrics import raw_schema_compliance
+from harness.artifacts import atomic_write, validate_identity
+import hashlib
 from configs.pipelines import PIPELINES, BACKENDS, RQ_CONFIGS
 
 RESULTS_DIR = ROOT / "results" / "rq1"
@@ -235,7 +236,7 @@ def write_rq1_metadata(domain, tag, replicate, filter_df, map_df, backend,
             cache_enabled=getattr(runner.cache, "enabled", None),
         )
 
-    meta_path.write_text(json.dumps(meta, indent=2, default=str))
+    atomic_write(meta_path, json.dumps(meta, indent=2, default=str))
     return meta_path
 
 
@@ -252,11 +253,35 @@ def run_replicate(runner, df, domain, tag, replicate, force=False):
 
     filter_path = RESULTS_DIR / f"{tag}_{domain}_rep{replicate}_filter.csv"
     map_path = RESULTS_DIR / f"{tag}_{domain}_rep{replicate}_map.csv"
+    identity = runner.experiment_identity(df, domain, cfg["filter"]["predicate"],
+                                          cfg["map"]["instruction"], map_col, cfg["map"]["valid_labels"])
+
+    def load_operator(path, columns):
+        manifest_path = path.with_suffix(".manifest.json")
+        if not manifest_path.exists():
+            raise ValueError(f"Missing execution manifest for {path.name}; historical files are for offline analysis")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        validate_identity(manifest, identity)
+        if hashlib.sha256(path.read_bytes()).hexdigest() != manifest["sha256"]:
+            raise ValueError(f"Artifact hash mismatch: {path.name}")
+        frame = pd.read_csv(path, index_col="row_id")
+        if not frame.index.is_unique or set(frame.index) != set(df.index) or not set(columns) <= set(frame.columns):
+            raise ValueError(f"Incomplete rows or columns: {path.name}")
+        return frame
+
+    def save_operator(path, frame, columns):
+        if not frame.index.is_unique or set(frame.index) != set(df.index) or not set(columns) <= set(frame.columns):
+            raise ValueError(f"Incomplete rows: {path.name}")
+        atomic_write(path, frame.to_csv(index_label="row_id"))
+        atomic_write(path.with_suffix(".manifest.json"), json.dumps({
+            "experiment_identity": identity, "completion_status": "complete",
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        }, indent=2))
 
     if filter_path.exists() and map_path.exists() and not force:
         print(f"  [rep {replicate}] already on disk -- loading (use --force to redo)")
-        f_df = pd.read_csv(filter_path, index_col="row_id")
-        m_df = pd.read_csv(map_path, index_col="row_id")
+        f_df = load_operator(filter_path, ["filter_passed"])
+        m_df = load_operator(map_path, [map_col, f"_raw_{map_col}"])
         write_rq1_metadata(domain, tag, replicate, f_df, m_df,
                            backend=runner.backend)
         return f_df, m_df
@@ -269,7 +294,7 @@ def run_replicate(runner, df, domain, tag, replicate, force=False):
     # it would burn 500 more calls against a 2M/day token cap for no new data.
     if filter_path.exists() and not force:
         print(f"  [rep {replicate}] filter already on disk -- skipping to map")
-        f_df = pd.read_csv(filter_path, index_col="row_id")
+        f_df = load_operator(filter_path, ["filter_passed"])
     else:
         passed = runner.run_filter_only(
             df=df,
@@ -282,7 +307,7 @@ def run_replicate(runner, df, domain, tag, replicate, force=False):
             index=df.index,
         )
         f_df.index.name = "row_id"
-        f_df.to_csv(filter_path)
+        save_operator(filter_path, f_df, ["filter_passed"])
 
     # --- sem_map over ALL rows (not just filter-positive) --------------------
     # Fixed denominator is what makes the flip rate attributable to sem_map.
@@ -297,7 +322,7 @@ def run_replicate(runner, df, domain, tag, replicate, force=False):
     keep = [c for c in (map_col, f"_raw_{map_col}") if c in mapped.columns]
     m_df = mapped[keep].copy()
     m_df.index.name = "row_id"
-    m_df.to_csv(map_path)
+    save_operator(map_path, m_df, [map_col, f"_raw_{map_col}"])
 
     # Capture full provenance for this execution, including isolated operators.
     write_rq1_metadata(domain, tag, replicate, f_df, m_df,

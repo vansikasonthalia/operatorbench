@@ -56,3 +56,28 @@ run. Current results are explained in [RESULTS.md](RESULTS.md).
 
 Source or protocol changes for a new experiment need a new run identity and
 bindings. A newer provider response is not reproduction of the saved response.
+
+## Execution safeguards added on 11 October 2026
+
+Each pipeline call binds its runner's model and LOTUS cache policy and restores
+the previous settings on exit. The `cache_enabled` flag now controls LOTUS
+caching; the older standalone SQLite cache is not the response source for LOTUS.
+These safeguards describe new executions, not guarantees retroactively established
+for historical requests.
+
+New pipeline metadata binds the full input frame and execution configuration.
+RQ1 also saves an atomic CSV and a completion/hash manifest for each operator,
+allowing an interrupted map stage to resume from a verified filter stage.
+Execution resume refuses historical artifacts without these bindings. Historical
+`--aggregate-only` analysis remains available; the loader's explicit
+`allow_legacy=True` option performs structural inspection with a warning and a
+`historical_structural_only` validation status. It does not certify experiment identity.
+Preserve the archived results when preparing new executions; do not use `--force`
+on the frozen evidence directory to bypass a validation failure.
+
+Disagreement and schema rates with zero observations are `null`, displayed as
+“not evaluable.” RQ3 averages exclude undefined replicate rates, while retaining
+each replicate and its admission count in the report. Nonempty-run formulas are unchanged.
+
+Run `python -m pytest -m "not archive"` in the optional model-runner environment
+to include mocked framework tests. No provider calls are made by those tests.

@@ -124,7 +124,8 @@ class TestContradictionRate:
         is_contra = lambda passed, label: label == "positive"
         result = contradiction_rate(df, "mapped_label", is_contra)
         assert result["n_contradictions"] == 0
-        assert result["rate"] == 0.0
+        assert result["rate"] is None
+        assert result["ci_lower"] is None and result["ci_upper"] is None
 
     def test_contradicted_rows_tracking(self):
         df = self._make_df(["negative", "positive", "neutral"])
@@ -179,7 +180,8 @@ class TestSchemaViolationRate:
         df = pd.DataFrame({"label": []})
         result = schema_violation_rate(df, "label", {"a", "b"})
         assert result["n_total"] == 0
-        assert result["rate"] == 0.0
+        assert result["rate"] is None
+        assert result["ci_lower"] is None and result["ci_upper"] is None
 
     def test_violation_examples_capped(self):
         """violation_examples should be capped at 20."""

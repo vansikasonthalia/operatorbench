@@ -85,9 +85,9 @@ def contradiction_rate(
         return {
             "n_filter_positive": 0,
             "n_contradictions": 0,
-            "rate": 0.0,
-            "ci_lower": 0.0,
-            "ci_upper": 0.0,
+            "rate": None,
+            "ci_lower": None,
+            "ci_upper": None,
             "contradicted_rows": [],
         }
 
@@ -140,8 +140,8 @@ def schema_violation_rate(
     n = len(map_df)
     if n == 0:
         return {
-            "n_total": 0, "n_violations": 0, "rate": 0.0,
-            "ci_lower": 0.0, "ci_upper": 0.0, "violation_examples": [],
+            "n_total": 0, "n_violations": 0, "rate": None,
+            "ci_lower": None, "ci_upper": None, "violation_examples": [],
         }
 
     if case_sensitive:
@@ -358,6 +358,8 @@ def format_results_table(results: dict, title: str = "") -> str:
     for key, val in results.items():
         if isinstance(val, list):
             lines.append(f"  {key}: [{len(val)} items]")
+        elif val is None:
+            lines.append(f"  {key}: not evaluable")
         elif isinstance(val, float):
             lines.append(f"  {key}: {val:.4f}")
         else:

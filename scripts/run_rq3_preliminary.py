@@ -147,10 +147,13 @@ def run_rq3(domains=None):
         c = res["contradiction"]
         print(f"\n  {domain.upper()}:")
         print(f"    Filter pass rate: {res['filter_positive']}/{res['total_rows']} ({res['filter_rate']:.1%})")
-        print(f"    Contradiction rate: {c['n_contradictions']}/{c['n_filter_positive']} ({c['rate']:.1%})")
-        print(f"    95% Wilson CI: [{c['ci_lower']:.1%}, {c['ci_upper']:.1%}]")
         sv = res["schema_violations"]
-        print(f"    Schema violations: {sv['n_violations']}/{sv['n_total']} ({sv['rate']:.1%})")
+        if c['rate'] is None:
+            print("    Disagreement and schema rates: not evaluable (empty admissions)")
+        else:
+            print(f"    Contradiction rate: {c['n_contradictions']}/{c['n_filter_positive']} ({c['rate']:.1%})")
+            print(f"    95% Wilson CI: [{c['ci_lower']:.1%}, {c['ci_upper']:.1%}]")
+            print(f"    Schema violations: {sv['n_violations']}/{sv['n_total']} ({sv['rate']:.1%})")
 
     print(f"\n{'='*60}")
     print("Done. These are preliminary single-run numbers.")

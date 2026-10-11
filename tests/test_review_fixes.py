@@ -63,7 +63,10 @@ def test_resume_rejects_partial_and_mismatched_files(tmp_path):
     with pytest.raises(ValueError, match="counts"):
         load_completed_pipeline(tmp_path, "run", [1, 2], "label")
     (tmp_path / "run_meta.json").write_text(json.dumps({"total_rows": 2, "filter_positive_count": 1}))
-    assert len(load_completed_pipeline(tmp_path, "run", [1, 2], "label")) == 1
+    with pytest.raises(ValueError, match="Historical artifact"):
+        load_completed_pipeline(tmp_path, "run", [1, 2], "label")
+    with pytest.warns(UserWarning, match="structural checks only"):
+        assert len(load_completed_pipeline(tmp_path, "run", [1, 2], "label", allow_legacy=True)) == 1
 
 
 @pytest.mark.parametrize("nested", [False, True])
@@ -133,9 +136,10 @@ def test_saved_run_checksums_detect_partial_overwrite(tmp_path, monkeypatch):
     runner._save_run_results({"run_id": "run", "filter_results": frame,
                              "map_results": frame, "total_rows": 2,
                              "filter_positive_count": 1,
-                             "filter_predicate": "filter", "map_instruction": "map"})
+                             "filter_predicate": "filter", "map_instruction": "map",
+                             "experiment_identity": {"test": "identity"}})
     root = tmp_path / "results"
-    assert len(load_completed_pipeline(root, "run", [1, 2], "label")) == 1
+    assert len(load_completed_pipeline(root, "run", [1, 2], "label", expected_identity={"test": "identity"})) == 1
     with (root / "run_map.csv").open("a") as stream:
         stream.write("2,other\n")
     with pytest.raises(ValueError, match="hash mismatch"):

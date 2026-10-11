@@ -110,7 +110,9 @@ def run_replicate(runner, df, rep, force=False):
     if map_path.exists() and not force:
         print(f"  [rep {rep}] already on disk -- loading (use --force to redo)")
         return load_completed_pipeline(ROOT / "results", run_id, df.index,
-                                       PIPELINES[DOMAIN]["map"]["output_col"])
+                                       PIPELINES[DOMAIN]["map"]["output_col"], expected_identity=runner.experiment_identity(
+                                           df, DOMAIN, INJECTED_FILTER, INJECTED_MAP,
+                                           PIPELINES[DOMAIN]["map"]["output_col"], PIPELINES[DOMAIN]["map"]["valid_labels"]))
 
     cfg = PIPELINES[DOMAIN]
     results = runner.run_filter_map(
