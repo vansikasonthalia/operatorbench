@@ -5,6 +5,7 @@ Vansika Sonthalia · 9 October 2026
 
 Author preprint; not peer reviewed. No arXiv identifier has been assigned.
 
+[Read the paper (PDF)](reproducibility.pdf) ·
 [Read the study summary and evidence](../docs/RESULTS.md) ·
 [LaTeX source](reproducibility.tex)
 
@@ -16,9 +17,9 @@ file to an Overleaf project, select pdfLaTeX and recompile. A local LaTeX
 installation can also build the source with pdfLaTeX; run it twice to resolve
 cross-references.
 
-A compiled PDF is not included in this repository yet. The desktop compiler
-could not start during release preparation, so the current revision's PDF
-has not been verified here.
+The [compiled PDF](reproducibility.pdf) was built from this source with
+Tectonic 0.17.0 and checked for resolved references and page layout.
+To rebuild it with Tectonic, run `tectonic --untrusted reproducibility.tex`.
 
 The manuscript covers the admission and coverage tradeoff, matched operator
 control, offline sensitivity analyses, revision evaluation, related work and

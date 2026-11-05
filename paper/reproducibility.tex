@@ -6,6 +6,8 @@
 \usepackage{amsmath,amssymb,enumitem,graphicx}
 \usepackage[T1]{fontenc}
 \usepackage[hidelinks]{hyperref}
+% Allow long inline code examples to wrap within the text area.
+\setlength{\emergencystretch}{3em}
 \title{Lower Disagreement Through Exclusion: A Case Study of Semantic Pipelines}
 \author{Vansika Sonthalia\thanks{Research preprint; not peer reviewed. Code and evidence: \url{https://github.com/vansikasonthalia/operatorbench}.}}
 \date{9 October 2026}
@@ -141,7 +143,7 @@ calls, are:
 
 \smallskip
 \noindent\textbf{sem\_filter} (claim verification):
-\begin{quote}\small\ttfamily
+\begin{quote}\small\ttfamily\raggedright
 The user will provide a claim and some relevant context.
 Your job is to determine whether the claim is true for the given context.
 Use the following format to provide your answer:
@@ -149,7 +151,7 @@ Answer: <Your answer here. The answer should be either True or False>
 \end{quote}
 
 \noindent\textbf{sem\_map} (instruction following):
-\begin{quote}\small\ttfamily
+\begin{quote}\small\ttfamily\raggedright
 The user will provide an instruction and some relevant context.
 Your job is to answer the user's instruction given the context.
 \end{quote}
@@ -268,7 +270,7 @@ reproduction of the measurements:
 
 \paragraph{Frozen predicates.}
 Historical langex predicates and label sets were frozen in
-\texttt{configs/pipelines.py} before those experiments. The subsequent
+\path{configs/pipelines.py} before those experiments. The subsequent
 control has a separate recorded protocol (\S\ref{sec:matched-methods}).
 The headline rules are domain-specific: reviews count only a
 \texttt{positive} map label after negative-review admission, whereas
@@ -1259,6 +1261,7 @@ setup, while historical provenance gaps remain. Independent adjudication and
 broader workloads are needed for stronger correctness or generalization claims.
 
 \begin{thebibliography}{10}
+\raggedright
 \bibitem{selectivenet} Yonatan Geifman and Ran El-Yaniv. 2019.
 SelectiveNet: A Deep Neural Network with an Integrated Reject Option.
 Proceedings of the 36th International Conference on Machine Learning,

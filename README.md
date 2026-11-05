@@ -10,7 +10,7 @@ filter and then assign labels with a natural-language map operation.
 The central question is simple: **if a pipeline reports fewer disagreements,
 did its labels improve, or did it stop admitting the difficult documents?**
 
-[Paper](paper/) · [Results and evidence](docs/RESULTS.md) ·
+[Paper PDF](paper/reproducibility.pdf) · [Paper details](paper/) · [Results and evidence](docs/RESULTS.md) ·
 [Reproduction guide](docs/ARTIFACT-README.md) · [Code guide](docs/CODE-GUIDE.md)
 
 ## Main result
@@ -76,8 +76,9 @@ checks requiring the withheld research data are selected separately; see the
 ## Scope and availability
 
 The current manuscript is an **author preprint, not peer reviewed**. Its
-[standalone LaTeX source](paper/reproducibility.tex) is available here; a compiled
-PDF and arXiv identifier are not yet included.
+[compiled PDF](paper/reproducibility.pdf) and
+[standalone LaTeX source](paper/reproducibility.tex) are available here. An arXiv
+identifier has not been assigned.
 
 This repository contains the software, experiment specifications, result
 summaries and selected audits. Input document text, per-run CSVs containing
